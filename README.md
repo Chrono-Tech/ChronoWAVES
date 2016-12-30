@@ -2,6 +2,6 @@
 
 `npm install`
 
-#Testing
+# Testing
 
-`npm run test:headless`
+`npm run test`
