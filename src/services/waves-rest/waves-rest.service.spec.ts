@@ -17,7 +17,7 @@ import {
     MockConnection
 } from '@angular/http/testing';
 
-import { 
+import {
     WavesRestService,
     BlockData
 } from './waves-rest.service';
@@ -84,7 +84,7 @@ describe('Service: WavesRestService', () => {
 
         service.blockAt(1).subscribe(() => {
             fail(`This callback shouldn't have been called`);
-        }, 
+        },
         () => {
             expect(console.error).toHaveBeenCalledWith('Server is down');
         });
