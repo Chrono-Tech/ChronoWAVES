@@ -17,4 +17,5 @@ describe("Utils: Base58 Encoding / Decoding", () => {
         expect(Base58.isValid('0')).toBeFalsy();
         expect(Base58.isValid('3P93GB88cqtSHAXT9Jec3ePmJabakZNXq9A')).toBeTruthy();
     })
+
 });
