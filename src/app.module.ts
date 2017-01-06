@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
-import { RouterModule, Routes } from '@angular/router';
+// import { RouterModule, Routes } from '@angular/router';
 
 // Import our application components
 import { 
@@ -12,16 +12,10 @@ import {
 } from './components';
 
 import { Logger } from './shared/logger';
-
 import { WavesRestService } from './services/waves-rest/waves-rest.service'
+import { Config, TestNetConfig } from './services/config';
 
-import {Config, TestNetConfig } from './services/config';
-
-const appRoutes: Routes = [
-
-    { path: 'login', component: LoginFormComponent },
-    { path: '', component: DashboardComponent },
-];
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
     bootstrap: [ AppComponent ],
@@ -34,13 +28,12 @@ const appRoutes: Routes = [
     imports: [
         BrowserModule,
         HttpModule,
-        RouterModule.forRoot(appRoutes)
+        AppRoutingModule
     ],
     providers: [ 
         WavesRestService,
         Logger,
         { provide: Config, useClass: TestNetConfig } 
     ]
-
 })
 export class AppModule {}
