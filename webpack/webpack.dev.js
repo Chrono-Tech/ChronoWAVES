@@ -11,7 +11,8 @@ module.exports = {
     debug: true,
     devServer: {
         contentBase: path.resolve(rootDir, 'dist'),
-        port: 9000
+        port: 9000,
+        historyApiFallback: true
     },
     devtool: 'source-map',
 
