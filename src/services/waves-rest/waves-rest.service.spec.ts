@@ -22,6 +22,10 @@ import {
     BlockData
 } from './waves-rest.service';
 
+import {
+    Config, TestNetConfig
+} from '../config';
+
 /**
  * Tests Suite
  */
@@ -32,6 +36,7 @@ describe('Service: WavesRestService', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             providers: [
+                { provide: Config, useClass: TestNetConfig },
                 BaseRequestOptions,
                 MockBackend,
                 WavesRestService,

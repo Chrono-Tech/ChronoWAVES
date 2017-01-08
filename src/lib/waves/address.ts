@@ -4,15 +4,13 @@ import { Keccak } from '../crypto/keccak';
 import { Base58 } from '../utils/base58';
 import { Curve25519 } from '../crypto/curve25519';
 
+import secureHash from './hash-chain';
+
 const ADDRESS_VERSION = 1;
-const HASH_LENGTH = 20;
+const HASH_LENGTH     = 20;
 const CHECKSUM_LENGTH = 4;
-const ADDRESS_LENGTH = 1 + 1 + CHECKSUM_LENGTH + HASH_LENGTH;
+const ADDRESS_LENGTH  = 1 + 1 + CHECKSUM_LENGTH + HASH_LENGTH;
 
-
-function secureHash(input: Uint8Array): Uint8Array {
-    return Keccak.hash32(Blake2b.hash32(input));
-}
 
 export class Address {
 

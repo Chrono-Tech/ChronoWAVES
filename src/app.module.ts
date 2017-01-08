@@ -5,18 +5,34 @@ import { HttpModule } from '@angular/http';
 // Import our application components
 import { 
     AppComponent, 
-    LoginFormComponent 
+    LoginFormComponent,
+    DashboardComponent,
+    ToolbarComponent
 } from './components';
 
+import { Logger } from './shared/logger';
 import { WavesRestService } from './services/waves-rest/waves-rest.service'
+import { Config, TestNetConfig } from './services/config';
+
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
     bootstrap: [ AppComponent ],
-    declarations: [ AppComponent ],
+    declarations: [
+        AppComponent,
+        DashboardComponent,
+        LoginFormComponent,
+        ToolbarComponent
+    ],
     imports: [
         BrowserModule,
-        HttpModule
+        HttpModule,
+        AppRoutingModule
     ],
-    providers: [ WavesRestService ]
+    providers: [ 
+        WavesRestService,
+        Logger,
+        { provide: Config, useClass: TestNetConfig } 
+    ]
 })
 export class AppModule {}

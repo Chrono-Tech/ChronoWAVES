@@ -5,3 +5,7 @@ export interface NetworkParameters {
 export class TestNet implements NetworkParameters {
     chainId: number = 'T'.charCodeAt(0);
 }
+
+export class MainNet implements NetworkParameters {
+    chainId: number = 'W'.charCodeAt(0);
+}

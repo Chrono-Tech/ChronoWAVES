@@ -1,0 +1,3 @@
+<p>Login Form</p>
+<button (click)="login()" *ngIf="!authService.isLoggedIn">Login</button>
+<button (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
