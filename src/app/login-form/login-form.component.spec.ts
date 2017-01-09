@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MaterialModule } from '@angular/material';
 
 import { LoginFormComponent } from './login-form.component';
 import { AuthService } from '../services/auth/auth.service';
@@ -17,7 +18,10 @@ describe('Component: LoginFormComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [LoginFormComponent],
-            imports: [ReactiveFormsModule],
+            imports: [
+                ReactiveFormsModule, 
+                MaterialModule.forRoot()
+            ],
             providers: [
                 AuthService, 
                 { provide: Router, useClass: RouterStub }
