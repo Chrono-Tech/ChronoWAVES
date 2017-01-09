@@ -21,3 +21,9 @@ before_script:
 - npm install -g karma
 - npm install
 - ng build
+
+
+script: npm run test:coverage
+
+after_script:
+  - cat ./coverage/coverage.lcov | ./node_modules/coveralls/bin/coveralls.js
