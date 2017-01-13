@@ -1,3 +1,6 @@
+// Import theming functions
+@import '~@angular/material/core/theming/theming';
+
 @import '~@angular/material/core/theming/all-theme';
 // Plus imports for other components in your app.
 
@@ -8,8 +11,78 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue.
-$candy-app-primary: md-palette($md-indigo);
-$candy-app-accent:  md-palette($md-amber, A200, A100, A400);
+
+$md-chrono-primary: (
+  50: #c6ddf7,
+  100: #83b6ed,
+  200: #5299e6,
+  300: #1f75d1,
+  400: #1b66b7,
+  500: #17579c,
+  600: #134881,
+  700: #0f3967,
+  800: #0b2a4c,
+  900: #071b31,
+  A100: #c6ddf7,
+  A200: #83b6ed,
+  A400: #1b66b7,
+  A700: #0f3967,
+
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: white,
+    400: white,
+    500: $white-87-opacity,
+    600: $white-87-opacity,
+    700: $white-87-opacity,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: white,
+    A400: white,
+    A700: $white-87-opacity,
+  )
+);
+
+$md-chrono-accent: (
+  50: #ffffff,
+  100: #ffffff,
+  200: #f7e7d4,
+  300: #ecc598,
+  400: #e7b67e,
+  500: #e2a864,
+  600: #dd9a4a,
+  700: #d88b30,
+  800: #c57b25,
+  900: #ab6b20,
+  A100: #ffffff,
+  A200: #ffffff,
+  A400: #e7b67e,
+  A700: #d88b30,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: $black-87-opacity,
+    600: $black-87-opacity,
+    700: $black-87-opacity,
+    800: $black-87-opacity,
+    900: $black-87-opacity,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: $black-87-opacity,
+  )
+);
+
+
+$candy-app-primary: md-palette($md-chrono-primary);
+//$candy-app-accent:  md-palette($md-chrono-accent, A200, A100, A400);
+$candy-app-accent:  md-palette($md-chrono-accent);
 
 // The warn palette is optional (defaults to red).
 $candy-app-warn:    md-palette($md-red);
@@ -21,3 +94,7 @@ $candy-app-theme: md-light-theme($candy-app-primary, $candy-app-accent, $candy-a
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($candy-app-theme);
+
+.tx-income-amount {
+  background-color: md-color($candy-app-primary, 100) !important;
+}

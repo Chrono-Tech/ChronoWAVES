@@ -10,10 +10,13 @@ import { Logger } from '../shared/logger';
 
 @Component({
     selector: 'toolbar',
-    template: require('./toolbar.component.html')
+    template: require('./toolbar.component.html'),
+    styles: [require('./toolbar.component.css')]
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
     currentHeight: number;
+    currentAddress: string = '3MsKhZJzGZ1hnZJZUPYUAKjGQdk7Q7qoCRa';
+    
     heightSubscription: AnonymousSubscription;
 
     constructor(
