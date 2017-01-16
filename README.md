@@ -1,5 +1,10 @@
 # ChronoWAVES [![Build Status](https://travis-ci.org/ChronoBank/ChronoWAVES.svg?branch=master)](https://travis-ci.org/ChronoBank/ChronoWAVES) [![Coverage Status](https://coveralls.io/repos/github/ChronoBank/ChronoWAVES/badge.svg?branch=master)](https://coveralls.io/github/ChronoBank/ChronoWAVES?branch=master)
 
+## Contact  
+
+Help us develop the application by submitting issues and bugs.
+
+
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.24.
 
 ## Development server
