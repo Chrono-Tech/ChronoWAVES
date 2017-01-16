@@ -1,1 +1,12 @@
-<p>Block: {{ currentHeight }}</p> <button (click)="logout()" *ngIf="isLoggedIn()">Logout</button>
+<md-toolbar color="primary">
+    <span style="font-weight: bold">Chrono<span style="color:#e2a864">WAVES</span></span>
+    <span class="spacer"></span>
+    <span>Address: {{ currentAddress }}&nbsp;</span>
+    <span>Block: {{ currentHeight }}</span>
+    <button md-icon-button>
+        <md-icon>settings</md-icon>
+    </button>
+    <button md-icon-button (click)="logout()" *ngIf="isLoggedIn()">
+        <md-icon>power_settings_new</md-icon>
+    </button>
+</md-toolbar>
