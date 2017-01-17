@@ -1,14 +1,10 @@
 <toolbar></toolbar>
-<div fxLayout fxLayout.xs="column" fxLayoutAlign="center space-between" fxLayoutGap="10px">
+<div fxLayout="row" fxLayoutAlign="center space-between">
     <div class="" fxFlex="10%" fxShow.xs="false" fxShow.sm="false"></div>
     <div class="" fxFlex>
-
         <div fxLayout="column" class="">
             <div fxFlex class="container">
-
-                <div class="" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayout.md="column" 
-                    fxLayoutAlign="space-between center"
-                    fxLayoutGap="10px" fxLayoutGap.sm="0px" fxLayoutGap.md="0px" fxLayoutGap.xs="0px">
+                <div class="" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
                     <div class="" fxFlex="350px">
                         <md-card>
                             <md-card-title-group>
@@ -84,20 +80,175 @@
                 </div>
             </div>
             <div fxFlex class="container">
+                <div class="" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
+                    <div class="" fxFlex="350px">
+                        <md-card>
+                            <md-card-subtitle fxLayout="row" fxLayoutAlign="start center">
+                                <img md-card-avatar src="assets/coins-flag-04.png"> &nbsp; LHAU / BTC &nbsp; <span class="font-weight-bold md-text-warn">-46,68</span>
+                                <span fxFlex></span>
+                                <button md-icon-button md-button-sm [md-menu-trigger-for]="card2" aria-label="Open card menu">
+          <md-icon>more_vert</md-icon>
+        </button>
+                            </md-card-subtitle>
+                            <md-menu #card2="mdMenu" x-position="before">
+                                <button md-menu-item>
+          <md-icon>settings</md-icon>
+          Settings
+        </button>
+                                <button md-menu-item>
+          <md-icon>more</md-icon>
+          View More
+        </button>
+                                <button md-menu-item>
+          <md-icon>notifications_off</md-icon>
+          Disable notifications
+        </button>
+                                <button md-menu-item>
+          <md-icon>exit_to_app</md-icon>
+          Remove Panel
+        </button>
+                            </md-menu>
+                            <md-card-content>
+                                <canvas height="200" baseChart class="chart" 
+                                    [datasets]="ComboChartDataLHAU" 
+                                    [labels]="comboChartLabels" 
+                                    [options]="ComboChartOptions"
+                                    [colors]="chartColors" 
+                                    [legend]="comboChartLegend" 
+                                    [chartType]="barChartType"></canvas>
+                            </md-card-content>
+                        </md-card>
+                    </div>
+                    <div class="" fxFlex="350px">
+                        <md-card>
+                            <md-card-subtitle fxLayout="row" fxLayoutAlign="start center">
+                                <img md-card-avatar src="assets/coins-flag-02.png"> &nbsp; LHGB / BTC &nbsp; <span class="font-weight-bold md-text-warn">-46,68</span>
+
+                                <span fxFlex></span>
+                                <button md-icon-button md-button-sm [md-menu-trigger-for]="card2" aria-label="Open card menu">
+          <md-icon>more_vert</md-icon>
+        </button>
+                            </md-card-subtitle>
+                            <md-menu #card2="mdMenu" x-position="before">
+                                <button md-menu-item>
+          <md-icon>settings</md-icon>
+          Settings
+        </button>
+                                <button md-menu-item>
+          <md-icon>more</md-icon>
+          View More
+        </button>
+                                <button md-menu-item>
+          <md-icon>notifications_off</md-icon>
+          Disable notifications
+        </button>
+                                <button md-menu-item>
+          <md-icon>exit_to_app</md-icon>
+          Remove Panel
+        </button>
+                            </md-menu>
+                            <md-card-content>
+                                <canvas height="200" baseChart class="chart" 
+                                [datasets]="ComboChartDataLHGB" [labels]="comboChartLabels" [options]="ComboChartOptions"
+                                    [colors]="chartColors" [legend]="comboChartLegend" [chartType]="barChartType"></canvas>
+                            </md-card-content>
+                        </md-card>
+                    </div>
+                    <div class="" fxFlex="350px">
+                        <md-card>
+                            <md-card-subtitle fxLayout="row" fxLayoutAlign="start center">
+                                <img md-card-avatar src="assets/coins-flag-03.png"> &nbsp; LHEU / BTC &nbsp; <span class="font-weight-bold md-text-warn">-46,68</span>
+
+                                <span fxFlex></span>
+                                <button md-icon-button md-button-sm [md-menu-trigger-for]="card2" aria-label="Open card menu">
+          <md-icon>more_vert</md-icon>
+        </button>
+                            </md-card-subtitle>
+                            <md-menu #card2="mdMenu" x-position="before">
+                                <button md-menu-item>
+          <md-icon>settings</md-icon>
+          Settings
+        </button>
+                                <button md-menu-item>
+          <md-icon>more</md-icon>
+          View More
+        </button>
+                                <button md-menu-item>
+          <md-icon>notifications_off</md-icon>
+          Disable notifications
+        </button>
+                                <button md-menu-item>
+          <md-icon>exit_to_app</md-icon>
+          Remove Panel
+        </button>
+                            </md-menu>
+                            <md-card-content>
+                                <canvas height="200" baseChart class="chart" 
+                                [datasets]="ComboChartDataLHEU" [labels]="comboChartLabels" [options]="ComboChartOptions"
+                                    [colors]="chartColors" [legend]="comboChartLegend" [chartType]="barChartType"></canvas>
+                            </md-card-content>
+                        </md-card>
+                    </div>
+                    <div class="" fxFlex="350px">
+                        <md-card>
+                            <md-card-subtitle fxLayout="row" fxLayoutAlign="start center">
+                                <img md-card-avatar src="assets/coins-flag-01.png"> &nbsp; LHUS / BTC &nbsp; <span class="font-weight-bold md-text-warn">-46,68</span>
+
+                                <span fxFlex></span>
+                                <button md-icon-button md-button-sm [md-menu-trigger-for]="card2" aria-label="Open card menu">
+          <md-icon>more_vert</md-icon>
+        </button>
+                            </md-card-subtitle>
+                            <md-menu #card2="mdMenu" x-position="before">
+                                <button md-menu-item>
+          <md-icon>settings</md-icon>
+          Settings
+        </button>
+                                <button md-menu-item>
+          <md-icon>more</md-icon>
+          View More
+        </button>
+                                <button md-menu-item>
+          <md-icon>notifications_off</md-icon>
+          Disable notifications
+        </button>
+                                <button md-menu-item>
+          <md-icon>exit_to_app</md-icon>
+          Remove Panel
+        </button>
+                            </md-menu>
+                            <md-card-content>
+                                <canvas height="200" baseChart class="chart" [datasets]="ComboChartDataLHUS" [labels]="comboChartLabels" [options]="ComboChartOptions"
+                                    [colors]="chartColors" [legend]="comboChartLegend" [chartType]="barChartType"></canvas>
+                            </md-card-content>
+                        </md-card>
+                    </div>
+                </div>
+            </div>
+            <div fxFlex class="container">
                 <md-card>
                     <md-card-title>Latest Transactions</md-card-title>
                     <md-card-content>
-                    <md-list>
-                        <md-list-item>
-                            12 Nov 2016 To: 3MsKhZJzGZ1hnZJZUPYUAKjGQdk7Q7qoCRa <md-chip-list><md-chip selected="true" color="primary">-10.0 LHAU</md-chip></md-chip-list>
-                        </md-list-item>
-                        <md-list-item>
-                            12 Nov 2016 From: 3MsKhZJzGZ1hnZJZUPYUAKjGQdk7Q7qoCRa <md-chip-list><md-chip color="primary">10.0 LHAU</md-chip></md-chip-list>
-                        </md-list-item>
-                        <md-list-item>
-                            12 Nov 2016 From: 3MsKhZJzGZ1hnZJZUPYUAKjGQdk7Q7qoCRa <md-chip-list><md-chip selected="true" class="tx-income-amount">10.0 LHAU</md-chip></md-chip-list>
-                        </md-list-item>
-                    </md-list>
+                        <md-list>
+                            <md-list-item>
+                                12 Nov 2016 To: 3MsKhZJzGZ1hnZJZUPYUAKjGQdk7Q7qoCRa
+                                <md-chip-list>
+                                    <md-chip selected="true" color="primary">-10.0 LHAU</md-chip>
+                                </md-chip-list>
+                            </md-list-item>
+                            <md-list-item>
+                                12 Nov 2016 From: 3MsKhZJzGZ1hnZJZUPYUAKjGQdk7Q7qoCRa
+                                <md-chip-list>
+                                    <md-chip color="primary">10.0 LHAU</md-chip>
+                                </md-chip-list>
+                            </md-list-item>
+                            <md-list-item>
+                                12 Nov 2016 From: 3MsKhZJzGZ1hnZJZUPYUAKjGQdk7Q7qoCRa
+                                <md-chip-list>
+                                    <md-chip selected="true" class="tx-income-amount">10.0 LHAU</md-chip>
+                                </md-chip-list>
+                            </md-list-item>
+                        </md-list>
                     </md-card-content>
                 </md-card>
 
@@ -105,5 +256,5 @@
         </div>
 
     </div>
-    <div class="" fxFlex="10%"></div>
+    <div class="" fxFlex="10%" fxShow.xs="false" fxShow.sm="false"></div>
 </div>
