@@ -24,7 +24,6 @@
     "@angular/platform-browser": "^2.4.4",
     "@angular/platform-browser-dynamic": "^2.4.4",
     "@angular/router": "^3.4.4",
-    "@covalent/core": "^0.10.2",
     "@types/base-x": "^1.0.29",
     "axlsign": "git+https://github.com/0white/curve25519-js.git#tsd",
     "base-x": "^2.0.3",

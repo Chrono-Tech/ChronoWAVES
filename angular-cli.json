@@ -18,7 +18,6 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
-        "../node_modules/@covalent/core/common/platform.css",
         "styles.css",
         "chrono-theme.scss"
       ],

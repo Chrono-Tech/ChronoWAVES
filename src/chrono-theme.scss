@@ -1,8 +1,5 @@
 // Import theming functions
-@import '~@angular/material/core/theming/theming';
-
 @import '~@angular/material/core/theming/all-theme';
-@import '~@covalent/core/theming/all-theme';
 
 // Plus imports for other components in your app.
 
@@ -96,7 +93,6 @@ $chrono-theme: md-light-theme($candy-app-primary, $candy-app-accent, $candy-app-
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($chrono-theme);
-@include covalent-theme($chrono-theme);
 
 .tx-income-amount {
   background-color: md-color($candy-app-primary, 100) !important;
