@@ -1,6 +1,6 @@
-<toolbar></toolbar>
+<app-toolbar></app-toolbar>
 <div fxLayout="row" fxLayoutAlign="center space-between">
-    <div class="" fxFlex="10%" fxShow.xs="false" fxShow.sm="false"></div>
+    <div class="" fxFlex="5%" fxShow.xs="false" fxShow.sm="false"></div>
     <div class="" fxFlex>
         <div fxLayout="column" class="">
             <div fxFlex class="container">
@@ -13,7 +13,7 @@
                             <md-card-content>
                                 <md-grid-list cols="2" rowHeight="35px">
                                     <md-grid-tile rowspan="2" colspan="1"><img src="assets/coins-flag-04.png" /></md-grid-tile>
-                                    <md-grid-tile>100 LHAU</md-grid-tile>
+                                    <md-grid-tile>1000.051 LHAU</md-grid-tile>
                                     <md-grid-tile>$34.5 AUD</md-grid-tile>
                                 </md-grid-list>
                             </md-card-content>
@@ -31,8 +31,8 @@
                                 <md-card-content>
                                     <md-grid-list cols="2" rowHeight="35px">
                                         <md-grid-tile rowspan="2" colspan="1"><img src="assets/coins-flag-02.png" /></md-grid-tile>
-                                        <md-grid-tile>100 LHGB</md-grid-tile>
-                                        <md-grid-tile>&pound;34.5 GBP</md-grid-tile>
+                                        <md-grid-tile>43.00 LHGB</md-grid-tile>
+                                        <md-grid-tile>&pound;14.5 GBP</md-grid-tile>
                                     </md-grid-list>
                                 </md-card-content>
                             </md-card-content>
@@ -109,7 +109,7 @@
         </button>
                             </md-menu>
                             <md-card-content>
-                                <canvas height="200" baseChart class="chart" 
+                                <canvas height="140" baseChart class="chart" 
                                     [datasets]="ComboChartDataLHAU" 
                                     [labels]="comboChartLabels" 
                                     [options]="ComboChartOptions"
@@ -148,7 +148,7 @@
         </button>
                             </md-menu>
                             <md-card-content>
-                                <canvas height="200" baseChart class="chart" 
+                                <canvas height="140" baseChart class="chart" 
                                 [datasets]="ComboChartDataLHGB" [labels]="comboChartLabels" [options]="ComboChartOptions"
                                     [colors]="chartColors" [legend]="comboChartLegend" [chartType]="barChartType"></canvas>
                             </md-card-content>
@@ -183,7 +183,7 @@
         </button>
                             </md-menu>
                             <md-card-content>
-                                <canvas height="200" baseChart class="chart" 
+                                <canvas height="140" baseChart class="chart" 
                                 [datasets]="ComboChartDataLHEU" [labels]="comboChartLabels" [options]="ComboChartOptions"
                                     [colors]="chartColors" [legend]="comboChartLegend" [chartType]="barChartType"></canvas>
                             </md-card-content>
@@ -218,13 +218,14 @@
         </button>
                             </md-menu>
                             <md-card-content>
-                                <canvas height="200" baseChart class="chart" [datasets]="ComboChartDataLHUS" [labels]="comboChartLabels" [options]="ComboChartOptions"
+                                <canvas height="140" baseChart class="chart" [datasets]="ComboChartDataLHUS" [labels]="comboChartLabels" [options]="ComboChartOptions"
                                     [colors]="chartColors" [legend]="comboChartLegend" [chartType]="barChartType"></canvas>
                             </md-card-content>
                         </md-card>
                     </div>
                 </div>
             </div>
+
             <div fxFlex class="container">
                 <md-card>
                     <md-card-title>Latest Transactions</md-card-title>
@@ -235,20 +236,52 @@
                                 <md-chip-list>
                                     <md-chip selected="true" color="primary">-10.0 LHAU</md-chip>
                                 </md-chip-list>
+                                &nbsp;Confirmations: 10
                             </md-list-item>
                             <md-list-item>
                                 12 Nov 2016 From: 3MsKhZJzGZ1hnZJZUPYUAKjGQdk7Q7qoCRa
                                 <md-chip-list>
                                     <md-chip color="primary">10.0 LHAU</md-chip>
                                 </md-chip-list>
+                                &nbsp;Confirmations: 2310
                             </md-list-item>
                             <md-list-item>
                                 12 Nov 2016 From: 3MsKhZJzGZ1hnZJZUPYUAKjGQdk7Q7qoCRa
                                 <md-chip-list>
                                     <md-chip selected="true" class="tx-income-amount">10.0 LHAU</md-chip>
                                 </md-chip-list>
+                                &nbsp;Confirmations: 10200
                             </md-list-item>
                         </md-list>
+                    </md-card-content>
+                </md-card>
+
+            </div>
+
+                        <div fxFlex class="container">
+                <md-card>
+                    <md-card-title>Latest Transactions</md-card-title>
+                    <md-card-content>
+
+
+<td-expansion-panel label="label" sublabel="sublabel" expand="true|false" disabled="true|false">
+  <template td-expansion-panel-header>
+    ... add header content (overrides label and sublabel)
+  </template>
+  <template td-expansion-panel-label>
+    ... add label content (if not used, falls back to [label] input)
+  </template>
+  <template td-expansion-panel-sublabel>
+    ... add sublabel content (if not used, falls back to [sublabel] input)
+  </template>
+  <td-expansion-summary>
+    ... add summary that will be shown when expansion-panel is "collapsed".
+  </td-expansion-summary>
+  ... add content that will be shown when the step is "expanded"
+</td-expansion-panel>
+
+
+
                     </md-card-content>
                 </md-card>
 
@@ -256,5 +289,5 @@
         </div>
 
     </div>
-    <div class="" fxFlex="10%" fxShow.xs="false" fxShow.sm="false"></div>
+    <div class="" fxFlex="5%" fxShow.xs="false" fxShow.sm="false"></div>
 </div>

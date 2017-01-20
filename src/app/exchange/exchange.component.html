@@ -1,0 +1,41 @@
+<app-toolbar></app-toolbar>
+<div fxLayout="row" fxLayoutAlign="center space-between">
+  <div class="" fxFlex="5%" fxShow.xs="false" fxShow.sm="false"></div>
+  <div class="" fxFlex>
+    <div fxLayout="column" class="">
+      <div fxFlex class="container">
+        <md-card>
+          <md-card-subtitle fxLayout="row" fxLayoutAlign="start center">
+            <img md-card-avatar src="assets/coins-flag-04.png"> &nbsp; LHAU / BTC &nbsp; <span class="font-weight-bold md-text-warn">-46,68</span>
+            <span fxFlex></span>
+            <button md-icon-button md-button-sm [md-menu-trigger-for]="card2" aria-label="Open card menu">
+              <md-icon>more_vert</md-icon>
+            </button>
+          </md-card-subtitle>
+          
+          <md-menu #card2="mdMenu" x-position="before">
+            <button md-menu-item><md-icon>settings</md-icon>Settings</button>
+            <button md-menu-item><md-icon>more</md-icon>View More</button>
+            <button md-menu-item><md-icon>notifications_off</md-icon>Disable notifications</button>
+            <button md-menu-item><md-icon>exit_to_app</md-icon>Remove Panel</button>
+          </md-menu>
+
+          <md-card-content>
+            <canvas height="140" baseChart 
+              class="chart" 
+              [datasets]="ComboChartData" 
+              [labels]="comboChartLabels" 
+              [options]="ComboChartOptions"
+              [colors]="chartColors" 
+              [legend]="comboChartLegend" 
+              [chartType]="barChartType"></canvas>
+          </md-card-content>
+        </md-card>
+      </div>
+      <div fxFlex class="container">
+
+      </div>
+    </div>
+  </div>
+  <div class="" fxFlex="5%" fxShow.xs="false" fxShow.sm="false"></div>
+</div>

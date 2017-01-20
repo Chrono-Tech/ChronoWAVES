@@ -2,6 +2,8 @@
 @import '~@angular/material/core/theming/theming';
 
 @import '~@angular/material/core/theming/all-theme';
+@import '~@covalent/core/theming/all-theme';
+
 // Plus imports for other components in your app.
 
 // Include the base styles for Angular Material core. We include this here so that you only
@@ -88,12 +90,13 @@ $candy-app-accent:  md-palette($md-chrono-accent);
 $candy-app-warn:    md-palette($md-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$candy-app-theme: md-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
+$chrono-theme: md-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($candy-app-theme);
+@include angular-material-theme($chrono-theme);
+@include covalent-theme($chrono-theme);
 
 .tx-income-amount {
   background-color: md-color($candy-app-primary, 100) !important;
