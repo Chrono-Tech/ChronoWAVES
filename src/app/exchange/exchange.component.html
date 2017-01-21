@@ -1,41 +1,211 @@
 <app-toolbar></app-toolbar>
 <div fxLayout="row" fxLayoutAlign="center space-between">
-  <div class="" fxFlex="5%" fxShow.xs="false" fxShow.sm="false"></div>
-  <div class="" fxFlex>
-    <div fxLayout="column" class="">
+  <div class="" fxFlex="10%" fxShow.xs="false" fxShow.sm="false"></div>
+  <div class="" fxFlex="">
+    <div fxLayout="column">
       <div fxFlex class="container">
-        <md-card>
-          <md-card-subtitle fxLayout="row" fxLayoutAlign="start center">
-            <img md-card-avatar src="assets/coins-flag-04.png"> &nbsp; LHAU / BTC &nbsp; <span class="font-weight-bold md-text-warn">-46,68</span>
-            <span fxFlex></span>
-            <button md-icon-button md-button-sm [md-menu-trigger-for]="card2" aria-label="Open card menu">
-              <md-icon>more_vert</md-icon>
-            </button>
-          </md-card-subtitle>
-          
-          <md-menu #card2="mdMenu" x-position="before">
-            <button md-menu-item><md-icon>settings</md-icon>Settings</button>
-            <button md-menu-item><md-icon>more</md-icon>View More</button>
-            <button md-menu-item><md-icon>notifications_off</md-icon>Disable notifications</button>
-            <button md-menu-item><md-icon>exit_to_app</md-icon>Remove Panel</button>
-          </md-menu>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <div fxFlex="70%" fxFlexAlign="stretch" class="container">
+            <md-card>
+              <md-card-title-group>
+                <img md-card-avatar src="assets/coins-flag-04.png">
+                <md-card-title>LHAU / WAVES</md-card-title>
+                <md-card-subtitle>Australian Labour-Hours Exchange</md-card-subtitle>
+            </md-card-title-group>
 
+              <md-card-content>
+                    <canvas height="140" baseChart class="chart" 
+                        [datasets]="ComboChartData" 
+                        [labels]="comboChartLabels" 
+                        [options]="ComboChartOptions"
+                        [colors]="chartColors" 
+                        [legend]="comboChartLegend" 
+                        [chartType]="barChartType"></canvas>
+              </md-card-content>
+            </md-card>
+          </div>
+          <div fxFlex="30%" fxFlexAlign="stretch" class="container">
+            <md-card>
+              <md-card-content>
+                <md-list>
+                  <md-list-item>Last Price&nbsp;<span class="md-text-primary">{{ stats.lastPrice }}</span></md-list-item>
+                  <md-list-item>24H Volume &nbsp;<span class="md-text-primary">{{ stats.volume24h }}</span></md-list-item>
+                  <md-list-item>24H High &nbsp;<span class="md-text-primary">{{ stats.high24h }}</span></md-list-item>
+                  <md-list-item>24H Low &nbsp;<span class="md-text-primary">{{ stats.low24h }}</span></md-list-item>
+                  <md-list-item>24H Change&nbsp;<span>{{ stats.change24h }}%</span></md-list-item>
+                </md-list>
+              </md-card-content>
+            </md-card>
+          </div>
+
+        </div>
+      </div>
+      <div fxFlex="" class="container">
+        <div fxLayout="row" fxLayoutAlign="space-between stretch">
+          <div fxFlex="50%" class="container">
+            <md-card>
+              <md-card-title><span class="md-text-primary">BUY LHAU</span></md-card-title>
+              <md-card-content>
+                <table width="100%">
+                  <tr><td>Price:</td>
+                    <td>
+                      <md-input align="end" style="width: 100%;">
+                      </md-input>
+                      </td>
+                      <td>WAVES</td>
+                  </tr>
+                  <tr><td>Amount:</td>
+                    <td>
+                      <md-input align="end" style="width: 100%;">
+                      </md-input>
+                      </td>
+                      <td>LHAU</td>
+                  </tr>
+                                    <tr><td>Total:</td>
+                    <td>
+                      <md-input align="end" style="width: 100%;">
+                      </md-input>
+                      </td>
+                      <td>WAVES</td>
+                  </tr>
+                </table>
+              </md-card-content>
+              <md-card-actions>
+                <div fxLayout="row">
+                  <span fxFlex></span>
+                <button md-raised-button color="accent">BUY</button></div>
+              </md-card-actions>
+            </md-card>
+          </div>
+          <div fxFlex="50%" class="container">
+            <md-card>
+              <md-card-title><span class="md-text-primary">SELL LHAU</span></md-card-title>
+              <md-card-content>
+                <table width="100%">
+                  <tr><td>Price:</td>
+                    <td>
+                      <md-input align="end" style="width: 100%;">
+                      </md-input>
+                      </td>
+                      <td>WAVES</td>
+                  </tr>
+                  <tr><td>Amount:</td>
+                    <td>
+                      <md-input align="end" style="width: 100%;">
+                      </md-input>
+                      </td>
+                      <td>LHAU</td>
+                  </tr>
+                  <tr><td>Total:</td>
+                    <td>
+                      <md-input align="end" style="width: 100%;">
+                      </md-input>
+                      </td>
+                      <td>WAVES</td>
+                  </tr>
+                </table>
+              </md-card-content>
+              <md-card-actions>
+                <div fxLayout="row">
+                  <span fxFlex></span>
+                <button md-raised-button color="accent">SELL</button></div>
+              </md-card-actions>
+            </md-card>
+          </div>
+        </div>
+      </div>
+      <div fxFlex="" class="container">
+        <div fxLayout="row" fxLayoutAlign="space-between stretch">
+          <!--<div fxFlex="50%" class="container" >-->
+            <md-card fxFlex="50%" class="container">
+              <md-card-subtitle>SELL ORDERS</md-card-subtitle>
+              <md-card-content>
+                <ngx-datatable
+                  class="material"
+                  [footerHeight]="0"
+                  [columnMode]="'force'"
+                  [scrollbarV]="true"
+                  [scrollbarH]="false"
+                  [rows]="sellOrders">
+                  <ngx-datatable-column name="Price" prop="price"></ngx-datatable-column>
+                  <ngx-datatable-column name="LHAU" prop="asset1Amount"></ngx-datatable-column>
+                  <ngx-datatable-column name="WAVES" prop="asset2Amount"></ngx-datatable-column>
+                  <ngx-datatable-column name="SUM (WAVES)" prop="asset2Sum"></ngx-datatable-column>
+                </ngx-datatable>
+              </md-card-content>
+            </md-card>
+          <!--</div>-->
+          <!--<div fxFlex="50%" class="container" style="background-color: #00AAFF;">-->
+                <md-card fxFlex="50%" class="container">
+                  <md-card-subtitle>BUY ORDERS</md-card-subtitle>
+                  <md-card-content>
+                    <ngx-datatable
+                      class="material"
+                      [footerHeight]="0"
+                      [columnMode]="'force'"
+                      [scrollbarV]="true"
+                      [scrollbarH]="false"
+                      [rows]="buyOrders">
+                      <ngx-datatable-column name="Price" prop="price"></ngx-datatable-column>
+                      <ngx-datatable-column name="LHAU" prop="asset1Amount"></ngx-datatable-column>
+                      <ngx-datatable-column name="WAVES" prop="asset2Amount"></ngx-datatable-column>
+                      <ngx-datatable-column name="SUM (WAVES)" prop="asset2Sum"></ngx-datatable-column>
+                    </ngx-datatable>
+                  </md-card-content>
+                </md-card>
+
+          <!--</div>-->
+        </div>
+      </div>
+      <!-- Trade History -->
+      <div fxFlex="" class="container">
+        <div fxLayout="rows">
+        <md-card fxFlex>
+          <md-card-title>TRADE HISTORY</md-card-title>
           <md-card-content>
-            <canvas height="140" baseChart 
-              class="chart" 
-              [datasets]="ComboChartData" 
-              [labels]="comboChartLabels" 
-              [options]="ComboChartOptions"
-              [colors]="chartColors" 
-              [legend]="comboChartLegend" 
-              [chartType]="barChartType"></canvas>
+            <ngx-datatable
+              class="material"
+              [columnMode]="'force'"
+              [footerHeight]="0"
+              [scrollbarV]="true"
+              [scrollbarH]="false"
+              [rows]="rows">
+              <ngx-datatable-column name="Date"></ngx-datatable-column>
+              <ngx-datatable-column name="Type"></ngx-datatable-column>
+              <ngx-datatable-column name="Price"></ngx-datatable-column>
+              <ngx-datatable-column name="Amount (LHAU)" prop="amount"></ngx-datatable-column>
+              <ngx-datatable-column name="Total (WAVES)" prop="total"></ngx-datatable-column>
+            </ngx-datatable>
           </md-card-content>
         </md-card>
-      </div>
-      <div fxFlex class="container">
 
+        <md-card fxFlex>
+          <md-card-title>MY OPEN ORDERS</md-card-title>
+          <md-card-content>
+            <ngx-datatable
+              class="material"
+              [columnMode]="'force'"
+              [footerHeight]="0"
+              [scrollbarV]="false"
+              [scrollbarH]="false"
+              [rows]="ownOrders">
+              <ngx-datatable-column name="Type"></ngx-datatable-column>
+              <ngx-datatable-column name="Price"></ngx-datatable-column>
+              <ngx-datatable-column name="Amount (LHAU)" prop="amount"></ngx-datatable-column>
+              <ngx-datatable-column name="Total (WAVES)" prop="total"></ngx-datatable-column>
+              <ngx-datatable-column name="Action" prop="id">
+                <template let-value="value" ngx-datatable-cell-template>
+                  <a href='#{{value}}'>Cancel</a>
+                </template>
+              </ngx-datatable-column>
+              
+            </ngx-datatable>
+          </md-card-content>
+        </md-card>
+
+        </div>
       </div>
     </div>
   </div>
-  <div class="" fxFlex="5%" fxShow.xs="false" fxShow.sm="false"></div>
+  <div class="" fxFlex="10%" fxShow.xs="false" fxShow.sm="false"></div>
 </div>

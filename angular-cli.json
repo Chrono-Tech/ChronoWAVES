@@ -19,7 +19,9 @@
       "mobile": false,
       "styles": [
         "styles.css",
-        "chrono-theme.scss"
+        "chrono-theme.scss",
+        "../node_modules/@swimlane/ngx-datatable/release/datatable.css",
+        "../node_modules/@swimlane/ngx-datatable/release/material.css"
       ],
       "scripts": [
         "../node_modules/chart.js/dist/Chart.bundle.min.js"

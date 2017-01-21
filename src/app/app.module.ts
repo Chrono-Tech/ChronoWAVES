@@ -7,6 +7,7 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -35,6 +36,7 @@ import { Config, TestNetConfig } from './services/config';
     AppRoutingModule,
     MaterialModule.forRoot(),
     FlexLayoutModule.forRoot(),
+    NgxDatatableModule,
     ChartsModule
   ],
   providers: [

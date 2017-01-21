@@ -12,6 +12,82 @@ export class ExchangeComponent implements OnInit {
   ngOnInit() {
   }
 
+  public stats = {
+    lastPrice: 10.5,
+    volume24h: 500,
+    high24h: 12,
+    low24h: 9,
+    change24h: -7.4
+  };
+
+  /**
+   * My orders
+   */
+  public ownOrders = [
+    { id: 1, type: 'Sell', price: 45.4, amount: 1002.88, total: 2234 },
+    { id: 2, type: 'Sell', price: 45.4, amount: 1002.88, total: 2234 },
+    { id: 3, type: 'Buy', price: 45.4, amount: 2002.88, total: 7234 }
+  ];
+
+  public rows = [
+    {
+      date: '2017-01-18 20:10',
+      type: 'Sell',
+      price: 45.4,
+      amount: 1002.88,
+      total: 2234
+    },
+    {
+      date: '2017-01-18 20:10',
+      type: 'Sell',
+      price: 45.4,
+      amount: 1002.88,
+      total: 2234
+    },
+    {
+      date: '2017-01-19 20:10',
+      type: 'Buy',
+      price: 45.4,
+      amount: 2002.88,
+      total: 7234
+    }
+  ];
+
+  public sellOrders = [
+    {
+      price: 3,
+      asset1Amount: 100,
+      asset2Amount: 300,
+      asset2Sum: 300
+    },
+    {
+      price: 4,
+      asset1Amount: 120,
+      asset2Amount: 480,
+      asset2Sum: 780
+    },
+    {
+      price: 5,
+      asset1Amount: 120,
+      asset2Amount: 480,
+      asset2Sum: 1560
+    },
+  ];
+  public buyOrders = [
+    {
+      price: 2,
+      asset1Amount: 50,
+      asset2Amount: 100,
+      asset2Sum: 100
+    },
+    {
+      price: 1.5,
+      asset1Amount: 50,
+      asset2Amount: 75,
+      asset2Sum: 175
+    }
+  ];
+
   // Shared chart options
   public globalChartOptions: any = {
     responsive: true,
@@ -24,7 +100,7 @@ export class ExchangeComponent implements OnInit {
   public barChartType: string = 'bar';
 
   // combo chart
-  public comboChartLabels: Array<any> = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
+  public comboChartLabels: Array<any> = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00'];
   public chartColors: Array<any> = [{ // grey
     backgroundColor: "#7986cb",
     borderColor: "#3f51b5",

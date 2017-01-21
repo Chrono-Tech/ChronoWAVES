@@ -94,6 +94,12 @@ $chrono-theme: md-light-theme($candy-app-primary, $candy-app-accent, $candy-app-
 // that you are using.
 @include angular-material-theme($chrono-theme);
 
-.tx-income-amount {
-  background-color: md-color($candy-app-primary, 100) !important;
+$foreground: map-get($chrono-theme, foreground);
+
+.md-text-muted {
+  color: md-color($foreground, secondary-text) !important; 
+}
+
+.md-text-primary {
+  color: md-color($candy-app-primary) !important;
 }
