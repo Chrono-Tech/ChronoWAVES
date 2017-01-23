@@ -82,12 +82,14 @@ $md-chrono-accent: (
 $candy-app-primary: md-palette($md-chrono-primary);
 //$candy-app-accent:  md-palette($md-chrono-accent, A200, A100, A400);
 $candy-app-accent:  md-palette($md-chrono-accent);
-
 // The warn palette is optional (defaults to red).
 $candy-app-warn:    md-palette($md-red);
 
+$chrono-green-pallete: md-palette($md-green);
+
 // Create the theme object (a Sass map containing all of the palettes).
 $chrono-theme: md-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
+
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -102,4 +104,12 @@ $foreground: map-get($chrono-theme, foreground);
 
 .md-text-primary {
   color: md-color($candy-app-primary) !important;
+}
+
+.md-text-green {
+  color: md-color($chrono-green-pallete) !important;
+}
+
+.md-text-warn {
+  color: md-color($candy-app-warn) !important;
 }

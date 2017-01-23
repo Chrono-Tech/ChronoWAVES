@@ -32,7 +32,7 @@
                   <md-list-item>24H Volume &nbsp;<span class="md-text-primary">{{ stats.volume24h }}</span></md-list-item>
                   <md-list-item>24H High &nbsp;<span class="md-text-primary">{{ stats.high24h }}</span></md-list-item>
                   <md-list-item>24H Low &nbsp;<span class="md-text-primary">{{ stats.low24h }}</span></md-list-item>
-                  <md-list-item>24H Change&nbsp;<span>{{ stats.change24h }}%</span></md-list-item>
+                  <md-list-item>24H Change&nbsp;<span class="md-text-warn">{{ stats.change24h }}%</span></md-list-item>
                 </md-list>
               </md-card-content>
             </md-card>
@@ -171,7 +171,12 @@
               [scrollbarH]="false"
               [rows]="rows">
               <ngx-datatable-column name="Date"></ngx-datatable-column>
-              <ngx-datatable-column name="Type"></ngx-datatable-column>
+              <ngx-datatable-column name="Type">
+                <template let-value="value" ngx-datatable-cell-template>
+                    <span *ngIf="value=='Buy'" class="md-text-green">{{ value }}</span>
+                    <span *ngIf="value=='Sell'" class="md-text-warn">{{ value }}</span>
+                </template>
+              </ngx-datatable-column>
               <ngx-datatable-column name="Price"></ngx-datatable-column>
               <ngx-datatable-column name="Amount (LHAU)" prop="amount"></ngx-datatable-column>
               <ngx-datatable-column name="Total (WAVES)" prop="total"></ngx-datatable-column>
@@ -189,13 +194,18 @@
               [scrollbarV]="false"
               [scrollbarH]="false"
               [rows]="ownOrders">
-              <ngx-datatable-column name="Type"></ngx-datatable-column>
+              <ngx-datatable-column name="Type">
+                <template let-value="value" ngx-datatable-cell-template>
+                    <span *ngIf="value=='Buy'" class="md-text-green">{{ value }}</span>
+                    <span *ngIf="value=='Sell'" class="md-text-warn">{{ value }}</span>
+                </template>
+              </ngx-datatable-column>
               <ngx-datatable-column name="Price"></ngx-datatable-column>
               <ngx-datatable-column name="Amount (LHAU)" prop="amount"></ngx-datatable-column>
               <ngx-datatable-column name="Total (WAVES)" prop="total"></ngx-datatable-column>
               <ngx-datatable-column name="Action" prop="id">
                 <template let-value="value" ngx-datatable-cell-template>
-                  <a href='#{{value}}'>Cancel</a>
+                  <a class="md-text-primary" href='#{{value}}'>Cancel</a>
                 </template>
               </ngx-datatable-column>
               
