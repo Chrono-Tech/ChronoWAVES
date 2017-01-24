@@ -14,13 +14,18 @@
             </md-card-title-group>
 
               <md-card-content>
-                    <canvas height="140" baseChart class="chart" 
+                    <!--<canvas height="140" baseChart class="chart" 
                         [datasets]="ComboChartData" 
                         [labels]="comboChartLabels" 
                         [options]="ComboChartOptions"
                         [colors]="chartColors" 
                         [legend]="comboChartLegend" 
-                        [chartType]="barChartType"></canvas>
+                        [chartType]="barChartType"></canvas>-->
+
+  <!--<div id="myDiv" style="width: 550px; height: 400px;"></div>-->
+<amCharts 
+  [id]="id" [options]="chart" [style.width.%]="100" [style.height.%]="100"></amCharts>
+
               </md-card-content>
             </md-card>
           </div>

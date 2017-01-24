@@ -107,9 +107,15 @@ $foreground: map-get($chrono-theme, foreground);
 }
 
 .md-text-green {
-  color: md-color($chrono-green-pallete) !important;
+  color: md-color($candy-app-primary) !important;
 }
 
 .md-text-warn {
-  color: md-color($candy-app-warn) !important;
+  color: md-color($candy-app-accent) !important;
 }
+
+#chartdiv {
+	width		: 100%;
+	height		: 500px;
+	font-size	: 11px;
+}			

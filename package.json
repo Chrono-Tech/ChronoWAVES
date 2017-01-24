@@ -26,6 +26,8 @@
     "@angular/router": "^3.4.4",
     "@swimlane/ngx-datatable": "^5.0.0",
     "@types/base-x": "^1.0.29",
+    "amcharts3-angular2": "github:amcharts/amcharts3-angular2",
+    "angular2-highcharts": "^0.4.1",
     "axlsign": "git+https://github.com/0white/curve25519-js.git#tsd",
     "base-x": "^2.0.3",
     "blakejs": "git+https://github.com/0white/blakejs.git#tsd",

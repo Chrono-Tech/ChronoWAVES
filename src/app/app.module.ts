@@ -7,7 +7,9 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { ChartModule } from 'angular2-highcharts';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { AmChartsDirective } from "amcharts3-angular2/amcharts.directive";
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -27,7 +29,8 @@ import { Config, TestNetConfig } from './services/config';
     DashboardComponent,
     ExchangeComponent,
     LoginFormComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    AmChartsDirective
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { Config, TestNetConfig } from './services/config';
     MaterialModule.forRoot(),
     FlexLayoutModule.forRoot(),
     NgxDatatableModule,
-    ChartsModule
+    ChartsModule,
+    ChartModule
   ],
   providers: [
     WavesRestService,
