@@ -6,6 +6,11 @@ import 'rxjs/Rx';
 export class AuthService {
     isLoggedIn: boolean = false;
 
+    /**
+     * Current logged in account address
+     */
+    public address: string = '3MsKhZJzGZ1hnZJZUPYUAKjGQdk7Q7qoCRa';
+    
     constructor() {
         console.log("AuthService.constructor");
     }

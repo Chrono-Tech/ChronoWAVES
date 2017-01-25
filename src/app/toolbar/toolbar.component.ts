@@ -8,14 +8,18 @@ import { AuthService } from '../services/auth/auth.service';
 
 import { Logger } from '../shared/logger';
 
+/**
+ * Main Toolbar for Application
+ * - regularly update current blockchain height
+ */
 @Component({
-    selector: 'toolbar',
+    selector: 'app-toolbar',
     template: require('./toolbar.component.html'),
     styles: [require('./toolbar.component.css')]
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
     currentHeight: number;
-    currentAddress: string = '3MsKhZJzGZ1hnZJZUPYUAKjGQdk7Q7qoCRa';
+    currentAddress: string;
     
     heightSubscription: AnonymousSubscription;
 
@@ -38,6 +42,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
     public ngOnInit(): void {
         this.log.debug('ToolbarComponent: ngOnInit()');
+        this.currentAddress = this.authService.address;
         this.refreshHeight();
     }
 
