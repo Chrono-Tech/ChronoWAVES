@@ -9,8 +9,17 @@ export class CurrencyFormatter {
             digits = CurrencyFormatter.defaultDigits;
 
         if (units == null) return null;
+
+        console.log("units:"+units+" digits:"+digits);
+
         var waves = units / Math.pow(10, digits);
+
+        console.log("waves:"+waves);
+
         var str = waves.toLocaleString("en-US", { minimumFractionDigits: digits });
+
+        console.log("str:"+str);
+
         var parts = str.split(".")
 
         if (parts.length == 2) {
