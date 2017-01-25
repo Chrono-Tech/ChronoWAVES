@@ -3,6 +3,7 @@ import { Base58 } from '../utils/base58';
 import * as networks from './network';
 
 describe("Address", () => {
+    
     it('should generate correct address for testnet', () => {
         const pubKey = 'G9rStAuSaNjMi9KZNVfHymhCUeaWLFqAy88VtTAJre3q';
         const pubKeyBytes = new Uint8Array(Base58.decode(pubKey));

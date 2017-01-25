@@ -87,26 +87,14 @@
                                 <img md-card-avatar src="assets/coins-flag-04.png"> &nbsp; LHAU / BTC &nbsp; <span class="font-weight-bold md-text-warn">-46,68</span>
                                 <span fxFlex></span>
                                 <button md-icon-button md-button-sm [md-menu-trigger-for]="card2" aria-label="Open card menu">
-          <md-icon>more_vert</md-icon>
-        </button>
+                                    <md-icon>more_vert</md-icon>
+                                </button>
                             </md-card-subtitle>
                             <md-menu #card2="mdMenu" x-position="before">
-                                <button md-menu-item>
-          <md-icon>settings</md-icon>
-          Settings
-        </button>
-                                <button md-menu-item>
-          <md-icon>more</md-icon>
-          View More
-        </button>
-                                <button md-menu-item>
-          <md-icon>notifications_off</md-icon>
-          Disable notifications
-        </button>
-                                <button md-menu-item>
-          <md-icon>exit_to_app</md-icon>
-          Remove Panel
-        </button>
+                                <button md-menu-item><md-icon>settings</md-icon>Settings</button>
+                                <button md-menu-item><md-icon>more</md-icon>View More</button>
+                                <button md-menu-item><md-icon>notifications_off</md-icon>Disable notifications</button>
+                                <button md-menu-item><md-icon>exit_to_app</md-icon>Remove Panel</button>
                             </md-menu>
                             <md-card-content>
                                 <canvas height="140" baseChart class="chart" 
@@ -126,15 +114,13 @@
 
                                 <span fxFlex></span>
                                 <button md-icon-button md-button-sm [md-menu-trigger-for]="card2" aria-label="Open card menu">
-          <md-icon>more_vert</md-icon>
-        </button>
+                                    <md-icon>more_vert</md-icon>
+                                </button>
                             </md-card-subtitle>
                             <md-menu #card2="mdMenu" x-position="before">
                                 <button md-menu-item>
-          <md-icon>settings</md-icon>
-          Settings
-        </button>
-                                <button md-menu-item>
+                                    <md-icon>settings</md-icon>Settings</button>
+                                        <button md-menu-item>
           <md-icon>more</md-icon>
           View More
         </button>
@@ -231,35 +217,23 @@
                     <md-card-title>Latest Transactions</md-card-title>
                     <md-card-content>
                         <md-list>
-                            <md-list-item>
-                                12 Nov 2016 <span class="md-text-muted">&nbsp;To:&nbsp;</span> 3MsKhZJzGZ1hnZJZUPYUAKjGQdk7Q7qoCRa
-                                <md-chip-list>
-                                    <md-chip selected="true" color="primary">-10.0 LHAU</md-chip>
-                                </md-chip-list>
+                            <md-list-item *ngFor="let tx of latestTransactions">
+                                {{tx.timestamp|date}} 
+                                <template [ngIf]="tx.recipient==currentAddress">
+                                    <span class="md-text-muted">&nbsp;From:&nbsp;</span> {{tx.sender}}&nbsp;
+                                    <span class="md-text-primary">{{tx.amount|assetValue}} LHAU</span>
+                                </template>
+                                <template [ngIf]="tx.recipient!=currentAddress">
+                                    <span class="md-text-muted">&nbsp;To:&nbsp;</span> {{tx.recipient}}&nbsp;
+                                    <span class="md-text-warn">-{{tx.amount|assetValue}} LHAU</span>
+                                </template>
                                 &nbsp;Confirmations: 10
-                            </md-list-item>
-                            <md-list-item>
-                                12 Nov 2016  <span class="md-text-muted">&nbsp;From:&nbsp;</span> 3MsKhZJzGZ1hnZJZUPYUAKjGQdk7Q7qoCRa
-                                <md-chip-list>
-                                    <md-chip color="primary">10.0 LHAU</md-chip>
-                                </md-chip-list>
-                                &nbsp;Confirmations: 2310
-                            </md-list-item>
-                            <md-list-item>
-                                12 Nov 2016  <span class="md-text-muted">&nbsp;From:&nbsp;</span> 3MsKhZJzGZ1hnZJZUPYUAKjGQdk7Q7qoCRa
-                                <md-chip-list>
-                                    <md-chip selected="true" class="tx-income-amount">10.0 LHAU</md-chip>
-                                </md-chip-list>
-                                &nbsp;Confirmations: 10200
                             </md-list-item>
                         </md-list>
                     </md-card-content>
                 </md-card>
-
             </div>
-
         </div>
-
     </div>
     <div class="" fxFlex="10%" fxShow.xs="false" fxShow.sm="false"></div>
 </div>

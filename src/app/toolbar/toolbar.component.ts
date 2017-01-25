@@ -19,7 +19,7 @@ import { Logger } from '../shared/logger';
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
     currentHeight: number;
-    currentAddress: string = '3MsKhZJzGZ1hnZJZUPYUAKjGQdk7Q7qoCRa';
+    currentAddress: string;
     
     heightSubscription: AnonymousSubscription;
 
@@ -42,6 +42,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
     public ngOnInit(): void {
         this.log.debug('ToolbarComponent: ngOnInit()');
+        this.currentAddress = this.authService.address;
         this.refreshHeight();
     }
 

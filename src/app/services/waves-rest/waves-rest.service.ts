@@ -42,7 +42,7 @@ export class WavesRestService {
             });
     }
 
-    unconfirmedTxs() : Observable<TransactionData> {
+    unconfirmedTxs() : Observable<TransactionData[]> {
         return this.http.get(this.api.unconfirmedTxs)
         .map((response) => {
             if (response.ok) {

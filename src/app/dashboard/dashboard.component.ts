@@ -2,16 +2,19 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../services/auth/auth.service';
+import { TransactionData } from '../services/waves-rest/responses';
 
 @Component({
     selector: 'dashboard',
     template: require('./dashboard.component.html')
 })
 export class DashboardComponent {
+    public currentAddress: string;
 
     constructor(
-        private router: Router,
-        private authService: AuthService) { }
+        private authService: AuthService) {
+        this.currentAddress = authService.address;
+    }
 
     // Shared chart options
     public globalChartOptions: any = {
@@ -21,6 +24,33 @@ export class DashboardComponent {
             position: 'bottom'
         }
     }
+
+    public latestTransactions: Array<TransactionData> = [
+        {
+            timestamp: 1485360361783,
+            amount: 15,
+            sender: '3MsKhZJzGZ1hnZJZUPYUAKjGQdk7Q7qoCRb',
+            recipient: '3MsKhZJzGZ1hnZJZUPYUAKjGQdk7Q7qoCRa'
+        },
+        {
+            timestamp: 1485360361783,
+            amount: 25,
+            sender: '3MsKhZJzGZ1hnZJZUPYUAKjGQdk7Q7qoCRa',
+            recipient: '3MsKhZJzGZ1hnZJZUPYUAKjGQdk7Q7qoCRb'
+        },
+        {
+            timestamp: 1485360361783,
+            amount: 15,
+            sender: '3MsKhZJzGZ1hnZJZUPYUAKjGQdk7Q7qoCRb',
+            recipient: '3MsKhZJzGZ1hnZJZUPYUAKjGQdk7Q7qoCRa'
+        },
+        {
+            timestamp: 1485360361783,
+            amount: 1556767,
+            sender: '3MsKhZJzGZ1hnZJZUPYUAKjGQdk7Q7qoCRb',
+            recipient: '3MsKhZJzGZ1hnZJZUPYUAKjGQdk7Q7qoCRa'
+        }
+    ];
 
     public barChartType: string = 'bar';
 

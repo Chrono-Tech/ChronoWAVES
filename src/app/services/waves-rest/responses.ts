@@ -3,5 +3,8 @@ export class BlockData {
 }
 
 export class TransactionData {
-    
+    timestamp: number;
+    amount: number;
+    sender: string;
+    recipient: string;
 }

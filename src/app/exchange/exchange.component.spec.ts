@@ -7,6 +7,7 @@ import { MaterialModule } from '@angular/material';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { AmChartsDirective } from "amcharts3-angular2/amcharts.directive";
 import { ExchangeComponent } from './exchange.component';
+import { AssetValuePipe } from '../shared/asset-value.pipe';
 
 describe('ExchangeComponent', () => {
   let component: ExchangeComponent;
@@ -18,7 +19,11 @@ describe('ExchangeComponent', () => {
         MaterialModule.forRoot(),
         ChartsModule
       ],
-      declarations: [ExchangeComponent, AmChartsDirective],
+      declarations: [
+        ExchangeComponent, 
+        AmChartsDirective,
+        AssetValuePipe
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
       .compileComponents();
