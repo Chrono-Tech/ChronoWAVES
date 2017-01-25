@@ -8,5 +8,6 @@ describe("Utils: CurrecyForamatter", () => {
         expect(CurrencyFormatter.toString(1234, 2)).toEqual("12.34");
         expect(CurrencyFormatter.toString(1)).toEqual("0.00000001");
         expect(CurrencyFormatter.toString(10000000000000012)).toEqual("100,000,000.00000012");
+        expect(CurrencyFormatter.toString(10999900000)).toEqual("109.999");
     });
 });

@@ -24,7 +24,13 @@ export class CurrencyFormatter {
         if (digits == 0) {
             return integerPartWithCommas;
         } else {
-            return `${integerPartWithCommas}.${fractionalPartStr}`;
+            return `${integerPartWithCommas}.${CurrencyFormatter.trimZeros(fractionalPartStr)}`;
         };
+    }
+
+    private static trimZeros(str: string): string {
+        if (str.length == 0 || str[str.length - 1] != "0")
+            return str;
+        return CurrencyFormatter.trimZeros(str.substring(0, str.length - 1))
     }
 };
