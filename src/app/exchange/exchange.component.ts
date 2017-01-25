@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-declare var Plotly: any;
-declare var PlotlyFinance: any;
-
 @Component({
   selector: 'app-exchange',
   templateUrl: './exchange.component.html',
@@ -13,50 +10,8 @@ export class ExchangeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-        var fig = PlotlyFinance.createCandlestick(
-        {
-            open: [33.0, 33.3, 33.5, 33.0, 34.1],
-            high: [33.1, 33.3, 33.6, 33.2, 34.8],
-            low: [32.7, 32.7, 32.8, 32.6, 32.8],
-            close: [33.0, 32.9, 33.3, 33.1, 33.1],
-            dates: [
-                [2013,10,10] ,[2013,11,10], [2013,12,10], [2014,1,10], [2014,2,10]
-            ].map(function(d) { return new Date(d[0], d[1]-1, d[2]); })
-        }
-    );
-    // fig.layout.width = 600;
-    // fig.layout.height = 600;
-    fig.layout.autosize = true;
-    // fig.layout.margin = {
-    // l: 10,
-    // r: 10,
-    // b: 10,
-    // t: 10,
-    // pad: 10};
-
-    console.log(fig);
-
-    //Plotly.newPlot('myDiv', fig.data, fig.layout);
   }
 
-
-   public candle_ChartData = [
-          ['Day','Low','Opening value','Closing value','High'],
-          ['Mon', 28, 28, 38, 38],
-          ['Tue', 38, 38, 55, 55],
-          ['Wed', 55, 55, 77, 77],
-          ['Thu', 77, 77, 66, 66],
-          ['Fri', 66, 66, 22, 22]
-        ];
-
-    public candle_ChartOptions = {
-      legend: 'none',
-               bar: { groupWidth: '100%' }, // Remove space between bars.
-               candlestick: {
-                 fallingColor: { strokeWidth: 0, fill: '#a52714' }, // red
-                 risingColor: { strokeWidth: 0, fill: '#0f9d58' }   // green
-               }
-    };
   public stats = {
     lastPrice: 10.5,
     volume24h: 500,

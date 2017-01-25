@@ -7,7 +7,7 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ChartsModule } from 'ng2-charts/ng2-charts';
-import { ChartModule } from 'angular2-highcharts';
+
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { AmChartsDirective } from "amcharts3-angular2/amcharts.directive";
 
@@ -22,6 +22,7 @@ import { ExchangeComponent } from './exchange/exchange.component';
 import { Logger } from './shared/logger';
 import { WavesRestService } from './services/waves-rest/waves-rest.service'
 import { Config, TestNetConfig } from './services/config';
+import { AssetValuePipe } from './shared/asset-value.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { Config, TestNetConfig } from './services/config';
     ExchangeComponent,
     LoginFormComponent,
     ToolbarComponent,
-    AmChartsDirective
+    AmChartsDirective,
+    AssetValuePipe
   ],
   imports: [
     BrowserModule,
@@ -40,8 +42,7 @@ import { Config, TestNetConfig } from './services/config';
     MaterialModule.forRoot(),
     FlexLayoutModule.forRoot(),
     NgxDatatableModule,
-    ChartsModule,
-    ChartModule
+    ChartsModule
   ],
   providers: [
     WavesRestService,

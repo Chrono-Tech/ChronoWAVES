@@ -12,7 +12,16 @@ module.exports = function (config) {
       require('angular-cli/plugins/karma')
     ],
     files: [
-      { pattern: './src/test.ts', watched: false }
+      { pattern: './src/test.ts', watched: false },
+      "./node_modules/amcharts3/amcharts/amcharts.js",
+      "./node_modules/amcharts3/amcharts/xy.js",
+      "./node_modules/amcharts3/amcharts/gauge.js",
+      "./node_modules/amcharts3/amcharts/serial.js",
+      "./node_modules/amcharts3/amcharts/pie.js",
+      "./node_modules/amcharts3/amcharts/themes/light.js",
+      "./node_modules/amcharts3/amcharts/themes/dark.js",
+      "./node_modules/amcharts3/amcharts/themes/black.js",
+      "./node_modules/amcharts3/amcharts/plugins/responsive/responsive.min.js"
     ],
     preprocessors: {
       './src/test.ts': ['angular-cli']

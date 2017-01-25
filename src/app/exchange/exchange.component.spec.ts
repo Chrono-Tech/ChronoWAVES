@@ -5,7 +5,7 @@ import { DebugElement } from '@angular/core';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MaterialModule } from '@angular/material';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
-
+import { AmChartsDirective } from "amcharts3-angular2/amcharts.directive";
 import { ExchangeComponent } from './exchange.component';
 
 describe('ExchangeComponent', () => {
@@ -18,7 +18,7 @@ describe('ExchangeComponent', () => {
         MaterialModule.forRoot(),
         ChartsModule
       ],
-      declarations: [ExchangeComponent],
+      declarations: [ExchangeComponent, AmChartsDirective],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
       .compileComponents();

@@ -9,6 +9,7 @@
       "outDir": "dist",
       "assets": [
         "assets",
+        "amcharts",
         "favicon.ico"
       ],
       "index": "index.html",
@@ -21,7 +22,17 @@
         "styles.css",
         "chrono-theme.scss",
         "../node_modules/@swimlane/ngx-datatable/release/datatable.css",
-        "../node_modules/@swimlane/ngx-datatable/release/material.css"
+        "../node_modules/@swimlane/ngx-datatable/release/material.css",
+
+        "../node_modules/amcharts3/amcharts/amcharts.js",
+        "../node_modules/amcharts3/amcharts/xy.js",
+        "../node_modules/amcharts3/amcharts/gauge.js",
+        "../node_modules/amcharts3/amcharts/serial.js",
+        "../node_modules/amcharts3/amcharts/pie.js",
+        "../node_modules/amcharts3/amcharts/themes/light.js",
+        "../node_modules/amcharts3/amcharts/themes/dark.js",
+        "../node_modules/amcharts3/amcharts/themes/black.js",
+        "../node_modules/amcharts3/amcharts/plugins/responsive/responsive.min.js"
       ],
       "scripts": [
         "../node_modules/chart.js/dist/Chart.bundle.min.js"
