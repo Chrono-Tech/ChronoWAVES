@@ -3,9 +3,9 @@
     <span>&nbsp;</span>
     <a md-button [routerLink]="['']">WALLET</a>
     <a md-button [routerLink]="['exchange']">EXCHANGE</a>
+    <a md-button [routerLink]="['']">BLOCK: {{ currentHeight }}</a>
     <span class="spacer"></span>
     <span>Address: {{ currentAddress }}&nbsp;</span>
-    <span>Block: {{ currentHeight }}</span>
     <button md-icon-button>
         <md-icon>settings</md-icon>
     </button>

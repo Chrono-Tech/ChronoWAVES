@@ -31,10 +31,10 @@
             <md-card>
               <md-card-content>
                 <md-list>
-                  <md-list-item>Last Price&nbsp;<span class="md-text-primary">{{ stats.lastPrice }}</span></md-list-item>
-                  <md-list-item>24H Volume &nbsp;<span class="md-text-primary">{{ stats.volume24h }}</span></md-list-item>
-                  <md-list-item>24H High &nbsp;<span class="md-text-primary">{{ stats.high24h }}</span></md-list-item>
-                  <md-list-item>24H Low &nbsp;<span class="md-text-primary">{{ stats.low24h }}</span></md-list-item>
+                  <md-list-item>Last Price&nbsp;<span class="md-text-primary">{{ stats.lastPrice|assetValue }}</span></md-list-item>
+                  <md-list-item>24H Volume &nbsp;<span class="md-text-primary">{{ stats.volume24h|assetValue }}</span></md-list-item>
+                  <md-list-item>24H High &nbsp;<span class="md-text-primary">{{ stats.high24h|assetValue }}</span></md-list-item>
+                  <md-list-item>24H Low &nbsp;<span class="md-text-primary">{{ stats.low24h|assetValue }}</span></md-list-item>
                   <md-list-item>24H Change&nbsp;<span class="md-text-warn">{{ stats.change24h }}%</span></md-list-item>
                 </md-list>
               </md-card-content>
@@ -64,7 +64,7 @@
                       </td>
                       <td>LHAU</td>
                   </tr>
-                                    <tr><td>Total:</td>
+                  <tr><td>Total:</td>
                     <td>
                       <md-input align="end" style="width: 100%;">
                       </md-input>
@@ -130,10 +130,26 @@
                   [scrollbarV]="true"
                   [scrollbarH]="false"
                   [rows]="sellOrders">
-                  <ngx-datatable-column name="Price" prop="price"></ngx-datatable-column>
-                  <ngx-datatable-column name="LHAU" prop="asset1Amount"></ngx-datatable-column>
-                  <ngx-datatable-column name="WAVES" prop="asset2Amount"></ngx-datatable-column>
-                  <ngx-datatable-column name="SUM (WAVES)" prop="asset2Sum"></ngx-datatable-column>
+                  <ngx-datatable-column name="Price" prop="price">
+                      <template let-value="value" ngx-datatable-cell-template>
+                      {{ value| assetValue }}
+                      </template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="LHAU" prop="asset1Amount">
+                      <template let-value="value" ngx-datatable-cell-template>
+                      {{ value| assetValue }}
+                      </template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="WAVES" prop="asset2Amount">
+                      <template let-value="value" ngx-datatable-cell-template>
+                      {{ value| assetValue }}
+                      </template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="SUM (WAVES)" prop="asset2Sum">
+                      <template let-value="value" ngx-datatable-cell-template>
+                      {{ value| assetValue }}
+                      </template>
+                  </ngx-datatable-column>
                 </ngx-datatable>
               </md-card-content>
             </md-card>
@@ -149,10 +165,26 @@
                       [scrollbarV]="true"
                       [scrollbarH]="false"
                       [rows]="buyOrders">
-                      <ngx-datatable-column name="Price" prop="price"></ngx-datatable-column>
-                      <ngx-datatable-column name="LHAU" prop="asset1Amount"></ngx-datatable-column>
-                      <ngx-datatable-column name="WAVES" prop="asset2Amount"></ngx-datatable-column>
-                      <ngx-datatable-column name="SUM (WAVES)" prop="asset2Sum"></ngx-datatable-column>
+                      <ngx-datatable-column name="Price" prop="price">
+                           <template let-value="value" ngx-datatable-cell-template>
+                            {{ value| assetValue }}
+                          </template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="LHAU" prop="asset1Amount">
+                           <template let-value="value" ngx-datatable-cell-template>
+                          {{ value| assetValue }}
+                          </template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="WAVES" prop="asset2Amount">
+                           <template let-value="value" ngx-datatable-cell-template>
+                          {{ value| assetValue }}
+                          </template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="SUM (WAVES)" prop="asset2Sum">
+                          <template let-value="value" ngx-datatable-cell-template>
+                          {{ value| assetValue }}
+                          </template>
+                      </ngx-datatable-column>
                     </ngx-datatable>
                   </md-card-content>
                 </md-card>
@@ -180,9 +212,21 @@
                     <span *ngIf="value=='Sell'" class="md-text-warn">{{ value }}</span>
                 </template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Price"></ngx-datatable-column>
-              <ngx-datatable-column name="Amount (LHAU)" prop="amount"></ngx-datatable-column>
-              <ngx-datatable-column name="Total (WAVES)" prop="total"></ngx-datatable-column>
+              <ngx-datatable-column name="Price">
+                <template let-value="value" ngx-datatable-cell-template>
+                  {{ value| assetValue }}
+                </template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Amount (LHAU)" prop="amount">
+                <template let-value="value" ngx-datatable-cell-template>
+                  {{ value| assetValue }}
+                </template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Total (WAVES)" prop="total">
+                <template let-value="value" ngx-datatable-cell-template>
+                  {{ value| assetValue }}
+                </template>
+              </ngx-datatable-column>
             </ngx-datatable>
           </md-card-content>
         </md-card>
@@ -203,9 +247,21 @@
                     <span *ngIf="value=='Sell'" class="md-text-warn">{{ value }}</span>
                 </template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Price"></ngx-datatable-column>
-              <ngx-datatable-column name="Amount (LHAU)" prop="amount"></ngx-datatable-column>
-              <ngx-datatable-column name="Total (WAVES)" prop="total"></ngx-datatable-column>
+              <ngx-datatable-column name="Price">
+                <template let-value="value" ngx-datatable-cell-template>
+                  {{ value| assetValue }}
+                </template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Amount (LHAU)" prop="amount">
+                <template let-value="value" ngx-datatable-cell-template>
+                  {{ value| assetValue }}
+                </template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Total (WAVES)" prop="total">
+                <template let-value="value" ngx-datatable-cell-template>
+                  {{ value| assetValue }}
+                </template>
+              </ngx-datatable-column>
               <ngx-datatable-column name="Action" prop="id">
                 <template let-value="value" ngx-datatable-cell-template>
                   <a class="md-text-primary" href='#{{value}}'>Cancel</a>
