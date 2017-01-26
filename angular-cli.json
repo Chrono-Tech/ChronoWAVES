@@ -19,11 +19,10 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
+        "assets/styles/app.scss",
         "styles.css",
-        "chrono-theme.scss",
         "../node_modules/@swimlane/ngx-datatable/release/datatable.css",
         "../node_modules/@swimlane/ngx-datatable/release/material.css"
-
       ],
       "scripts": [
         "../node_modules/chart.js/dist/Chart.bundle.min.js",

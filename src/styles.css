@@ -7,3 +7,9 @@ body {
 .container {
   margin: 10px;
 }
+
+#chartdiv {
+	width		: 100%;
+	height		: 500px;
+	font-size	: 11px;
+}
