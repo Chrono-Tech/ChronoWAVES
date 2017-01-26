@@ -1,16 +1,6 @@
 // Import theming functions
 @import '~@angular/material/core/theming/all-theme';
 
-// Plus imports for other components in your app.
-
-// Include the base styles for Angular Material core. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-@include md-core();
-
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue.
-
 $md-chrono-primary: (
   50: #c6ddf7,
   100: #83b6ed,
@@ -79,7 +69,7 @@ $md-chrono-accent: (
 );
 
 
-$candy-app-primary: md-palette($md-chrono-primary);
+$primary: md-palette($md-chrono-primary);
 //$candy-app-accent:  md-palette($md-chrono-accent, A200, A100, A400);
 $candy-app-accent:  md-palette($md-chrono-accent);
 // The warn palette is optional (defaults to red).
@@ -88,8 +78,9 @@ $candy-app-warn:    md-palette($md-red);
 $chrono-green-pallete: md-palette($md-green);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$chrono-theme: md-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
+$chrono-theme: md-light-theme($primary, $candy-app-accent, $candy-app-warn);
 
+@include md-core();
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -103,19 +94,89 @@ $foreground: map-get($chrono-theme, foreground);
 }
 
 .md-text-primary {
-  color: md-color($candy-app-primary) !important;
+  color: md-color($primary) !important;
 }
 
 .md-text-green {
-  color: md-color($candy-app-primary) !important;
+  color: md-color($primary) !important;
 }
 
 .md-text-warn {
   color: md-color($candy-app-accent) !important;
 }
 
-#chartdiv {
-	width		: 100%;
-	height		: 500px;
-	font-size	: 11px;
-}			
+
+
+/* Login form */
+/* $error-pages
+ ------------------------------------------*/
+.session {
+  position: relative;
+  z-index: 4000;
+  min-height: 100vh;
+  @include flexbox;
+  @include flex-direction(column);
+}
+
+.session-content {
+  padding: 40px $gutter;
+  @include flexbox;
+  @include align-items(center);
+  @include justify-content(center);
+  @include flex(1 0 auto);
+  @include flex-direction(column);
+  min-height: 100%;
+}
+
+.session-wrapper {
+  @include flex(none);
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.lockscreen-avatar {
+  position: relative;
+  display: block;
+  margin: -75px auto 0!important;
+}
+
+.lockscreen-wrapper {
+  @include flex(none);
+  max-width: 280px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.error-title {
+  font-size: 150px;
+  line-height: 1.2;
+  font-weight: 900;
+  display: inline-table;
+  position: relative;
+  background: md-color($primary);
+  color: #fff;
+  padding: 0 $gutter;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0 0 $gutter;
+  &:after {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: '';
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(0, 0, 0, 0);
+    border-top-color: md-color($primary);
+    border-width: 8px;
+    margin-left: -8px;
+  }
+}
+
+.error-subtitle {
+  font-size: 32px;
+  font-weight: 300;
+}
