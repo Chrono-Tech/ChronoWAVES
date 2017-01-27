@@ -1,6 +1,5 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async } from '@angular/core/testing';
 import { AssetValuePipe } from './asset-value.pipe';
 
 describe('AssetValuePipe', () => {

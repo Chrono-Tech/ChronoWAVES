@@ -12,7 +12,8 @@
                             </md-card-title-group>
                             <md-card-content>
                                 <md-grid-list cols="2" rowHeight="35px">
-                                    <md-grid-tile rowspan="2" colspan="1"><img src="assets/coins-flag-04.png" /></md-grid-tile>
+                                    <md-grid-tile rowspan="2" colspan="1"><img src="assets/coins-flag-04.png"/>
+                                    </md-grid-tile>
                                     <md-grid-tile>1000.051 LHAU</md-grid-tile>
                                     <md-grid-tile>$34.5 AUD</md-grid-tile>
                                 </md-grid-list>
@@ -30,7 +31,8 @@
                             <md-card-content>
                                 <md-card-content>
                                     <md-grid-list cols="2" rowHeight="35px">
-                                        <md-grid-tile rowspan="2" colspan="1"><img src="assets/coins-flag-02.png" /></md-grid-tile>
+                                        <md-grid-tile rowspan="2" colspan="1"><img src="assets/coins-flag-02.png"/>
+                                        </md-grid-tile>
                                         <md-grid-tile>43.00 LHGB</md-grid-tile>
                                         <md-grid-tile>&pound;14.5 GBP</md-grid-tile>
                                     </md-grid-list>
@@ -48,7 +50,8 @@
                             <md-card-title>EU Labour Hours</md-card-title>
                             <md-card-content>
                                 <md-grid-list cols="2" rowHeight="35px">
-                                    <md-grid-tile rowspan="2" colspan="1"><img src="assets/coins-flag-03.png" /></md-grid-tile>
+                                    <md-grid-tile rowspan="2" colspan="1"><img src="assets/coins-flag-03.png"/>
+                                    </md-grid-tile>
                                     <md-grid-tile>100 LHEU</md-grid-tile>
                                     <md-grid-tile>&euro;34.5 EUR</md-grid-tile>
                                 </md-grid-list>
@@ -65,7 +68,8 @@
                             <md-card-title>US Labour Hours</md-card-title>
                             <md-card-content>
                                 <md-grid-list cols="2" rowHeight="35px">
-                                    <md-grid-tile rowspan="2" colspan="1"><img src="assets/coins-flag-01.png" /></md-grid-tile>
+                                    <md-grid-tile rowspan="2" colspan="1"><img src="assets/coins-flag-01.png"/>
+                                    </md-grid-tile>
                                     <md-grid-tile>100 LHUS</md-grid-tile>
                                     <md-grid-tile>$34.5 USD</md-grid-tile>
                                 </md-grid-list>
@@ -84,128 +88,156 @@
                     <div class="" fxFlex="350px">
                         <md-card>
                             <md-card-subtitle fxLayout="row" fxLayoutAlign="start center">
-                                <img md-card-avatar src="assets/coins-flag-04.png"> &nbsp; LHAU / BTC &nbsp; <span class="font-weight-bold md-text-warn">-46,68</span>
+                                <img md-card-avatar src="assets/coins-flag-04.png"> &nbsp; LHAU / BTC &nbsp; <span
+                                    class="font-weight-bold md-text-warn">-46,68</span>
                                 <span fxFlex></span>
-                                <button md-icon-button md-button-sm [md-menu-trigger-for]="card2" aria-label="Open card menu">
-                                    <md-icon>more_vert</md-icon>
-                                </button>
-                            </md-card-subtitle>
-                            <md-menu #card2="mdMenu" x-position="before">
-                                <button md-menu-item><md-icon>settings</md-icon>Settings</button>
-                                <button md-menu-item><md-icon>more</md-icon>View More</button>
-                                <button md-menu-item><md-icon>notifications_off</md-icon>Disable notifications</button>
-                                <button md-menu-item><md-icon>exit_to_app</md-icon>Remove Panel</button>
-                            </md-menu>
-                            <md-card-content>
-                                <canvas height="140" baseChart class="chart" 
-                                    [datasets]="ComboChartDataLHAU" 
-                                    [labels]="comboChartLabels" 
-                                    [options]="ComboChartOptions"
-                                    [colors]="chartColors" 
-                                    [legend]="comboChartLegend" 
-                                    [chartType]="barChartType"></canvas>
-                            </md-card-content>
-                        </md-card>
-                    </div>
-                    <div class="" fxFlex="350px">
-                        <md-card>
-                            <md-card-subtitle fxLayout="row" fxLayoutAlign="start center">
-                                <img md-card-avatar src="assets/coins-flag-02.png"> &nbsp; LHGB / BTC &nbsp; <span class="font-weight-bold md-text-warn">-46,68</span>
-
-                                <span fxFlex></span>
-                                <button md-icon-button md-button-sm [md-menu-trigger-for]="card2" aria-label="Open card menu">
+                                <button md-icon-button md-button-sm [md-menu-trigger-for]="card2"
+                                        aria-label="Open card menu">
                                     <md-icon>more_vert</md-icon>
                                 </button>
                             </md-card-subtitle>
                             <md-menu #card2="mdMenu" x-position="before">
                                 <button md-menu-item>
-                                    <md-icon>settings</md-icon>Settings</button>
-                                        <button md-menu-item>
-          <md-icon>more</md-icon>
-          View More
-        </button>
+                                    <md-icon>settings</md-icon>
+                                    Settings
+                                </button>
                                 <button md-menu-item>
-          <md-icon>notifications_off</md-icon>
-          Disable notifications
-        </button>
+                                    <md-icon>more</md-icon>
+                                    View More
+                                </button>
                                 <button md-menu-item>
-          <md-icon>exit_to_app</md-icon>
-          Remove Panel
-        </button>
+                                    <md-icon>notifications_off</md-icon>
+                                    Disable notifications
+                                </button>
+                                <button md-menu-item>
+                                    <md-icon>exit_to_app</md-icon>
+                                    Remove Panel
+                                </button>
                             </md-menu>
                             <md-card-content>
-                                <canvas height="140" baseChart class="chart" 
-                                [datasets]="ComboChartDataLHGB" [labels]="comboChartLabels" [options]="ComboChartOptions"
-                                    [colors]="chartColors" [legend]="comboChartLegend" [chartType]="barChartType"></canvas>
+                                <canvas height="140" baseChart class="chart"
+                                        [datasets]="ComboChartDataLHAU"
+                                        [labels]="comboChartLabels"
+                                        [options]="ComboChartOptions"
+                                        [colors]="chartColors"
+                                        [legend]="comboChartLegend"
+                                        [chartType]="barChartType"></canvas>
                             </md-card-content>
                         </md-card>
                     </div>
                     <div class="" fxFlex="350px">
                         <md-card>
                             <md-card-subtitle fxLayout="row" fxLayoutAlign="start center">
-                                <img md-card-avatar src="assets/coins-flag-03.png"> &nbsp; LHEU / BTC &nbsp; <span class="font-weight-bold md-text-warn">-46,68</span>
+                                <img md-card-avatar src="assets/coins-flag-02.png"> &nbsp; LHGB / BTC &nbsp; <span
+                                    class="font-weight-bold md-text-warn">-46,68</span>
 
                                 <span fxFlex></span>
-                                <button md-icon-button md-button-sm [md-menu-trigger-for]="card2" aria-label="Open card menu">
-          <md-icon>more_vert</md-icon>
-        </button>
+                                <button md-icon-button md-button-sm [md-menu-trigger-for]="card2"
+                                        aria-label="Open card menu">
+                                    <md-icon>more_vert</md-icon>
+                                </button>
                             </md-card-subtitle>
                             <md-menu #card2="mdMenu" x-position="before">
                                 <button md-menu-item>
-          <md-icon>settings</md-icon>
-          Settings
-        </button>
+                                    <md-icon>settings</md-icon>
+                                    Settings
+                                </button>
                                 <button md-menu-item>
-          <md-icon>more</md-icon>
-          View More
-        </button>
+                                    <md-icon>more</md-icon>
+                                    View More
+                                </button>
                                 <button md-menu-item>
-          <md-icon>notifications_off</md-icon>
-          Disable notifications
-        </button>
+                                    <md-icon>notifications_off</md-icon>
+                                    Disable notifications
+                                </button>
                                 <button md-menu-item>
-          <md-icon>exit_to_app</md-icon>
-          Remove Panel
-        </button>
+                                    <md-icon>exit_to_app</md-icon>
+                                    Remove Panel
+                                </button>
                             </md-menu>
                             <md-card-content>
-                                <canvas height="140" baseChart class="chart" 
-                                [datasets]="ComboChartDataLHEU" [labels]="comboChartLabels" [options]="ComboChartOptions"
-                                    [colors]="chartColors" [legend]="comboChartLegend" [chartType]="barChartType"></canvas>
+                                <canvas height="140" baseChart class="chart"
+                                        [datasets]="ComboChartDataLHGB" [labels]="comboChartLabels"
+                                        [options]="ComboChartOptions"
+                                        [colors]="chartColors" [legend]="comboChartLegend"
+                                        [chartType]="barChartType"></canvas>
                             </md-card-content>
                         </md-card>
                     </div>
                     <div class="" fxFlex="350px">
                         <md-card>
                             <md-card-subtitle fxLayout="row" fxLayoutAlign="start center">
-                                <img md-card-avatar src="assets/coins-flag-01.png"> &nbsp; LHUS / BTC &nbsp; <span class="font-weight-bold md-text-warn">-46,68</span>
+                                <img md-card-avatar src="assets/coins-flag-03.png"> &nbsp; LHEU / BTC &nbsp; <span
+                                    class="font-weight-bold md-text-warn">-46,68</span>
 
                                 <span fxFlex></span>
-                                <button md-icon-button md-button-sm [md-menu-trigger-for]="card2" aria-label="Open card menu">
-          <md-icon>more_vert</md-icon>
-        </button>
+                                <button md-icon-button md-button-sm [md-menu-trigger-for]="card2"
+                                        aria-label="Open card menu">
+                                    <md-icon>more_vert</md-icon>
+                                </button>
                             </md-card-subtitle>
                             <md-menu #card2="mdMenu" x-position="before">
                                 <button md-menu-item>
-          <md-icon>settings</md-icon>
-          Settings
-        </button>
+                                    <md-icon>settings</md-icon>
+                                    Settings
+                                </button>
                                 <button md-menu-item>
-          <md-icon>more</md-icon>
-          View More
-        </button>
+                                    <md-icon>more</md-icon>
+                                    View More
+                                </button>
                                 <button md-menu-item>
-          <md-icon>notifications_off</md-icon>
-          Disable notifications
-        </button>
+                                    <md-icon>notifications_off</md-icon>
+                                    Disable notifications
+                                </button>
                                 <button md-menu-item>
-          <md-icon>exit_to_app</md-icon>
-          Remove Panel
-        </button>
+                                    <md-icon>exit_to_app</md-icon>
+                                    Remove Panel
+                                </button>
                             </md-menu>
                             <md-card-content>
-                                <canvas height="140" baseChart class="chart" [datasets]="ComboChartDataLHUS" [labels]="comboChartLabels" [options]="ComboChartOptions"
-                                    [colors]="chartColors" [legend]="comboChartLegend" [chartType]="barChartType"></canvas>
+                                <canvas height="140" baseChart class="chart"
+                                        [datasets]="ComboChartDataLHEU" [labels]="comboChartLabels"
+                                        [options]="ComboChartOptions"
+                                        [colors]="chartColors" [legend]="comboChartLegend"
+                                        [chartType]="barChartType"></canvas>
+                            </md-card-content>
+                        </md-card>
+                    </div>
+                    <div class="" fxFlex="350px">
+                        <md-card>
+                            <md-card-subtitle fxLayout="row" fxLayoutAlign="start center">
+                                <img md-card-avatar src="assets/coins-flag-01.png"> &nbsp; LHUS / BTC &nbsp; <span
+                                    class="font-weight-bold md-text-warn">-46,68</span>
+
+                                <span fxFlex></span>
+                                <button md-icon-button md-button-sm [md-menu-trigger-for]="card2"
+                                        aria-label="Open card menu">
+                                    <md-icon>more_vert</md-icon>
+                                </button>
+                            </md-card-subtitle>
+                            <md-menu #card2="mdMenu" x-position="before">
+                                <button md-menu-item>
+                                    <md-icon>settings</md-icon>
+                                    Settings
+                                </button>
+                                <button md-menu-item>
+                                    <md-icon>more</md-icon>
+                                    View More
+                                </button>
+                                <button md-menu-item>
+                                    <md-icon>notifications_off</md-icon>
+                                    Disable notifications
+                                </button>
+                                <button md-menu-item>
+                                    <md-icon>exit_to_app</md-icon>
+                                    Remove Panel
+                                </button>
+                            </md-menu>
+                            <md-card-content>
+                                <canvas height="140" baseChart class="chart" [datasets]="ComboChartDataLHUS"
+                                        [labels]="comboChartLabels" [options]="ComboChartOptions"
+                                        [colors]="chartColors" [legend]="comboChartLegend"
+                                        [chartType]="barChartType"></canvas>
                             </md-card-content>
                         </md-card>
                     </div>
@@ -218,7 +250,7 @@
                     <md-card-content>
                         <md-list>
                             <md-list-item *ngFor="let tx of latestTransactions">
-                                {{tx.timestamp|date}} 
+                                {{tx.timestamp|date}}
                                 <template [ngIf]="tx.recipient==currentAddress">
                                     <span class="md-text-muted">&nbsp;From:&nbsp;</span> {{tx.sender}}&nbsp;
                                     <span class="md-text-primary">{{tx.amount|assetValue}} LHAU</span>
