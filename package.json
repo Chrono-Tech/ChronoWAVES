@@ -29,7 +29,7 @@
     "@types/decimal.js": "0.0.29",
     "amcharts3": "github:amcharts/amcharts3",
     "amcharts3-angular2": "github:amcharts/amcharts3-angular2",
-    "axlsign": "git+https://github.com/0white/curve25519-js.git#tsd",
+    "axlsign": "git+https://github.com/0white/curve25519-js.git",
     "base-x": "^2.0.3",
     "blakejs": "git+https://github.com/0white/blakejs.git#tsd",
     "core-js": "^2.4.1",
