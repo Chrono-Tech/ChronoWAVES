@@ -10,6 +10,8 @@ Chrono Wallet (Lite Client) for Waves Platform
 - Integration with Chronobank Gateways
 - Based on waves-ts framework completely written in Typescript
 
+![Dashboard](wallet_1000.png)
+
 ## Contact  
 
 Help us develop the application by submitting issues and bugs.
