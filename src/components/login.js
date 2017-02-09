@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {Paper, RaisedButton, TextField} from 'material-ui';
 import {grey500} from 'material-ui/styles/colors';
 
+import Waves from 'waves.js/dist/waves';
+
 const styles = {
   loginContainer: {
     minWidth: 320,
@@ -32,33 +34,46 @@ const styles = {
   }
 };
 
-const Login = ({onLoginClick, onInputChange, address}) => (
-  <div style={styles.loginContainer}>
-    <Paper style={styles.paper}>
-      <TextField floatingLabelText="SEED" type="password" fullWidth={true} onChange={onInputChange} />
-      <p>{address}</p>
-      <RaisedButton label="Login"
-                    primary={true}
-                    fullWidth={true}
-                    onTouchTap={onLoginClick}
-                    style={styles.loginBtn}/>
-    </Paper>
-  </div>
-);
+class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onInputChange = this.onInputChange.bind(this);
+    this.state = {address: ''};
+  }
+
+  /**
+   * This event handler calculates address from current seed
+   */
+  onInputChange(e) {
+    const address = Waves.Account.create(Waves.MainNetParameters(), e.target.value).address;
+    this.setState({address: address});
+  }
+
+  render() {
+    return (
+      <div style={styles.loginContainer}>
+        <Paper style={styles.paper}>
+          <TextField floatingLabelText="SEED" type="password" fullWidth={true} onChange={this.onInputChange}/>
+          <p>{this.state.address}</p>
+          <RaisedButton label="Login"
+                        primary={true}
+                        fullWidth={true}
+                        onTouchTap={this.props.onLoginClick}
+                        style={styles.loginBtn}/>
+        </Paper>
+      </div>);
+
+  }
+}
+
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onLoginClick: () => {
-      dispatch({type: 'LOGIN_SUCCESS'});
-    },
-    onInputChange: (event, newValue) => {
+      dispatch({type: 'LOGIN_SUCCESS', address: '3P1vtjFEpXswXWfpiPuFKL1Mqt2NYrTaYMo'});
     }
   }
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-  }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(Login);

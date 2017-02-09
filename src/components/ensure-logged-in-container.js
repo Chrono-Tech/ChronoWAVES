@@ -29,7 +29,7 @@ class EnsureLoggedInContainer extends React.Component {
 // the current position in the app.
 function mapStateToProps(state, ownProps) {
   return {
-    isLoggedIn: state.loggedIn,
+    isLoggedIn: state.session.loggedIn,
     currentURL: ownProps.location.pathname
   }
 }

@@ -6,6 +6,7 @@ import MainLayout from './components/main-layout';
 import Dashboard from './components/dashboard';
 import Login from './components/login';
 import EnsureLoggedInContainer from './components/ensure-logged-in-container';
+import Transactions from './components/transactions';
 
 const router = (
   <Router history={browserHistory}>
@@ -14,9 +15,10 @@ const router = (
 
       <Route component={EnsureLoggedInContainer}>
         <Route component={MainLayout}>
-        <IndexRoute component={Dashboard}/>
-        <Route path="dashboard" component={Dashboard}/>
-      </Route>
+          <IndexRoute component={Dashboard}/>
+          <Route path="dashboard" component={Dashboard}/>
+          <Route path="transactions" component={Transactions}/>
+        </Route>
       </Route>
     </Route>
   </Router>

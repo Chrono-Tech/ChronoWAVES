@@ -26,7 +26,7 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    isLoggedIn: state.loggedIn,
+    isLoggedIn: state.session.loggedIn,
     redirectUrl: state.redirectUrl
   }
 }
