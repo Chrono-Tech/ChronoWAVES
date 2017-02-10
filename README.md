@@ -8,7 +8,7 @@ Chrono Wallet (Lite Client) for Waves Platform
 - Integration with Waves Decentralised Assets Exchange (DEX)
 - Compatible with original Waves Lite Client
 - Integration with Chronobank Gateways
-- Based on waves-ts framework completely written in Typescript
+- Based on [waves.js](https://github.com/gagarin55/waves.js) framework
 
 ![Dashboard](wallet_1000.png)
 

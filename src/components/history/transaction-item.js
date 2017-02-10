@@ -5,7 +5,13 @@ import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table'
 
 const inTxStyle = {
   transform: 'rotate(180deg)',
-  verticalAlign: 'middle'
+  verticalAlign: 'middle',
+  fontSize: '36px',
+};
+
+const outTxStyle = {
+  verticalAlign: 'middle',
+  fontSize: '36px',
 };
 
 /**
@@ -14,19 +20,25 @@ const inTxStyle = {
 const TransactionItem = ({tx, address}) => {
   const correspondent = (tx.sender === address) ? tx.recipient : tx.sender;
   const icon = (tx.sender === address) ?
-    (<FontIcon className="material-icons">input</FontIcon>) :
+    (<FontIcon className="material-icons" style={outTxStyle}>input</FontIcon>) :
     (<FontIcon className="material-icons" style={inTxStyle}>input</FontIcon>);
 
   return (<Card key={tx.id}>
     <CardTitle actAsExpander={true}
-               showExpandableButton={true}
-               subtitle={"Type " + tx.type}>
+               showExpandableButton={true}>
       <Table selectable={false}>
         <TableBody displayRowCheckbox={false}>
-          <TableRow>
-            <TableRowColumn className="mono">{icon} {correspondent}</TableRowColumn>
-            <TableRowColumn style={{textAlign: 'right'}}>{tx.amount}</TableRowColumn>
+          <TableRow style={{verticalAlign:'top'}}>
+            <TableRowColumn className="mono" style={{width:'50%'}}>
+              <div style={{display:'inline-flex', marginRight:'5px'}}>{icon}</div>
+              <div style={{display:'inline-block', verticalAlign:'top'}}>
+                <div style={{}}>{correspondent}</div>
+                <div>Type {tx.type}</div>
+              </div>
+            </TableRowColumn>
+            <TableRowColumn style={{textAlign: 'right', width:'20%'}}>{tx.amount}</TableRowColumn>
             <TableRowColumn>WAVES</TableRowColumn>
+            <TableRowColumn>Block: {tx.height}</TableRowColumn>
           </TableRow>
         </TableBody>
       </Table>
