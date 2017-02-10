@@ -1,7 +1,7 @@
 import React from'react';
 import {connect} from 'react-redux';
-
-import {fetchTransactions} from '../actions';
+import {fetchTransactions} from '../../actions';
+import TransactionItem from './transaction-item';
 
 class TransactionsHistory extends React.Component {
   componentWillMount() {
@@ -10,10 +10,11 @@ class TransactionsHistory extends React.Component {
 
   render() {
     return <div>
-      {this.props.address}
-      {this.props.transactions.map(tx => (
-        <li key={tx.id}>{tx.id}</li>
-      ))}
+      {
+        this.props.transactions.map(tx =>
+          (<TransactionItem key={tx.id} tx={tx} address={this.props.address}/>)
+        )
+      }
     </div>
   }
 }
@@ -25,7 +26,7 @@ const mapStateToProps = (state) => {
   }
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     loadTxs: (address) => {
       dispatch(fetchTransactions(address));

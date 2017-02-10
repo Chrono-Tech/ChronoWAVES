@@ -1,32 +1,11 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';
-
-import * as ActionTypes from './actions';
-
-const session = (state = {loggedIn: false}, action) => {
-  switch (action.type) {
-    case ActionTypes.LOGIN_SUCCESS:
-      return Object.assign({}, state, {
-        loggedIn: true,
-        address: action.address
-      });
-    default:
-      return state;
-  }
-};
-
-const transactions = (state = [], action) => {
-  switch (action.type) {
-    case ActionTypes.RECEIVE_TRANSACTIONS:
-      return action.transactions;
-    default:
-      return state;
-  }
-};
+import {session, transactions, balances} from './reducers';
 
 const rootReducer = combineReducers({
   session,
-  transactions
+  transactions,
+  balances
 });
 
 const store = createStore(rootReducer,
