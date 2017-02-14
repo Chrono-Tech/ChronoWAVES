@@ -2,16 +2,27 @@ import React, {PropTypes} from 'react';
 import {Card, CardText, CardTitle} from 'material-ui/Card';
 import FontIcon from 'material-ui/FontIcon';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table'
+import {getAssetName} from '../../../domain/assetsRegistry';
+import {blue500, red500, greenA200} from 'material-ui/styles/colors';
 
 const inTxStyle = {
   transform: 'rotate(180deg)',
   verticalAlign: 'middle',
   fontSize: '36px',
+  color: greenA200
 };
 
 const outTxStyle = {
   verticalAlign: 'middle',
   fontSize: '36px',
+  color: red500
+};
+
+const getTxTypeName = (type) => {
+  switch (type) {
+    case 2: return 'Payment';
+    case 4: return 'Asset Transfer';
+  }
 };
 
 /**
@@ -33,11 +44,11 @@ const TransactionItem = ({tx, address}) => {
               <div style={{display:'inline-flex', marginRight:'5px'}}>{icon}</div>
               <div style={{display:'inline-block', verticalAlign:'top'}}>
                 <div style={{}}>{correspondent}</div>
-                <div>Type {tx.type}</div>
+                <div>{getTxTypeName(tx.type)}</div>
               </div>
             </TableRowColumn>
             <TableRowColumn style={{textAlign: 'right', width:'20%'}}>{tx.amount}</TableRowColumn>
-            <TableRowColumn>WAVES</TableRowColumn>
+            <TableRowColumn>{getAssetName(tx.assetId)}</TableRowColumn>
             <TableRowColumn>Block: {tx.height}</TableRowColumn>
           </TableRow>
         </TableBody>

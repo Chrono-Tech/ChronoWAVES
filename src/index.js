@@ -6,7 +6,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import './index.css';
 import chronoTheme from './chrono-theme';
 
-import store from './store';
+import store from './redux/store';
 import router from './router';
 
 

@@ -9,7 +9,7 @@ import {List, ListItem} from 'material-ui/List';
 import FontIcon from 'material-ui/FontIcon';
 
 const style = {
-  margin: '80px 20px 20px 15px',
+  margin: '50px 20px 20px 15px',
   paddingLeft: 200,
 };
 
@@ -30,10 +30,7 @@ const MainLayout = (props) => (
           primaryText="Wallet"
           leftIcon={<FontIcon className="material-icons">account_balance_wallet</FontIcon>}
           containerElement={<Link to="wallet"/>}/>
-        <ListItem
-          primaryText="History"
-          leftIcon={<FontIcon className="material-icons">history</FontIcon>}
-          containerElement={<Link to="transactions"/>}/>
+
         <ListItem
           primaryText="Exchange"
           leftIcon={<FontIcon className="material-icons">compare_arrows</FontIcon>}/>

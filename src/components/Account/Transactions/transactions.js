@@ -1,9 +1,14 @@
-import React from'react';
+import React, {PropTypes} from'react';
 import {connect} from 'react-redux';
-import {fetchTransactions} from '../../actions';
+import {fetchTransactions} from '../../../redux/actions';
 import TransactionItem from './transaction-item';
 
 class TransactionsHistory extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
   componentWillMount() {
     this.props.loadTxs(this.props.address);
   }
@@ -19,9 +24,12 @@ class TransactionsHistory extends React.Component {
   }
 }
 
+TransactionsHistory.propTypes = {
+  address: PropTypes.string.isRequired,
+};
+
 const mapStateToProps = (state) => {
   return {
-    address: state.session.address,
     transactions: state.transactions
   }
 };

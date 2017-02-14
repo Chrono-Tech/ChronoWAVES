@@ -1,6 +1,6 @@
 import React from'react';
 import {connect} from 'react-redux';
-import {fetchBalances} from '../../actions';
+import {fetchBalances} from '../../redux/actions';
 import {Card, CardTitle, CardActions} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 

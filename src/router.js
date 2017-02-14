@@ -4,10 +4,10 @@ import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 import App from './app';
 import MainLayout from './components/main-layout';
 import Dashboard from './components/dashboard';
-import Login from './components/login';
+import Login from './components/Login';
 import EnsureLoggedInContainer from './components/ensure-logged-in-container';
-import Transactions from './components/history/transactions';
-import Balances from './components/wallet/balances';
+import Wallet from './components/Wallet';
+import Account from './components/Account';
 
 const router = (
   <Router history={browserHistory}>
@@ -18,8 +18,8 @@ const router = (
         <Route component={MainLayout}>
           <IndexRoute component={Dashboard}/>
           <Route path="dashboard" component={Dashboard}/>
-          <Route path="transactions" component={Transactions}/>
-          <Route path="wallet" component={Balances} />
+          <Route path="wallet" component={Wallet} />
+          <Route path="account/:address" component={Account} />
         </Route>
       </Route>
     </Route>
