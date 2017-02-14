@@ -40,10 +40,13 @@ export const transactions = (state = [], action) => {
   }
 };
 
-export const balances = (state = [], action) => {
+export const balances = (state = {}, action) => {
   switch (action.type) {
     case ActionTypes.RECEIVE_BALANCES:
-      return action.balances;
+      return {
+        ...state,
+        [action.address]: action.balances
+      };
     default:
       return state;
   }

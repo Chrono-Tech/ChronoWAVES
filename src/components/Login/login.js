@@ -32,7 +32,7 @@ class Login extends React.Component {
                      type="password" fullWidth={true}
                      onChange={this.onInputChange}/>
 
-          <p>{this.state.address}</p>
+          <p className="mono">{this.state.address}</p>
 
           <RaisedButton label="Login"
                         primary={true}

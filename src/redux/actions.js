@@ -28,28 +28,11 @@ export function createAccountAction() {
     const newAcc = {
       address: acc.address,
       nonce: nonce,
-      balances: [
-        {
-          token: "WAVES",
-          value: 0
-        },
-        {
-          token: "WCT",
-          value: 0
-        },
-        {
-          token: "LHAU",
-          value: 0
-        }
-      ]
     };
 
-    dispatch(
-      {
-        type: CREATE_ACCOUNT_SUCCESS,
-        account: newAcc
-      }
-    )
+    dispatch({ type: CREATE_ACCOUNT_SUCCESS, account: newAcc });
+
+    dispatch(fetchBalances(acc.address));
   };
 }
 

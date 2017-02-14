@@ -22,14 +22,15 @@ class Wallet extends React.Component {
           label="NEW ACCOUNT"
           icon={<FontIcon className="material-icons">add</FontIcon>} />
 
-        <AccountsList accounts={this.props.accounts} />
+        <AccountsList accounts={this.props.accounts} balances={this.props.balances}/>
       </div>);
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    accounts: state.wallet.accounts
+    accounts: state.wallet.accounts,
+    balances: state.balances
   }
 };
 
