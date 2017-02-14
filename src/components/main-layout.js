@@ -14,14 +14,14 @@ const style = {
 };
 
 const AppBarTitle = muiThemeable()((props) => (
-  <span>Chrono<span style={{color: props.muiTheme.palette.accent1Color}}>WAVES</span> {props.address}</span>
+  <span>Chrono<span style={{color: props.muiTheme.palette.accent1Color}}>WAVES</span></span>
 ));
 
 const MainLayout = (props) => (
   <div>
     <AppBar
       style={{zIndex: 1400}}
-      title={<AppBarTitle address={props.address}/>}
+      title={<AppBarTitle/>}
       iconClassNameRight="muidocs-icon-navigation-expand-more"
     />
     <Drawer open={true} containerStyle={{paddingTop: 100, backgroundColor: '#fff'}} width={200}>
@@ -42,10 +42,5 @@ const MainLayout = (props) => (
   </div>
 );
 
-const mapStateToProps = (state) => {
-  return {
-    address: state.session.address
-  };
-};
 
-export default connect(mapStateToProps)(MainLayout);
+export default connect()(MainLayout);
