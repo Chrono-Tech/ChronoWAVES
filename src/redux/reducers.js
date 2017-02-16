@@ -31,10 +31,13 @@ export const walletReducer = (state = {}, action) => {
   }
 };
 
-export const transactions = (state = [], action) => {
+export const transactionsReducer = (state = {}, action) => {
   switch (action.type) {
     case ActionTypes.RECEIVE_TRANSACTIONS:
-      return action.transactions;
+      return {
+        ...state,
+        [action.address]: action.transactions
+      };
     default:
       return state;
   }

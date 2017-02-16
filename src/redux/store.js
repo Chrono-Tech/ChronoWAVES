@@ -1,10 +1,10 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import {session, transactions, balances, walletReducer} from './reducers';
+import {session, transactionsReducer, balances, walletReducer} from './reducers';
 
 const rootReducer = combineReducers({
   session,
-  transactions,
+  transactions: transactionsReducer,
   balances,
   wallet: walletReducer
 });

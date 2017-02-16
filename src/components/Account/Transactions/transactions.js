@@ -2,6 +2,8 @@ import React, {PropTypes} from'react';
 import {connect} from 'react-redux';
 import {fetchTransactions} from '../../../redux/actions';
 import TransactionItem from './transaction-item';
+import Container from '../../container';
+import {Card,CardTitle,CardText} from 'material-ui/Card';
 
 class TransactionsHistory extends React.Component {
 
@@ -14,13 +16,18 @@ class TransactionsHistory extends React.Component {
   }
 
   render() {
-    return <div>
-      {
-        this.props.transactions.map(tx =>
-          (<TransactionItem key={tx.id} tx={tx} address={this.props.address}/>)
-        )
-      }
-    </div>
+    const {address} = this.props;
+    const transactions = this.props.transactions[address] || [];
+
+    return (<Container>
+
+          {
+            transactions.map(tx =>
+              (<TransactionItem key={ tx.id } tx={ tx } address={ address }/>)
+            )
+          }
+
+    </Container>)
   }
 }
 

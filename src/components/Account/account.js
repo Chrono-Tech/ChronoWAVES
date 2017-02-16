@@ -1,4 +1,5 @@
 import React from 'react';
+import Container from '../container';
 import TransactionsHistory from './Transactions/transactions';
 
 class Account extends React.Component {
@@ -8,12 +9,14 @@ class Account extends React.Component {
   }
 
   render() {
-    const {address} = this.props.params;
+    const { address } = this.props.params;
 
     return (
       <div>
-        {address}
-        <TransactionsHistory address={address}/>
+        <Container>
+          {address}
+        </Container>
+        <TransactionsHistory address={ address }/>
       </div>
     );
   }

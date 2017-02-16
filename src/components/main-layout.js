@@ -7,6 +7,7 @@ import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import {List, ListItem} from 'material-ui/List';
 import FontIcon from 'material-ui/FontIcon';
+import {WalletIcon} from './Icons';
 
 const style = {
   margin: '10px 20px 20px 15px',
@@ -34,7 +35,7 @@ const MainLayout = (props) => (
 
         <ListItem
           primaryText="Wallet"
-          leftIcon={<FontIcon className="material-icons">account_balance_wallet</FontIcon>}
+          leftIcon={<WalletIcon />}
           containerElement={<Link to="wallet"/>}/>
 
         <ListItem
