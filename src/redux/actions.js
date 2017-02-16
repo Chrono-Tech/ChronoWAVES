@@ -4,7 +4,6 @@ const blockchainParams = Waves.MainNetParameters();
 
 const client = new Waves(blockchainParams).client("https://nodes.wavesnodes.com");
 
-
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export function loginSuccessAction(seed) {
   return {
@@ -30,7 +29,7 @@ export function createAccountAction() {
       nonce: nonce,
     };
 
-    dispatch({ type: CREATE_ACCOUNT_SUCCESS, account: newAcc });
+    dispatch({type: CREATE_ACCOUNT_SUCCESS, account: newAcc});
 
     dispatch(fetchBalances(acc.address));
   };
@@ -49,6 +48,8 @@ export function fetchTransactions(address) {
   return function (dispatch, getState) {
     client.getAddressTransactions(address)
       .then(txs => {
+        // sort transaction - the younger the higher
+        txs = txs.sort((a, b) => b.timestamp - a.timestamp);
         dispatch(receiveTransactionAction(address, txs));
       });
   }

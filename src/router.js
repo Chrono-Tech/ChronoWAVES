@@ -3,7 +3,7 @@ import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 
 import App from './app';
 import MainLayout from './components/main-layout';
-import Dashboard from './components/dashboard';
+import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import EnsureLoggedInContainer from './components/ensure-logged-in-container';
 import Wallet from './components/Wallet';

@@ -51,7 +51,6 @@ class Login extends React.Component {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onLoginClick: (seed) => {
-      console.log(seed);
       dispatch(loginSuccessAction(seed));
     }
   }

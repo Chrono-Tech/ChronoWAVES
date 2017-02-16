@@ -9,7 +9,7 @@ import {List, ListItem} from 'material-ui/List';
 import FontIcon from 'material-ui/FontIcon';
 
 const style = {
-  margin: '50px 20px 20px 15px',
+  margin: '10px 20px 20px 15px',
   paddingLeft: 200,
 };
 
@@ -26,6 +26,12 @@ const MainLayout = (props) => (
     />
     <Drawer open={true} containerStyle={{paddingTop: 100, backgroundColor: '#fff'}} width={200}>
       <List>
+
+        <ListItem
+          primaryText="Dashboard"
+          leftIcon={<FontIcon className="material-icons">home</FontIcon>}
+          containerElement={<Link to="dashboard" />}/>
+
         <ListItem
           primaryText="Wallet"
           leftIcon={<FontIcon className="material-icons">account_balance_wallet</FontIcon>}

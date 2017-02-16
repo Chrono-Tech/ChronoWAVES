@@ -8,7 +8,7 @@ class Account extends React.Component {
   }
 
   render() {
-    const { address } = this.props.params;
+    const {address} = this.props.params;
 
     return (
       <div>
