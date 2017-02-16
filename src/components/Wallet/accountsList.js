@@ -6,6 +6,7 @@ import Container from '../container';
 import './accountsList.css';
 import {CopyIcon} from '../Icons';
 import blockies from 'blockies';
+import {blue200} from 'material-ui/styles/colors';
 
 const listStyles = {
   list: {
@@ -39,7 +40,7 @@ const styles = {
 
 const AccountItem = (props) => {
 
-  const icon = blockies({seed: props.address}).toDataURL();
+  const icon = blockies({seed: props.address, bgcolor: blue200}).toDataURL();
 
   return (<Container>
 

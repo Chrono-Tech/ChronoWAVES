@@ -6,7 +6,7 @@ import TransactionsHistory from './Transactions/transactions';
 import {CopyIcon} from '../Icons';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
 import Chip from 'material-ui/Chip';
-
+import {blue200} from 'material-ui/styles/colors';
 import blockies from 'blockies';
 
 const styles = {
@@ -30,7 +30,7 @@ class Account extends React.Component {
     const { address } = this.props.params;
     const balances = this.props.balances[address] || [];
 
-    const icon = blockies({seed: address}).toDataURL();
+    const icon = blockies({seed: address, bgcolor: blue200}).toDataURL();
 
     return (
       <div>
