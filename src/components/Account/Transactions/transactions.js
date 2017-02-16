@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {fetchTransactions} from '../../../redux/actions';
 import TransactionItem from './transaction-item';
 import Container from '../../container';
-import {Card,CardTitle,CardText} from 'material-ui/Card';
+import {Card, CardTitle, CardText} from 'material-ui/Card';
 
 class TransactionsHistory extends React.Component {
 
@@ -19,15 +19,18 @@ class TransactionsHistory extends React.Component {
     const {address} = this.props;
     const transactions = this.props.transactions[address] || [];
 
-    return (<Container>
+    if (transactions.length > 0) {
+      return (<Container>
+        {
+          transactions.map(tx =>
+            (<TransactionItem key={ tx.id } tx={ tx } address={ address }/>)
+          )
+        }
 
-          {
-            transactions.map(tx =>
-              (<TransactionItem key={ tx.id } tx={ tx } address={ address }/>)
-            )
-          }
+      </Container>)
+    }
 
-    </Container>)
+    return (<Container>There is no transactions yet.</Container>)
   }
 }
 

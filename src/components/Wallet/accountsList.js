@@ -1,10 +1,11 @@
 import React from 'react';
-import {Card, CardTitle, CardText} from 'material-ui/Card';
+import {Card, CardTitle, CardText, CardHeader} from 'material-ui/Card';
 import Chip from 'material-ui/Chip';
 import {Link} from 'react-router';
 import Container from '../container';
 import './accountsList.css';
 import {CopyIcon} from '../Icons';
+import blockies from 'blockies';
 
 const listStyles = {
   list: {
@@ -36,14 +37,18 @@ const styles = {
   }
 };
 
-const AccountItem = (props) => (
-  <Container>
+const AccountItem = (props) => {
+
+  const icon = blockies({seed: props.address}).toDataURL();
+
+  return (<Container>
 
     <Card style={ styles.card }>
-      <CardTitle>
-        <CopyIcon />
-        <Link to={`/account/${props.address}`} className="mono">{props.address}</Link>
-      </CardTitle>
+      <CardHeader avatar={icon}
+                  title={(
+                    <div>
+                      <Link to={`/account/${props.address}`} className="mono">{props.address}</Link> <CopyIcon />
+                    </div>)}/>
       <CardText>
         <div style={ styles.wrapper }>
           {
@@ -54,8 +59,8 @@ const AccountItem = (props) => (
         </div>
       </CardText>
     </Card>
-  </Container>
-);
+  </Container>);
+};
 
 const AccountsList = (props) => (
   (<div style={ listStyles.list }>
