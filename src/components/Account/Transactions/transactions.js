@@ -16,18 +16,20 @@ class TransactionsHistory extends React.Component {
   }
 
   render() {
-    const {address} = this.props;
+    const {address, assetsRegistry} = this.props;
     const transactions = this.props.transactions[address] || [];
 
     if (transactions.length > 0) {
-      return (<Container>
-        {
-          transactions.map(tx =>
-            (<TransactionItem key={ tx.id } tx={ tx } address={ address }/>)
-          )
-        }
-
-      </Container>)
+      return (
+        <Container>
+          {
+            transactions.map(tx => {
+              const assetId = (tx.assetId === null) ? 'WAVES' : tx.assetId;
+              const assetInfo = assetsRegistry[assetId];
+              return (<TransactionItem key={ tx.id } tx={ tx } address={ address } assetInfo={ assetInfo }/>)
+            })
+          }
+        </Container>)
     }
 
     return (<Container>There is no transactions yet.</Container>)
@@ -40,7 +42,8 @@ TransactionsHistory.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    transactions: state.transactions
+    transactions: state.transactions,
+    assetsRegistry: state.assets
   }
 };
 

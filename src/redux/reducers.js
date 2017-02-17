@@ -54,3 +54,25 @@ export const balances = (state = {}, action) => {
       return state;
   }
 };
+
+
+const initialAssetsRegistry = {
+  'WAVES': {
+    assetName: 'WAVES',
+    assetId: 'WAVES',
+    decimals: 8,
+    quantity: 100000000 * Math.pow(10, 8)
+  }
+};
+
+export const assetsReducer = (state = initialAssetsRegistry, action) => {
+  switch (action.type) {
+    case ActionTypes.RECEIVE_ASSET_INFO:
+      return {
+        ...state,
+        [action.assetInfo.assetId]: action.assetInfo
+      };
+    default:
+      return state;
+  }
+};

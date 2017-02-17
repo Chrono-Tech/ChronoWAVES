@@ -76,12 +76,25 @@ export function fetchBalances(address) {
       //TODO: we need more info about assets
       const balances = [
         {
-          name: "WAVES",
+          assetName: "WAVES",
+          assetId: "WAVES",
           value: wavesBalance
         },
         ...assetBalances.map(b => {
+
+          // update our assets registry
+          const issueTx = b.issueTransaction;
+          const assetInfo = {
+            assetName: issueTx.assetName,
+            assetId: issueTx.assetId,
+            decimals: issueTx.decimals,
+            quantity: issueTx.quantity
+          };
+          dispatch(receiveAssetInfo(assetInfo));
+
           return {
-            name: b.issueTransaction.assetName,
+            assetName: b.issueTransaction.assetName,
+            assetId: b.assetId,
             value: b.balance
           }
         })
@@ -89,5 +102,34 @@ export function fetchBalances(address) {
 
       dispatch(receiveBalancesAction(address, balances))
     });
+  }
+}
+
+export function fetchAssetInfo(assetId) {
+  return (dispatch) => {
+
+    if (assetId !== 'WAVES') {
+
+      // call node api to get asset info
+      return client.getTransaction(assetId).then(issueTx => {
+        const assetInfo = {
+          assetName: issueTx.assetName,
+          assetId: issueTx.assetId,
+          decimals: issueTx.decimals,
+          quantity: issueTx.quantity
+        };
+        dispatch(receiveAssetInfo(assetInfo))
+      });
+    } else return Promise.resolve();
+  }
+}
+
+export const RECEIVE_ASSET_INFO = 'RECEIVE_ASSET_INFO';
+export function receiveAssetInfo(assetInfo) {
+  console.log('receiveAssetInfo()' + JSON.stringify(assetInfo));
+  return {
+    type: RECEIVE_ASSET_INFO,
+    assetInfo: assetInfo
+
   }
 }

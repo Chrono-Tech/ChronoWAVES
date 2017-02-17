@@ -3,7 +3,7 @@ import {Card, CardText, CardTitle} from 'material-ui/Card';
 import FontIcon from 'material-ui/FontIcon';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table'
 import {getAssetName} from '../../../domain/assetsRegistry';
-import {blue500, red500, greenA200} from 'material-ui/styles/colors';
+import {red500, greenA200} from 'material-ui/styles/colors';
 
 const inTxStyle = {
   transform: 'rotate(180deg)',
@@ -28,7 +28,7 @@ const getTxTypeName = (type) => {
 /**
  * Represents one transaction
  */
-const TransactionItem = ({tx, address}) => {
+const TransactionItem = ({tx, address, assetInfo}) => {
   const correspondent = (tx.sender === address) ? tx.recipient : tx.sender;
   const icon = (tx.sender === address) ?
     (<FontIcon className="material-icons" style={outTxStyle}>input</FontIcon>) :
@@ -48,7 +48,7 @@ const TransactionItem = ({tx, address}) => {
               </div>
             </TableRowColumn>
             <TableRowColumn style={{textAlign: 'right', width:'20%'}}>{tx.amount}</TableRowColumn>
-            <TableRowColumn>{getAssetName(tx.assetId)}</TableRowColumn>
+            <TableRowColumn>{assetInfo.assetName}</TableRowColumn>
           </TableRow>
         </TableBody>
       </Table>
