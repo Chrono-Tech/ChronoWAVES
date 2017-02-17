@@ -15,13 +15,10 @@ const toolBarStyle = {
 const Toolbar = (props) => {
   return (
     <ToolbarMU style={ toolBarStyle }>
-      <h3 style={ toolBarStyle.title }>{props.title}</h3>
+      <h3 style={ toolBarStyle.title }>{ props.title }</h3>
       {
-        props.actionButtons && (<ToolbarGroup>
-          {props.actionButtons}
-        </ToolbarGroup>)
+        props.actionButtons && (<ToolbarGroup>{ props.actionButtons }</ToolbarGroup>)
       }
-
     </ToolbarMU>
   );
 };
