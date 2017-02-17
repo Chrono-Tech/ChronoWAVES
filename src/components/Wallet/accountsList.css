@@ -13,3 +13,8 @@
 .item:nth-child(even) {
   padding-left: 0.125em;
 }
+
+.account {
+  color: #17579c !important;
+}
+

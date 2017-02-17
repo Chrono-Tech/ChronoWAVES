@@ -4,7 +4,7 @@ import FlatButton from 'material-ui/FlatButton';
 import {createAccountAction} from '../../redux/actions';
 import AccountsList from './accountsList';
 import FontIcon from 'material-ui/FontIcon';
-import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
+import Toolbar from '../Toolbar';
 
 class Wallet extends React.Component {
 
@@ -15,16 +15,14 @@ class Wallet extends React.Component {
   render() {
     return (
       <div>
-        <Toolbar>
-          <h3>ACCOUNTS</h3>
-          <ToolbarGroup>
+        <Toolbar
+          title="ACCOUNTS"
+          actionButtons={
             <FlatButton
               onClick={this.props.onCreateAccount}
               label="NEW ACCOUNT"
-              icon={<FontIcon className="material-icons">add</FontIcon>}/>
-          </ToolbarGroup>
-        </Toolbar>
-
+              icon={<FontIcon className="material-icons">add</FontIcon>}/>}
+        />
 
         <AccountsList accounts={this.props.accounts} balances={this.props.balances}/>
       </div>);

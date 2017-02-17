@@ -1,7 +1,7 @@
 import React from 'react';
 import {Card, CardText, CardActions, CardTitle, CardHeader} from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
-import {Toolbar} from 'material-ui/Toolbar';
+import Toolbar from '../Toolbar';
 import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
 import {SendIcon} from '../Icons';
@@ -20,9 +20,10 @@ const styles = {
 
 const Dashboard = (props) => (
   <div>
-    <Toolbar>
-      <h3>DASHBOARD</h3>
-    </Toolbar>
+    <Toolbar
+      title="DASHBOARD"
+    />
+
     <div className="list">
       <div className="item">
         <Card style={styles.card}>

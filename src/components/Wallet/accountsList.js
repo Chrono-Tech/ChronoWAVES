@@ -48,7 +48,7 @@ const AccountItem = (props) => {
       <CardHeader avatar={icon}
                   title={(
                     <div>
-                      <Link to={`/account/${props.address}`} className="mono">{props.address}</Link> <CopyIcon />
+                      <Link to={`/account/${props.address}`} className="mono account">{props.address}</Link> <CopyIcon />
                     </div>)}/>
       <CardText>
         <div style={ styles.wrapper }>

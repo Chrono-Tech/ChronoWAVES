@@ -49,7 +49,6 @@ const TransactionItem = ({tx, address}) => {
             </TableRowColumn>
             <TableRowColumn style={{textAlign: 'right', width:'20%'}}>{tx.amount}</TableRowColumn>
             <TableRowColumn>{getAssetName(tx.assetId)}</TableRowColumn>
-            <TableRowColumn>Block: {tx.height}</TableRowColumn>
           </TableRow>
         </TableBody>
       </Table>
