@@ -36,47 +36,69 @@ const AppBarTitle = muiThemeable()((props) => (
   <span>Chrono<span style={{color: props.muiTheme.palette.accent1Color}}>WAVES</span></span>
 ));
 
-const MainLayout = (props) => (
-  <div>
-    <AppBar
-      style={{zIndex: 1400}}
-      title={<AppBarTitle/>}
-      iconClassNameRight="muidocs-icon-navigation-expand-more"
-    />
-    <Drawer open={true} containerStyle={{paddingTop: 56, backgroundColor: '#fff'}} width={200}>
+class MainLayout extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {open: true};
+  }
 
-      <div style={styles.div}>
+  handleToggle = () => this.setState({open: !this.state.open});
 
+  render() {
+
+    const paddingLeft = (this.state.open ? 230 : 56);
+
+    const style = {
+      padding: '70px 20px 20px 20px',
+      paddingLeft: paddingLeft + 20,
+      transition: 'padding 450ms cubic-bezier(0.23, 1, 0.32, 1)'
+    };
+
+    return (
+      <div>
+        <AppBar
+          style={{zIndex: 1400, position:'fixed'}}
+          title={<AppBarTitle/>}
+          iconClassNameRight="muidocs-icon-navigation-expand-more"
+          onLeftIconButtonTouchTap={ this.handleToggle }
+        />
+        <Drawer open={this.state.open} containerStyle={{paddingTop: 56, backgroundColor: '#fff'}} width={200}>
+
+          <div style={styles.div}>
+
+          </div>
+
+          <List style={styles.menu}>
+
+            <ListItem
+              style={styles.menuItem}
+              innerDivStyle={ styles.menuItemInner }
+              primaryText="Dashboard"
+              leftIcon={<FontIcon className="material-icons">home</FontIcon>}
+              containerElement={<Link to="dashboard" />}/>
+
+            <ListItem
+              style={ styles.menuItem }
+              innerDivStyle={ styles.menuItemInner }
+              primaryText="Wallet"
+              leftIcon={<WalletIcon />}
+              containerElement={<Link to="wallet"/>}/>
+
+            <ListItem
+              style={styles.menuItem}
+              innerDivStyle={ styles.menuItemInner }
+              primaryText="Exchange"
+              leftIcon={<FontIcon className="material-icons">compare_arrows</FontIcon>}/>
+          </List>
+        </Drawer>
+        <div style={style}>
+          {this.props.children}
+        </div>
       </div>
+    );
+  }
+}
 
-      <List style={styles.menu}>
-
-        <ListItem
-          style={styles.menuItem}
-          innerDivStyle={ styles.menuItemInner }
-          primaryText="Dashboard"
-          leftIcon={<FontIcon className="material-icons">home</FontIcon>}
-          containerElement={<Link to="dashboard" />}/>
-
-        <ListItem
-          style={ styles.menuItem }
-          innerDivStyle={ styles.menuItemInner }
-          primaryText="Wallet"
-          leftIcon={<WalletIcon />}
-          containerElement={<Link to="wallet"/>}/>
-
-        <ListItem
-          style={styles.menuItem}
-          innerDivStyle={ styles.menuItemInner }
-          primaryText="Exchange"
-          leftIcon={<FontIcon className="material-icons">compare_arrows</FontIcon>}/>
-      </List>
-    </Drawer>
-    <div style={styles}>
-      {props.children}
-    </div>
-  </div>
-);
 
 
 export default connect()(MainLayout);
