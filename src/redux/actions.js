@@ -1,4 +1,5 @@
 import Waves from 'waves.js/dist/waves';
+import {AssetInfo} from '../domain/assetInfo';
 
 const blockchainParams = Waves.MainNetParameters();
 
@@ -83,13 +84,7 @@ export function fetchBalances(address) {
         ...assetBalances.map(b => {
 
           // update our assets registry
-          const issueTx = b.issueTransaction;
-          const assetInfo = {
-            assetName: issueTx.assetName,
-            assetId: issueTx.assetId,
-            decimals: issueTx.decimals,
-            quantity: issueTx.quantity
-          };
+          const assetInfo = issueTxToAsset(b.issueTransaction);
           dispatch(receiveAssetInfo(assetInfo));
 
           return {
@@ -112,12 +107,7 @@ export function fetchAssetInfo(assetId) {
 
       // call node api to get asset info
       return client.getTransaction(assetId).then(issueTx => {
-        const assetInfo = {
-          assetName: issueTx.assetName,
-          assetId: issueTx.assetId,
-          decimals: issueTx.decimals,
-          quantity: issueTx.quantity
-        };
+        const assetInfo = issueTxToAsset(issueTx);
         dispatch(receiveAssetInfo(assetInfo))
       });
     } else return Promise.resolve();
@@ -133,3 +123,15 @@ export function receiveAssetInfo(assetInfo) {
 
   }
 }
+
+const issueTxToAsset = (issueTx) => {
+  return new AssetInfo(
+    issueTx.assetId,
+    issueTx.assetName,
+    issueTx.quantity,
+    issueTx.decimals,
+    issueTx.sender,
+    issueTx.timestamp,
+    issueTx.reissuable
+  );
+};

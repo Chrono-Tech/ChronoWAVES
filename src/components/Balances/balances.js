@@ -3,6 +3,9 @@ import {connect} from 'react-redux';
 import Chip from 'material-ui/Chip';
 import Dialog from 'material-ui/Dialog';
 import {fetchAssetInfo} from '../../redux/actions';
+import {Table, TableBody, TableRowColumn, TableRow} from 'material-ui/Table';
+import {NavigationClose} from '../Icons';
+import IconButton from 'material-ui/IconButton';
 
 const styles = {
   chip: {
@@ -25,7 +28,8 @@ class Balances extends React.Component {
 
   handleOpen = (assetId) => {
     const assetInfo = this.props.assetRegistry[assetId];
-    if (assetInfo == null) {
+
+    if (typeof assetInfo === 'undefined' || assetInfo === null) {
       this.props.dispatch(fetchAssetInfo(assetId));
     }
     this.setState({ open: true, selectedAssetId: assetId });
@@ -37,6 +41,8 @@ class Balances extends React.Component {
 
   render() {
     const { balances } = this.props;
+
+
     return (
       <div style={ styles.wrapper }>
         {
@@ -48,19 +54,76 @@ class Balances extends React.Component {
         }
 
         <Dialog
-          title="Dialog With Actions"
+          title={<div>
+                    Asset Details
+                    <IconButton style={{float: 'right', margin: "-12px -12px 0px"}} onTouchTap={this.handleClose}>
+                        <NavigationClose />
+                    </IconButton>
+                </div>}
           modal={ false }
           open={ this.state.open }
           onRequestClose={ this.handleClose }
         >
           {
-              <div>ASSET: {JSON.stringify(this.props.assetRegistry[this.state.selectedAssetId])}</div>
+
+              this.renderAssetDetails()
           }
         </Dialog>
       </div>
     );
   }
+
+  renderAssetDetails = () => {
+    const assetInfo = this.props.assetRegistry[this.state.selectedAssetId];
+    return (
+      <div>
+        {
+          (assetInfo) && (
+            <Table selectable={false}>
+              <TableBody displayRowCheckbox={false}>
+                <TableRow>
+                  <TableRowColumn style={{width:'30%'}}>
+                    Asset ID
+                  </TableRowColumn>
+                  <TableRowColumn className="mono">
+                    { assetInfo.assetId }
+                  </TableRowColumn>
+                </TableRow>
+                <TableRow>
+                  <TableRowColumn>Name</TableRowColumn>
+                  <TableRowColumn>{ assetInfo.name }</TableRowColumn>
+                </TableRow>
+                <TableRow>
+                  <TableRowColumn>Quantity</TableRowColumn>
+                  <TableRowColumn>{ assetInfo.quantity }</TableRowColumn>
+                </TableRow>
+                <TableRow>
+                  <TableRowColumn>Decimals</TableRowColumn>
+                  <TableRowColumn>{ assetInfo.decimals }</TableRowColumn>
+                </TableRow>
+                <TableRow>
+                  <TableRowColumn>Issuer</TableRowColumn>
+                  <TableRowColumn>{ assetInfo.issuer }</TableRowColumn>
+                </TableRow>
+                <TableRow>
+                  <TableRowColumn>Issued</TableRowColumn>
+                  <TableRowColumn>{ assetInfo.timestamp }</TableRowColumn>
+                </TableRow>
+                <TableRow>
+                  <TableRowColumn>Reissuable</TableRowColumn>
+                  <TableRowColumn>{ assetInfo.reissuable ? "Yes" : "No" }</TableRowColumn>
+                </TableRow>
+              </TableBody>
+            </Table>
+          )
+        }
+      </div>
+    );
+  };
 }
+
+
+
 
 Balances.propTypes = {
   balances: PropTypes.array

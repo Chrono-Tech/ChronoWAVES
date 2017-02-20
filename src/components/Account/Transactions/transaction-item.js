@@ -2,7 +2,6 @@ import React, {PropTypes} from 'react';
 import {Card, CardText, CardTitle} from 'material-ui/Card';
 import FontIcon from 'material-ui/FontIcon';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table'
-import {getAssetName} from '../../../domain/assetsRegistry';
 import {red500, greenA200} from 'material-ui/styles/colors';
 
 const inTxStyle = {
@@ -48,7 +47,7 @@ const TransactionItem = ({tx, address, assetInfo}) => {
               </div>
             </TableRowColumn>
             <TableRowColumn style={{textAlign: 'right', width:'20%'}}>{tx.amount}</TableRowColumn>
-            <TableRowColumn>{assetInfo.assetName}</TableRowColumn>
+            <TableRowColumn>{assetInfo.name}</TableRowColumn>
           </TableRow>
         </TableBody>
       </Table>
