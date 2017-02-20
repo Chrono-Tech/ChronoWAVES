@@ -6,6 +6,8 @@ import {fetchAssetInfo} from '../../redux/actions';
 import {Table, TableBody, TableRowColumn, TableRow} from 'material-ui/Table';
 import {NavigationClose} from '../Icons';
 import IconButton from 'material-ui/IconButton';
+import {assetValueToString} from '../../domain/utility';
+import Loading from '../Loading';
 
 const styles = {
   chip: {
@@ -32,7 +34,7 @@ class Balances extends React.Component {
     if (typeof assetInfo === 'undefined' || assetInfo === null) {
       this.props.dispatch(fetchAssetInfo(assetId));
     }
-    this.setState({ open: true, selectedAssetId: assetId });
+    this.setState({open: true, selectedAssetId: assetId});
   };
 
   handleClose = () => {
@@ -40,17 +42,23 @@ class Balances extends React.Component {
   };
 
   render() {
-    const { balances } = this.props;
+    const { balances, assetRegistry } = this.props;
 
+    if (balances.isFetching) {
+      return (<Loading size={1}/>);
+    }
 
     return (
       <div style={ styles.wrapper }>
         {
-          balances.map(b => (
-            <Chip style={ styles.chip } key={ b.assetId } onTouchTap={ () => this.handleOpen(b.assetId) }>
-              { b.value } { b.assetName }
-            </Chip>
-          ))
+          balances.items.map(b => {
+            const decimals = assetRegistry[b.assetId].decimals;
+            const value = assetValueToString(b.value, decimals);
+
+            return (<Chip style={ styles.chip } key={ b.assetId } onTouchTap={ () => this.handleOpen(b.assetId) }>
+              { value } { b.assetName }
+            </Chip>)
+          })
         }
 
         <Dialog
@@ -66,9 +74,11 @@ class Balances extends React.Component {
         >
           {
 
-              this.renderAssetDetails()
+            this.renderAssetDetails()
           }
         </Dialog>
+
+
       </div>
     );
   }
@@ -123,10 +133,8 @@ class Balances extends React.Component {
 }
 
 
-
-
 Balances.propTypes = {
-  balances: PropTypes.array
+  balances: PropTypes.object
 };
 
 const mapStateToProps = (state) => {

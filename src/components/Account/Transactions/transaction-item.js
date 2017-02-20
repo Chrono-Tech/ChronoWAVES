@@ -2,19 +2,20 @@ import React, {PropTypes} from 'react';
 import {Card, CardText, CardTitle} from 'material-ui/Card';
 import FontIcon from 'material-ui/FontIcon';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table'
-import {red500, greenA200} from 'material-ui/styles/colors';
+import {red500, greenA200, lightBlue600} from 'material-ui/styles/colors';
+import {assetValueToString} from '../../../domain/utility';
 
 const inTxStyle = {
   transform: 'rotate(180deg)',
   verticalAlign: 'middle',
   fontSize: '36px',
-  color: greenA200
+  color: '#e6f2e6',
 };
 
 const outTxStyle = {
   verticalAlign: 'middle',
   fontSize: '36px',
-  color: red500
+  color: '#f2e6e6',
 };
 
 const getTxTypeName = (type) => {
@@ -33,6 +34,9 @@ const TransactionItem = ({tx, address, assetInfo}) => {
     (<FontIcon className="material-icons" style={outTxStyle}>input</FontIcon>) :
     (<FontIcon className="material-icons" style={inTxStyle}>input</FontIcon>);
 
+  const amount = assetValueToString(tx.amount, assetInfo.decimals);
+  const amountText = (tx.sender === address) ? "-" + amount : amount;
+
   return (<Card key={tx.id}>
     <CardTitle actAsExpander={true}
                showExpandableButton={true}>
@@ -46,7 +50,7 @@ const TransactionItem = ({tx, address, assetInfo}) => {
                 <div>{getTxTypeName(tx.type)}</div>
               </div>
             </TableRowColumn>
-            <TableRowColumn style={{textAlign: 'right', width:'20%'}}>{tx.amount}</TableRowColumn>
+            <TableRowColumn style={{textAlign: 'right', width:'20%'}}>{amountText}</TableRowColumn>
             <TableRowColumn>{assetInfo.name}</TableRowColumn>
           </TableRow>
         </TableBody>

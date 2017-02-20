@@ -45,14 +45,34 @@ function receiveTransactionAction(address, transactions) {
   };
 }
 
+export const REQUEST_TRANSACTIONS = 'REQUEST_TRANSACTIONS';
+function requestTransactionsAction(address) {
+  return {
+    type: REQUEST_TRANSACTIONS,
+    address: address
+  }
+}
+
 export function fetchTransactions(address) {
   return function (dispatch, getState) {
-    client.getAddressTransactions(address)
+
+    dispatch(requestTransactionsAction(address));
+
+    return client.getAddressTransactions(address)
       .then(txs => {
         // sort transaction - the younger the higher
         txs = txs.sort((a, b) => b.timestamp - a.timestamp);
+
         dispatch(receiveTransactionAction(address, txs));
       });
+  }
+}
+
+export const REQUEST_BALANCES = 'REQUEST_BAKANCES';
+function requestBalancesAction(address) {
+  return {
+    type: REQUEST_BALANCES,
+    address: address
   }
 }
 
@@ -67,6 +87,10 @@ function receiveBalancesAction(address, balances) {
 
 export function fetchBalances(address) {
   return (dispatch, getState) => {
+
+    dispatch(requestBalancesAction(address));
+
+
     Promise.all([
       client.getBalance(address),
       client.getAssetsBalance(address)
@@ -74,7 +98,6 @@ export function fetchBalances(address) {
       const wavesBalance = results[0];
       const assetBalances = results[1];
 
-      //TODO: we need more info about assets
       const balances = [
         {
           assetName: "WAVES",
@@ -85,6 +108,7 @@ export function fetchBalances(address) {
 
           // update our assets registry
           const assetInfo = issueTxToAsset(b.issueTransaction);
+
           dispatch(receiveAssetInfo(assetInfo));
 
           return {

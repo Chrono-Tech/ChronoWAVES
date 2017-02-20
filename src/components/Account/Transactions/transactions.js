@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {fetchTransactions} from '../../../redux/actions';
 import TransactionItem from './transaction-item';
 import Container from '../../container';
-import {Card, CardTitle, CardText} from 'material-ui/Card';
+import Loading from '../../Loading';
 
 class TransactionsHistory extends React.Component {
 
@@ -17,13 +17,17 @@ class TransactionsHistory extends React.Component {
 
   render() {
     const {address, assetsRegistry} = this.props;
-    const transactions = this.props.transactions[address] || [];
+    const transactions = this.props.transactions[address] || { isFetching: true, items: [] };
 
-    if (transactions.length > 0) {
+    if (transactions.isFetching) {
+      return (<Loading />);
+    }
+
+    if (transactions.items.length > 0) {
       return (
         <Container>
           {
-            transactions.map(tx => {
+            transactions.items.map(tx => {
               const assetId = (tx.assetId === null) ? 'WAVES' : tx.assetId;
               const assetInfo = assetsRegistry[assetId];
               return (<TransactionItem key={ tx.id } tx={ tx } address={ address } assetInfo={ assetInfo }/>)
