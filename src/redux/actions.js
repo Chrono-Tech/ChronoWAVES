@@ -27,6 +27,7 @@ export function createAccountAction() {
     // create new account
     const newAcc = {
       address: acc.address,
+      publicKey: acc.publicKey,
       nonce: nonce,
     };
 
@@ -140,7 +141,9 @@ export function fetchAssetInfo(assetId) {
 
 export const RECEIVE_ASSET_INFO = 'RECEIVE_ASSET_INFO';
 export function receiveAssetInfo(assetInfo) {
+
   console.log('receiveAssetInfo()' + JSON.stringify(assetInfo));
+
   return {
     type: RECEIVE_ASSET_INFO,
     assetInfo: assetInfo

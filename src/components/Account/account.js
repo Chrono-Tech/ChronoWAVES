@@ -4,6 +4,7 @@ import {CopyIcon} from '../Icons';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
 import FontIcon from 'material-ui/FontIcon';
 import FlatButton from 'material-ui/FlatButton';
+import {browserHistory} from 'react-router';
 
 import Container from '../container';
 import Balances from '../Balances';
@@ -24,7 +25,7 @@ class Account extends React.Component {
   }
 
   transferHandler = () => {
-    console.log("TransferHandler");
+    browserHistory.push(`/wallet/account/${this.props.params.address}/send`);
   };
 
   render() {
