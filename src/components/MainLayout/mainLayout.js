@@ -7,7 +7,9 @@ import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import {List, ListItem} from 'material-ui/List';
 import FontIcon from 'material-ui/FontIcon';
-import {WalletIcon} from './Icons';
+import {WalletIcon} from './../Icons';
+
+import './mainLayout.css';
 
 const styles = {
   margin: '10px 20px 20px 15px',
@@ -15,7 +17,7 @@ const styles = {
 
   div: {
     padding: '24px 24px 8px 24px',
-    backgroundImage:  'url(' + require('../assets/drawer_bg.svg') + ')',
+    backgroundImage:  'url(' + require('../../assets/drawer_bg.svg') + ')',
     backgroundColor: '#fff',
     boxShadow: 'rgba(0, 0, 0, 0.5) 0 0 10px inset',
     height: 112
@@ -29,7 +31,7 @@ const styles = {
   },
   menuItemInner: {
     paddingLeft: '54px'
-  }
+  },
 };
 
 const AppBarTitle = muiThemeable()((props) => (
@@ -75,14 +77,14 @@ class MainLayout extends React.Component {
               innerDivStyle={ styles.menuItemInner }
               primaryText="Dashboard"
               leftIcon={<FontIcon className="material-icons">home</FontIcon>}
-              containerElement={<Link to="dashboard" />}/>
+              containerElement={<Link activeClassName={'active'} to="/dashboard" />}/>
 
             <ListItem
               style={ styles.menuItem }
               innerDivStyle={ styles.menuItemInner }
               primaryText="Wallet"
               leftIcon={<WalletIcon />}
-              containerElement={<Link to="wallet"/>}/>
+              containerElement={<Link activeClassName={'active'} to="/wallet"/>}/>
 
             <ListItem
               style={styles.menuItem}

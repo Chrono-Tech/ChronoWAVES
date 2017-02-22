@@ -33,7 +33,7 @@ const AccountItem = (props) => {
         avatar={ identityIcon }
         title={(
           <div style={ styles.address }>
-            <Link to={`/account/${props.address}`} className="mono account">{ props.address }</Link> <CopyIcon />
+            <Link to={`/wallet/account/${props.address}`} className="mono account">{ props.address }</Link> <CopyIcon />
           </div>)}/>
       <CardText>
         <Balances balances={ props.balances }/>

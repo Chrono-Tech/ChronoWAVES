@@ -2,11 +2,14 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {CopyIcon} from '../Icons';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
+import FontIcon from 'material-ui/FontIcon';
+import FlatButton from 'material-ui/FlatButton';
 
 import Container from '../container';
 import Balances from '../Balances';
 import TransactionsHistory from './Transactions/transactions';
 import IdentityIcon from '../IdentityIcon';
+import Toolbar from '../Toolbar';
 
 const styles = {
   address: {
@@ -20,14 +23,27 @@ class Account extends React.Component {
     super(props);
   }
 
+  transferHandler = () => {
+    console.log("TransferHandler");
+  };
+
   render() {
-    const {address} = this.props.params;
+    const { address } = this.props.params;
     const balances = this.props.balances[address] || [];
 
     const identityIcon = (<IdentityIcon address={ address }/>);
 
     return (
       <div>
+        <Toolbar
+          title=""
+          actionButtons={
+            <FlatButton
+              onClick={ this.transferHandler }
+              label="TRANSFER"
+              icon={<FontIcon className="material-icons">send</FontIcon>}/>}
+        />
+
         <Container>
           <Card>
             <CardHeader

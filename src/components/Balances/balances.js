@@ -2,11 +2,12 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import Chip from 'material-ui/Chip';
 import Dialog from 'material-ui/Dialog';
-import {fetchAssetInfo} from '../../redux/actions';
 import {Table, TableBody, TableRowColumn, TableRow} from 'material-ui/Table';
-import {NavigationClose} from '../Icons';
 import IconButton from 'material-ui/IconButton';
+
 import {assetValueToString} from '../../domain/utility';
+import {fetchAssetInfo} from '../../redux/actions';
+import {NavigationClose} from '../Icons';
 import Loading from '../Loading';
 
 const styles = {
@@ -77,8 +78,6 @@ class Balances extends React.Component {
             this.renderAssetDetails()
           }
         </Dialog>
-
-
       </div>
     );
   }
