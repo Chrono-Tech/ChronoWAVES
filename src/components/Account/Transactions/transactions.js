@@ -1,6 +1,6 @@
 import React, {PropTypes} from'react';
 import {connect} from 'react-redux';
-import {fetchTransactions} from '../../../redux/actions';
+import {fetchTransactions} from '../../../redux/transactionsActions';
 import TransactionItem from './transaction-item';
 import Container from '../../container';
 import Loading from '../../Loading';

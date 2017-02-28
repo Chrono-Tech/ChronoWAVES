@@ -32,31 +32,6 @@ export const walletReducer = (state = {}, action) => {
   }
 };
 
-export const transactionsReducer = (state = {}, action) => {
-  switch (action.type) {
-    case ActionTypes.REQUEST_TRANSACTIONS:
-      return {
-        ...state,
-        [action.address]: {
-          isFetching: true,
-          items: []
-        }
-      };
-
-    case ActionTypes.RECEIVE_TRANSACTIONS:
-      return {
-        ...state,
-        [action.address]: {
-          isFetching: false,
-          items: action.transactions
-        }
-      };
-
-    default:
-      return state;
-  }
-};
-
 export const balances = (state = {}, action) => {
   switch (action.type) {
     case ActionTypes.REQUEST_BALANCES:

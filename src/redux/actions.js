@@ -1,9 +1,7 @@
 import Waves from 'waves.js/dist/waves';
 import {AssetInfo} from '../domain/assetInfo';
 
-const blockchainParams = Waves.MainNetParameters();
-
-const client = new Waves(blockchainParams).client("https://nodes.wavesnodes.com");
+import {client, blockchainParams} from './api';
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export function loginSuccessAction(seed) {
@@ -37,39 +35,8 @@ export function createAccountAction() {
   };
 }
 
-export const RECEIVE_TRANSACTIONS = 'RECEIVE_TRANSACTIONS';
-function receiveTransactionAction(address, transactions) {
-  return {
-    type: RECEIVE_TRANSACTIONS,
-    transactions: transactions,
-    address: address
-  };
-}
 
-export const REQUEST_TRANSACTIONS = 'REQUEST_TRANSACTIONS';
-function requestTransactionsAction(address) {
-  return {
-    type: REQUEST_TRANSACTIONS,
-    address: address
-  }
-}
-
-export function fetchTransactions(address) {
-  return function (dispatch, getState) {
-
-    dispatch(requestTransactionsAction(address));
-
-    return client.getAddressTransactions(address)
-      .then(txs => {
-        // sort transaction - the younger the higher
-        txs = txs.sort((a, b) => b.timestamp - a.timestamp);
-
-        dispatch(receiveTransactionAction(address, txs));
-      });
-  }
-}
-
-export const REQUEST_BALANCES = 'REQUEST_BAKANCES';
+export const REQUEST_BALANCES = 'REQUEST_BALANCES';
 function requestBalancesAction(address) {
   return {
     type: REQUEST_BALANCES,
@@ -90,7 +57,6 @@ export function fetchBalances(address) {
   return (dispatch, getState) => {
 
     dispatch(requestBalancesAction(address));
-
 
     Promise.all([
       client.getBalance(address),
