@@ -4,6 +4,7 @@ import Chip from 'material-ui/Chip';
 import Dialog from 'material-ui/Dialog';
 import {Table, TableBody, TableRowColumn, TableRow} from 'material-ui/Table';
 import IconButton from 'material-ui/IconButton';
+import moment from 'moment';
 
 import {assetValueToString} from '../../domain/utility';
 import {fetchAssetInfo} from '../../redux/actions';
@@ -43,7 +44,7 @@ class Balances extends React.Component {
   };
 
   render() {
-    const { balances, assetRegistry } = this.props;
+    const {balances, assetRegistry} = this.props;
 
     if (balances.isFetching) {
       return (<Loading size={1}/>);
@@ -52,12 +53,12 @@ class Balances extends React.Component {
     return (
       <div style={ styles.wrapper }>
         {
-          balances.items.map(b => {
-            const decimals = assetRegistry[b.assetId].decimals;
-            const value = assetValueToString(b.value, decimals);
+          balances.items.map(asset => {
+            const decimals = assetRegistry[asset.assetId].decimals;
+            const value = assetValueToString(asset.value, decimals);
 
-            return (<Chip style={ styles.chip } key={ b.assetId } onTouchTap={ () => this.handleOpen(b.assetId) }>
-              { value } { b.assetName }
+            return (<Chip style={ styles.chip } key={ asset.assetId } onTouchTap={ () => this.handleOpen(asset.assetId) }>
+              { value } { asset.assetName }
             </Chip>)
           })
         }
@@ -74,7 +75,6 @@ class Balances extends React.Component {
           onRequestClose={ this.handleClose }
         >
           {
-
             this.renderAssetDetails()
           }
         </Dialog>
@@ -116,7 +116,7 @@ class Balances extends React.Component {
                 </TableRow>
                 <TableRow>
                   <TableRowColumn>Issued</TableRowColumn>
-                  <TableRowColumn>{ assetInfo.timestamp }</TableRowColumn>
+                  <TableRowColumn>{ moment(assetInfo.timestamp).format('YYYY-MM-DD HH:mm:ss') }</TableRowColumn>
                 </TableRow>
                 <TableRow>
                   <TableRowColumn>Reissuable</TableRowColumn>

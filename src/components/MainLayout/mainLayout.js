@@ -32,6 +32,10 @@ const styles = {
   menuItemInner: {
     paddingLeft: '54px'
   },
+  appBar: {
+    zIndex: 1400,
+    position:'fixed'
+  }
 };
 
 const AppBarTitle = muiThemeable()((props) => (
@@ -59,21 +63,21 @@ class MainLayout extends React.Component {
     return (
       <div>
         <AppBar
-          style={{zIndex: 1400, position:'fixed'}}
+          style={ styles.appBar }
           title={<AppBarTitle/>}
           iconClassNameRight="muidocs-icon-navigation-expand-more"
           onLeftIconButtonTouchTap={ this.handleToggle }
         />
         <Drawer open={this.state.open} containerStyle={{paddingTop: 56, backgroundColor: '#fff'}} width={200}>
 
-          <div style={styles.div}>
+          <div style={ styles.div }>
 
           </div>
 
-          <List style={styles.menu}>
+          <List style={ styles.menu }>
 
             <ListItem
-              style={styles.menuItem}
+              style={ styles.menuItem }
               innerDivStyle={ styles.menuItemInner }
               primaryText="Dashboard"
               leftIcon={<FontIcon className="material-icons">home</FontIcon>}
@@ -87,14 +91,14 @@ class MainLayout extends React.Component {
               containerElement={<Link activeClassName={'active'} to="/wallet"/>}/>
 
             <ListItem
-              style={styles.menuItem}
+              style={ styles.menuItem }
               innerDivStyle={ styles.menuItemInner }
               primaryText="Exchange"
               leftIcon={<FontIcon className="material-icons">compare_arrows</FontIcon>}/>
           </List>
         </Drawer>
-        <div style={style}>
-          {this.props.children}
+        <div style={ style }>
+          { this.props.children }
         </div>
       </div>
     );
