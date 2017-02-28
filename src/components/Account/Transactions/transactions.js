@@ -36,7 +36,7 @@ class TransactionsHistory extends React.Component {
         </Container>)
     }
 
-    return (<Container>There is no transactions yet.</Container>)
+    return (<Container>No transactions were found for this account</Container>)
   }
 }
 

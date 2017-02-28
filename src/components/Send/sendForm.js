@@ -1,7 +1,6 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form';
 import FlatButton from 'material-ui/FlatButton';
-import FontIcon from 'material-ui/FontIcon';
 import IdentityIcon from '../IdentityIcon';
 import { SendIcon } from '../Icons';
 
@@ -22,9 +21,19 @@ const SendForm = (props) => {
       <div><IdentityIcon address={ address }/>
       { address }
       </div>
+      <div>
+        <Field name="amount" component={ TextField } hintText="Amount" label="Amount"/>
 
-      <Field name="amount" component={ TextField } hintText="Amount" label="Amount"/>
-      <Field name="recipient" component={ TextField } hintText="Recipient" label="Recipient"/>
+      </div>
+      <div>
+        <Field name="recipient" component={ TextField } hintText="Recipient"
+               label="Recipient"
+               floatingLabelText="Recipient"/>
+      </div>
+      <div>
+        <TextField disabled={true} defaultValue="0.001" floatingLabelText="Fee"/>
+
+      </div>
 
       <div>
         <FlatButton

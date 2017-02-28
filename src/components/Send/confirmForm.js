@@ -1,4 +1,6 @@
 import React, {PropTypes} from 'react';
+import {SendIcon, BackIcon} from '../Icons';
+import FlatButton from 'material-ui/FlatButton';
 
 class ConfirmForm extends React.Component {
   constructor(props) {
@@ -6,12 +8,26 @@ class ConfirmForm extends React.Component {
   }
 
   render() {
-    const { transaction } = this.props;
+    const { handleSubmit, transaction } = this.props;
 
-    return (<div>
-      Confirm Form
-      { JSON.stringify(transaction) }
-    </div>);
+
+    return (<form onSubmit={ handleSubmit }>
+      <div>
+        {JSON.stringify(transaction)}
+      </div>
+
+      <div>
+        <FlatButton
+          label="BACK"
+          icon={<BackIcon />}
+          onClick={this.props.previousPage}/>
+
+        <FlatButton
+          type="submit"
+          label="CONFIRM"
+          icon={<SendIcon />}/>
+      </div>
+    </form>);
   }
 
 }

@@ -1,6 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import Paper from 'material-ui/Paper';
+import {Card, CardText} from 'material-ui/Card';
 
 import SendForm from './sendForm';
 import ConfirmForm from './confirmForm';
@@ -15,7 +16,7 @@ class SendWizard extends React.Component {
 
   constructor(props) {
     super(props);
-    const { address } = this.props.params;
+    const {address} = this.props.params;
 
     // TODO: search sender account
 
@@ -28,6 +29,7 @@ class SendWizard extends React.Component {
   confirmTx = (values) => {
     const amount = values['amount'];
     const recipient = values['recipient'];
+    const fee = values['fee'];
 
     // TODO: sign tx
 
@@ -38,23 +40,30 @@ class SendWizard extends React.Component {
         sender: this.state.address,
         senderPublicKey: '',
         recipient: recipient,
-        fee: 0,
+        fee: fee,
       }
     });
   };
 
   publishTx = () => {
-    this.setState({ page: PUBLISH_FORM })
+    this.setState({page: PUBLISH_FORM})
+  };
+
+  returnToSendForm = () => {
+    this.setState({page: SEND_FORM})
   };
 
   render() {
-    const { page, tx, address } = this.state;
+    const {page, tx, address} = this.state;
 
-    return (<Paper>
-        { page === SEND_FORM && <SendForm address={ address } onSubmit={ this.confirmTx }/> }
-        { page === CONFIRM_FORM && <ConfirmForm transaction={ tx } onSubmit={ this.publishTx }/> }
-        { page === PUBLISH_FORM && <PublishForm /> }
-      </Paper>
+    return (<Card>
+        <CardText>
+          { page === SEND_FORM && <SendForm address={ address } onSubmit={ this.confirmTx }/> }
+          { page === CONFIRM_FORM &&
+          <ConfirmForm transaction={ tx } previousPage={ this.returnToSendForm } onSubmit={ this.publishTx }/> }
+          { page === PUBLISH_FORM && <PublishForm /> }
+        </CardText>
+      </Card>
     );
   }
 }
