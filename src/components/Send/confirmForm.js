@@ -8,8 +8,7 @@ class ConfirmForm extends React.Component {
   }
 
   render() {
-    const { handleSubmit, transaction } = this.props;
-
+    const { handleSubmit, transaction, previousPage } = this.props;
 
     return (<form onSubmit={ handleSubmit }>
       <div>
@@ -20,7 +19,7 @@ class ConfirmForm extends React.Component {
         <FlatButton
           label="BACK"
           icon={<BackIcon />}
-          onClick={this.props.previousPage}/>
+          onClick={ previousPage }/>
 
         <FlatButton
           type="submit"

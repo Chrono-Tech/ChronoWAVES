@@ -11,6 +11,7 @@ import Balances from '../Balances';
 import TransactionsHistory from './Transactions/transactions';
 import IdentityIcon from '../IdentityIcon';
 import Toolbar from '../Toolbar';
+import CopyToClipboard from '../CopyToClipboard';
 
 const styles = {
   address: {
@@ -51,7 +52,7 @@ class Account extends React.Component {
               avatar={ identityIcon }
               title={(
                 <div style={ styles.address }>
-                  {address}<CopyIcon />
+                  {address}<CopyToClipboard />
                 </div>)}/>
             <CardText>
               <Balances balances={ balances }/>

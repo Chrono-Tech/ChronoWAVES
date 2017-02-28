@@ -7,12 +7,13 @@ import Balances from '../Balances';
 import Container from '../container';
 import './accountsList.css';
 import IdentityIcon from '../IdentityIcon';
+import CopyToClipboard from '../CopyToClipboard';
 
 const styles = {
   card: {
     height: '100%',
-    position: 'relative',
-    overflow: 'auto'
+    // position: 'relative',
+    // overflow: 'auto'
   },
   list: {
     display: 'flex',
@@ -33,7 +34,7 @@ const AccountItem = (props) => {
         avatar={ identityIcon }
         title={(
           <div style={ styles.address }>
-            <Link to={`/wallet/account/${props.address}`} className="mono account">{ props.address }</Link> <CopyIcon />
+            <Link to={`/wallet/account/${props.address}`} className="mono account">{ props.address }</Link> <CopyToClipboard />
           </div>)}/>
       <CardText>
         <Balances balances={ props.balances }/>
