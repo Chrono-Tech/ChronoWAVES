@@ -1,9 +1,10 @@
 import React, {PropTypes} from 'react';
+import moment from 'moment';
 import {Card, CardText, CardTitle} from 'material-ui/Card';
 import FontIcon from 'material-ui/FontIcon';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table'
 import {red500, greenA200, lightBlue600} from 'material-ui/styles/colors';
-import {assetValueToString} from '../../../domain/utility';
+import {assetValueToString, timestampToIsoDate} from '../../../domain/utility';
 
 const inTxStyle = {
   transform: 'rotate(180deg)',
@@ -61,7 +62,7 @@ const TransactionItem = ({tx, address, assetInfo}) => {
     {/*<FlatButton label="Action2" />*/}
     {/*</CardActions>*/}
     <CardText expandable={true}>
-      <div>{tx.timestamp}</div>
+      <div>{ moment(tx.timestamp).format('YYYY-MM-DD HH:mm:ss') }</div>
       <div>
         <h5>Transaction ID</h5>
         <span className="mono">{tx.id}</span>

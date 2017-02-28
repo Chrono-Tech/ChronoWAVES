@@ -3,11 +3,25 @@ import * as ActionTypes from './transactionsActions';
 const onReceiveTransactions = (state, action) => {
   switch (action.type) {
     case ActionTypes.RECEIVE_TRANSACTIONS:
+
+      // group txs by date
+      const byDate = new Map();
+      action.transactions.forEach(tx => {
+        const txDate = new Date(tx.timestamp);
+        const date = new Date(txDate.getFullYear(), txDate.getMonth(), txDate.getDate()).getTime();
+        if (!byDate.has(date))
+          byDate.set(date, []);
+        byDate.get(date).push(Object.assign({}, tx));
+      });
+
+      console.log(byDate);
+
       return {
         ...state,
         [action.address]: {
           isFetching: false,
-          items: action.transactions
+          items: action.transactions,
+          itemsByDate: byDate
         }
       };
     default:
@@ -22,7 +36,8 @@ const onRequestTransactions = (state, action) => {
         ...state,
         [action.address]: {
           isFetching: true,
-          items: []
+          items: [],
+          itemsByDate: []
         }
       };
     default:
