@@ -17,9 +17,22 @@ class TransactionsHistory extends React.Component {
     this.props.loadTransactions(this.props.address);
   }
 
+  groupByDate(transactions) {
+    console.log(transactions);
+    const byDate = new Map();
+    transactions.forEach(tx => {
+      const txDate = new Date(tx.timestamp);
+      const date = new Date(txDate.getFullYear(), txDate.getMonth(), txDate.getDate()).getTime();
+      if (!byDate.has(date))
+        byDate.set(date, []);
+      byDate.get(date).push(Object.assign({}, tx));
+    });
+    return byDate;
+  }
+
   render() {
     const {address, assetsRegistry} = this.props;
-    const transactions = this.props.transactions[address] || { isFetching: true, items: [], itemsByDate: [] };
+    const transactions = this.props.transactions[address] || { isFetching: true, items: [] };
 
     if (transactions.isFetching) {
       return (<Loading />);
@@ -29,13 +42,15 @@ class TransactionsHistory extends React.Component {
       return (<Container>No transactions were found for this account</Container>);
     }
 
+    const groupedTxs = this.groupByDate(transactions.items);
+
     return (<Container>
       {
-        Array.from(transactions.itemsByDate.keys()).map(date => {
+        Array.from(groupedTxs.keys()).map(date => {
           return (<TxGroup
             key={ date }
             date= { date }
-            transactions = { transactions.itemsByDate.get(date) }
+            transactions = { groupedTxs.get(date) }
             address = { address }
             assetsRegistry = { assetsRegistry }
           />);
@@ -51,8 +66,15 @@ const TxGroup = ({date, transactions, address, assetsRegistry}) => (
     {
       transactions.map(tx => {
         const assetId = (tx.assetId === null) ? 'WAVES' : tx.assetId;
+        const feeAssetId = (tx.feeAssetId === null) ? 'WAVES' : tx.feeAssetId;
         const assetInfo = assetsRegistry[assetId];
-        return (<TransactionItem key={ tx.id } tx={ tx } address={ address } assetInfo={ assetInfo }/>)
+        const feeAssetInfo = assetsRegistry[feeAssetId];
+
+        return (<TransactionItem key={ tx.id }
+                                 tx={ tx }
+                                 address={ address }
+                                 assetInfo={ assetInfo }
+                                 feeAssetInfo={ feeAssetInfo }/>)
       })
     }
   </div>

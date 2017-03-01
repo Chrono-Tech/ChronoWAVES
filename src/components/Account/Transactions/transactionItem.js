@@ -1,10 +1,10 @@
 import React, {PropTypes} from 'react';
-import moment from 'moment';
 import {Card, CardText, CardTitle} from 'material-ui/Card';
 import FontIcon from 'material-ui/FontIcon';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table'
 import {red500, greenA200, lightBlue600} from 'material-ui/styles/colors';
-import {assetValueToString, timestampToIsoDate} from '../../../domain/utility';
+import {assetValueToString} from '../../../domain/utility';
+import TxDetails from './details';
 
 const inTxStyle = {
   transform: 'rotate(180deg)',
@@ -29,7 +29,7 @@ const getTxTypeName = (type) => {
 /**
  * Represents one transaction
  */
-const TransactionItem = ({tx, address, assetInfo}) => {
+const TransactionItem = ({tx, address, assetInfo, feeAssetInfo}) => {
   const correspondent = (tx.sender === address) ? tx.recipient : tx.sender;
   const icon = (tx.sender === address) ?
     (<FontIcon className="material-icons" style={outTxStyle}>input</FontIcon>) :
@@ -39,8 +39,8 @@ const TransactionItem = ({tx, address, assetInfo}) => {
   const amountText = (tx.sender === address) ? "-" + amount : amount;
 
   return (<Card key={tx.id}>
-    <CardTitle actAsExpander={true}
-               showExpandableButton={true}>
+    <CardTitle actAsExpander={true} showExpandableButton={true}>
+
       <Table selectable={false}>
         <TableBody displayRowCheckbox={false}>
           <TableRow style={{verticalAlign:'top'}}>
@@ -57,23 +57,13 @@ const TransactionItem = ({tx, address, assetInfo}) => {
         </TableBody>
       </Table>
     </CardTitle>
-    {/*<CardActions>*/}
-    {/*<FlatButton label="Action1" />*/}
-    {/*<FlatButton label="Action2" />*/}
-    {/*</CardActions>*/}
+
     <CardText expandable={true}>
-      <div>{ moment(tx.timestamp).format('YYYY-MM-DD HH:mm:ss') }</div>
-      <div>
-        <h5>Transaction ID</h5>
-        <span className="mono">{tx.id}</span>
-      </div>
-      <div>
-        <h5>Signature</h5>
-        <span className="mono">{tx.signature}</span>
-      </div>
+      <TxDetails tx={ tx } feeAssetInfo={ feeAssetInfo } />
     </CardText>
   </Card>)
 };
+
 
 TransactionItem.propTypes = {
   address: PropTypes.string.isRequired,
