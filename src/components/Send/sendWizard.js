@@ -30,12 +30,14 @@ class SendWizard extends React.Component {
     const amount = values['amount'];
     const recipient = values['recipient'];
     const fee = values['fee'];
+    const asset = values['asset'];
 
     // TODO: sign tx
 
     this.setState({
       page: CONFIRM_FORM,
       tx: {
+        asset: asset,
         amount: amount,
         sender: this.state.address,
         senderPublicKey: '',
@@ -55,10 +57,12 @@ class SendWizard extends React.Component {
 
   render() {
     const {page, tx, address} = this.state;
+    const balances = this.props.balances[address].items;
 
     return (<Card>
         <CardText>
-          { page === SEND_FORM && <SendForm address={ address } onSubmit={ this.confirmTx }/> }
+          { page === SEND_FORM &&
+          <SendForm address={ address } balances={ balances } onSubmit={ this.confirmTx }/> }
           { page === CONFIRM_FORM &&
           <ConfirmForm transaction={ tx } previousPage={ this.returnToSendForm } onSubmit={ this.publishTx }/> }
           { page === PUBLISH_FORM && <PublishForm /> }
@@ -70,7 +74,8 @@ class SendWizard extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    wallet: state.wallet
+    wallet: state.wallet,
+    balances: state.balances,
   }
 };
 
