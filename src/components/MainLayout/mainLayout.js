@@ -7,7 +7,9 @@ import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import {List, ListItem} from 'material-ui/List';
 import FontIcon from 'material-ui/FontIcon';
-import {WalletIcon} from './../Icons';
+import {WalletIcon, LogoutIcon} from './../Icons';
+import IconButton from 'material-ui/IconButton';
+import {logoutAction} from '../../redux/actions';
 
 import './mainLayout.css';
 
@@ -50,9 +52,11 @@ class MainLayout extends React.Component {
 
   handleToggle = () => this.setState({open: !this.state.open});
 
+  handleLogout = () => this.props.dispatch(logoutAction())
+
   render() {
 
-    const paddingLeft = (this.state.open ? 230 : 56);
+    const paddingLeft = (this.state.open ? 210 : 50);
 
     const style = {
       padding: '70px 20px 20px 20px',
@@ -65,10 +69,10 @@ class MainLayout extends React.Component {
         <AppBar
           style={ styles.appBar }
           title={<AppBarTitle/>}
-          iconClassNameRight="muidocs-icon-navigation-expand-more"
+          iconElementRight={<IconButton><LogoutIcon onClick={ this.handleLogout }/></IconButton>}
           onLeftIconButtonTouchTap={ this.handleToggle }
         />
-        <Drawer open={this.state.open} containerStyle={{paddingTop: 56, backgroundColor: '#fff'}} width={200}>
+        <Drawer open={this.state.open} containerStyle={{paddingTop: 56, backgroundColor: '#fff'}} width={180}>
 
           <div style={ styles.div }>
 

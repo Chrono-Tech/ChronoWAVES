@@ -6,6 +6,7 @@ import AddIcon from 'material-ui/svg-icons/content/add';
 import BackIcon from 'material-ui/svg-icons/navigation/arrow-back';
 import VerifiedIcon from 'material-ui/svg-icons/action/verified-user';
 import WarningIcon from 'material-ui/svg-icons/alert/warning';
+import LogoutIcon from 'material-ui/svg-icons/action/power-settings-new';
 
 export {
   CopyIcon,
@@ -15,5 +16,6 @@ export {
   AddIcon,
   BackIcon,
   VerifiedIcon,
-  WarningIcon
+  WarningIcon,
+  LogoutIcon
 }

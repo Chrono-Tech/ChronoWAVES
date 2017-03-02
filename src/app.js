@@ -16,6 +16,7 @@ class App extends React.Component {
       //dispatch(navigateTo(redirectUrl))
     } else if (isLoggingOut) {
       // do any kind of cleanup or post-logout redirection here
+      browserHistory.replace("/login")
     }
   }
 

@@ -3,6 +3,13 @@ import {AssetInfo} from '../domain/assetInfo';
 
 import {client, blockchainParams} from './api';
 
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export function logoutAction() {
+  return {
+    type: LOGOUT_SUCCESS
+  }
+}
+
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export function loginSuccessAction(seed) {
   return {

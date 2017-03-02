@@ -54,7 +54,7 @@ const TxDetails = ({tx, feeAssetInfo}) => {
       </Row>
       <Row>
         <Col>
-          {signatureValidation(tx.signatureValidation)} Signature <span className="mono">{tx.signature}</span>
+          {signatureValidation(tx.signatureValidation)} Signature <span style={{opacity:'0.5'}} className="mono">{tx.signature}</span>
         </Col>
       </Row>
     </Grid>

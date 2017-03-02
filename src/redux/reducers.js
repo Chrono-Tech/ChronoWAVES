@@ -1,13 +1,12 @@
 import * as ActionTypes from './actions';
 
-
 export const session = (state = {loggedIn: false}, action) => {
   switch (action.type) {
     case ActionTypes.LOGIN_SUCCESS:
-      return Object.assign({}, state, {
+      return  {
         loggedIn: true,
         seed: action.seed
-      });
+      };
     default:
       return state;
   }

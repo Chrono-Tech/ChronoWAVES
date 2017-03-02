@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Paper from 'material-ui/Paper';
 import {Card, CardText} from 'material-ui/Card';
+import {browserHistory} from 'react-router';
 
 import SendForm from './sendForm';
 import ConfirmForm from './confirmForm';
@@ -55,6 +56,10 @@ class SendWizard extends React.Component {
     this.setState({page: SEND_FORM})
   };
 
+  cancelSend = () => {
+    browserHistory.push(`/wallet/account/${this.props.params.address}`);
+  };
+
   render() {
     const {page, tx, address} = this.state;
     const balances = this.props.balances[address].items;
@@ -62,7 +67,7 @@ class SendWizard extends React.Component {
     return (<Card>
         <CardText>
           { page === SEND_FORM &&
-          <SendForm address={ address } balances={ balances } onSubmit={ this.confirmTx }/> }
+          <SendForm address={ address } balances={ balances } onCancel={ this.cancelSend } onSubmit={ this.confirmTx }/> }
           { page === CONFIRM_FORM &&
           <ConfirmForm transaction={ tx } previousPage={ this.returnToSendForm } onSubmit={ this.publishTx }/> }
           { page === PUBLISH_FORM && <PublishForm /> }

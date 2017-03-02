@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {CopyIcon} from '../Icons';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
 import FontIcon from 'material-ui/FontIcon';
 import FlatButton from 'material-ui/FlatButton';

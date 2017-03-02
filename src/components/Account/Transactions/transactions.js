@@ -18,7 +18,6 @@ class TransactionsHistory extends React.Component {
   }
 
   groupByDate(transactions) {
-    console.log(transactions);
     const byDate = new Map();
     transactions.forEach(tx => {
       const txDate = new Date(tx.timestamp);
