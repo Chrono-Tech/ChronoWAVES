@@ -2,7 +2,6 @@ import React from 'react';
 import {Card, CardText, CardHeader} from 'material-ui/Card';
 import {Link} from 'react-router';
 
-import {CopyIcon} from '../Icons';
 import Balances from '../Balances';
 import Container from '../container';
 import './accountsList.css';

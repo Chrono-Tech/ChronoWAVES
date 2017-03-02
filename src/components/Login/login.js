@@ -2,9 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Paper, RaisedButton, TextField} from 'material-ui';
 import styles from './styles';
-import {loginSuccessAction} from '../../redux/actions';
+import {loginSuccessAction, createAccountAction} from '../../redux/actions';
 import Waves from 'waves.js/dist/waves';
-
 
 class Login extends React.Component {
 
@@ -52,6 +51,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onLoginClick: (seed) => {
       dispatch(loginSuccessAction(seed));
+
+      // We create default account with nonce 0
+      dispatch(createAccountAction());
     }
   }
 };

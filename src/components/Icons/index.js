@@ -4,6 +4,8 @@ import WalletIcon from 'material-ui/svg-icons/action/account-balance-wallet';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import AddIcon from 'material-ui/svg-icons/content/add';
 import BackIcon from 'material-ui/svg-icons/navigation/arrow-back';
+import VerifiedIcon from 'material-ui/svg-icons/action/verified-user';
+import WarningIcon from 'material-ui/svg-icons/alert/warning';
 
 export {
   CopyIcon,
@@ -11,5 +13,7 @@ export {
   WalletIcon,
   NavigationClose,
   AddIcon,
-  BackIcon
+  BackIcon,
+  VerifiedIcon,
+  WarningIcon
 }

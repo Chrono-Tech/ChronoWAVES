@@ -2,9 +2,10 @@ import React, {PropTypes} from 'react';
 import {Card, CardText, CardTitle} from 'material-ui/Card';
 import FontIcon from 'material-ui/FontIcon';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table'
-import {red500, greenA200, lightBlue600} from 'material-ui/styles/colors';
 import {assetValueToString} from '../../../domain/utility';
 import TxDetails from './details';
+
+import Waves from 'waves.js/dist/waves';
 
 const inTxStyle = {
   transform: 'rotate(180deg)',
@@ -37,6 +38,8 @@ const TransactionItem = ({tx, address, assetInfo, feeAssetInfo}) => {
 
   const amount = assetValueToString(tx.amount, assetInfo.decimals);
   const amountText = (tx.sender === address) ? "-" + amount : amount;
+
+  tx = Object.assign({}, tx, {signatureValidation: Waves.Transactions.validateSignature(tx)});
 
   return (<Card key={tx.id}>
     <CardTitle actAsExpander={true} showExpandableButton={true}>
