@@ -7,7 +7,7 @@ import IconButton from 'material-ui/IconButton';
 import moment from 'moment';
 
 import {assetValueToString} from '../../domain/utility';
-import {fetchAssetInfo} from '../../redux/actions';
+import {fetchAssetInfo} from '../../redux/assetsActions';
 import {NavigationClose} from '../Icons';
 import Loading from '../Loading';
 

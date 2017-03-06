@@ -20,9 +20,9 @@ const TxDetails = ({tx, feeAssetInfo}) => {
   const fee = assetValueToString(tx.fee, feeAssetInfo.decimals);
 
   return (
-    <Grid>
+    <Grid style={{marginLeft:0, width:'auto'}}>
       <Row start="xs,sm,md,lg">
-        <Col lg={6}>
+        <Col lg={7}>
           <Table selectable={false}>
             <TableBody displayRowCheckbox={false}>
               <TableRow>
@@ -37,7 +37,7 @@ const TxDetails = ({tx, feeAssetInfo}) => {
             </TableBody>
           </Table>
         </Col>
-        <Col lg={6}>
+        <Col lg={5}>
           <Table selectable={false}>
             <TableBody displayRowCheckbox={false}>
               <TableRow>

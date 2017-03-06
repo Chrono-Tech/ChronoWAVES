@@ -1,7 +1,6 @@
-import Waves from 'waves.js/dist/waves';
-import {AssetInfo} from '../domain/assetInfo';
-
-import {client, blockchainParams} from './api';
+import {client} from './api';
+import {blockchain} from '../blockchain';
+import {issueTxToAsset, receiveAssetInfo} from './assetsActions';
 
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export function logoutAction() {
@@ -27,7 +26,7 @@ export function createAccountAction() {
 
     // get nonce for new Account
     const nonce = getState().wallet.nonce + 1;
-    const acc = Waves.Account.create(blockchainParams, wallet.seed, nonce);
+    const acc = blockchain.createAccount(wallet.seed, nonce);
 
     // create new account
     const newAcc = {
@@ -99,40 +98,5 @@ export function fetchBalances(address) {
   }
 }
 
-export function fetchAssetInfo(assetId) {
-  return (dispatch) => {
 
-    if (assetId !== 'WAVES') {
 
-      // call node api to get asset info
-      return client.getTransaction(assetId).then(issueTx => {
-        const assetInfo = issueTxToAsset(issueTx);
-        dispatch(receiveAssetInfo(assetInfo))
-      });
-    } else return Promise.resolve();
-  }
-}
-
-export const RECEIVE_ASSET_INFO = 'RECEIVE_ASSET_INFO';
-export function receiveAssetInfo(assetInfo) {
-
-  console.log('receiveAssetInfo()' + JSON.stringify(assetInfo));
-
-  return {
-    type: RECEIVE_ASSET_INFO,
-    assetInfo: assetInfo
-
-  }
-}
-
-const issueTxToAsset = (issueTx) => {
-  return new AssetInfo(
-    issueTx.assetId,
-    issueTx.assetName,
-    issueTx.quantity,
-    issueTx.decimals,
-    issueTx.sender,
-    issueTx.timestamp,
-    issueTx.reissuable
-  );
-};

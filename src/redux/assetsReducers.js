@@ -1,5 +1,5 @@
 import {AssetInfo} from '../domain/assetInfo';
-import * as ActionTypes from './actions';
+import * as ActionTypes from './assetsActions';
 
 const initialAssetsRegistry = {
   'WAVES': new AssetInfo("WAVES", "WAVES", 100000000 * Math.pow(10, 8), 8, "N/A", 1460678400000, false)

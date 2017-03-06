@@ -64,16 +64,15 @@ class SendWizard extends React.Component {
     const {page, tx, address} = this.state;
     const balances = this.props.balances[address].items;
 
-    return (<Card>
-        <CardText>
-          { page === SEND_FORM &&
-          <SendForm address={ address } balances={ balances } onCancel={ this.cancelSend } onSubmit={ this.confirmTx }/> }
-          { page === CONFIRM_FORM &&
-          <ConfirmForm transaction={ tx } previousPage={ this.returnToSendForm } onSubmit={ this.publishTx }/> }
-          { page === PUBLISH_FORM && <PublishForm /> }
-        </CardText>
-      </Card>
-    );
+    if (page === SEND_FORM)
+      return (<SendForm address={ address } balances={ balances } onCancel={ this.cancelSend } onSubmit={ this.confirmTx }/>);
+
+    if (page === CONFIRM_FORM)
+      return (<ConfirmForm transaction={ tx } previousPage={ this.returnToSendForm } onSubmit={ this.publishTx }/>);
+
+    if (page === PUBLISH_FORM)
+      return (<PublishForm />);
+
   }
 }
 

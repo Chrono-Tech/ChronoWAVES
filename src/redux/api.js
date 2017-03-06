@@ -1,6 +1,4 @@
-import Waves from 'waves.js/dist/waves';
+import {blockchain} from '../blockchain';
 
-export const blockchainParams = Waves.MainNetParameters();
-
-export const client = new Waves(blockchainParams).client("https://nodes.wavesnodes.com");
+export const client = blockchain.client("https://nodes.wavesnodes.com");
 

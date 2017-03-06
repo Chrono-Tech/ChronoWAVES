@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import {Paper, RaisedButton, TextField} from 'material-ui';
 import styles from './styles';
 import {loginSuccessAction, createAccountAction} from '../../redux/actions';
-import Waves from 'waves.js/dist/waves';
+
+import {blockchain} from '../../blockchain';
 
 class Login extends React.Component {
 
@@ -18,7 +19,7 @@ class Login extends React.Component {
    */
   onInputChange(e) {
     const currentSeed = e.target.value;
-    const address = Waves.Account.create(Waves.MainNetParameters(), currentSeed).address;
+    const address = blockchain.createAccount(currentSeed).address;
     this.setState({address: address, seed: currentSeed});
   }
 
