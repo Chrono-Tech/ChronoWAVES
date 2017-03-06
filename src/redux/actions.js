@@ -76,18 +76,19 @@ export function fetchBalances(address) {
         {
           assetName: "WAVES",
           assetId: "WAVES",
+          assetDecimals: 8,
           value: wavesBalance
         },
         ...assetBalances.map(b => {
 
           // update our assets registry
           const assetInfo = issueTxToAsset(b.issueTransaction);
-
           dispatch(receiveAssetInfo(assetInfo));
 
           return {
-            assetName: b.issueTransaction.assetName,
-            assetId: b.assetId,
+            assetName: assetInfo.name,
+            assetId: assetInfo.assetId,
+            assetDecimals: assetInfo.decimals,
             value: b.balance
           }
         })

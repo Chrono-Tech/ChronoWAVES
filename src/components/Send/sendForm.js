@@ -1,17 +1,12 @@
 import React from 'react'
 import {Field, reduxForm} from 'redux-form';
 import FlatButton from 'material-ui/FlatButton';
-import MenuItem  from 'material-ui/MenuItem';
 import IdentityIcon from '../IdentityIcon';
 import {SendIcon} from '../Icons';
+import AssetSelectField from './assetSelectField';
 
 import {
-  Checkbox,
-  RadioButtonGroup,
-  SelectField,
   TextField,
-  Toggle,
-  DatePicker
 } from 'redux-form-material-ui'
 
 class SendForm extends React.Component {
@@ -28,13 +23,7 @@ class SendForm extends React.Component {
           { address }
         </div>
         <div>
-          <Field name="asset" component={ SelectField } floatingLabelText="Asset" fullWidth={true}>
-            {
-              balances.map(asset => {
-                return (<MenuItem key={asset.assetId} value={asset.assetId} primaryText={asset.assetName}/>);
-              })
-            }
-          </Field>
+          <AssetSelectField name="asset" floatingLabelText="Asset" balances={ balances } />
         </div>
         <div>
           <Field name="amount" component={ TextField } hintText="Amount" label="Amount" fullWidth={true}/>
