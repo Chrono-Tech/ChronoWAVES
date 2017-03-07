@@ -7,7 +7,7 @@ import FlatButton from 'material-ui/FlatButton';
 import IdentityIcon from '../IdentityIcon';
 import {SendIcon} from '../Icons';
 import AssetSelectField from './assetSelectField';
-import {required, addressValidator} from '../validators';
+import {required, addressValidator, positive, numberValidator} from '../validators';
 
 import {
   TextField,
@@ -55,7 +55,7 @@ class SendForm extends React.Component {
                       <Field name="amount" component={ TextField } hintText="Amount" label="Amount"
                              floatingLabelText="Amount"
                              fullWidth={true}
-                             validate={ [required] }/>
+                             validate={ [required, numberValidator, positive] }/>
                     </Col>
                   </Row>
                   <Row>
