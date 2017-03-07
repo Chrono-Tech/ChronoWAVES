@@ -14,7 +14,7 @@ class ConfirmForm extends React.Component {
     return (<form onSubmit={ handleSubmit }>
       <Card>
         <CardText>
-          {JSON.stringify(transaction)}
+          <pre>{JSON.stringify(transaction)}</pre>
         </CardText>
         <CardActions>
           <FlatButton

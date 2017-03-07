@@ -4,12 +4,12 @@ import {connect} from 'react-redux';
 import './app.css';
 import {browserHistory} from 'react-router';
 
-class App extends React.Component {
+export class App extends React.Component {
 
   componentDidUpdate(prevProps) {
-    const {dispatch, redirectUrl} = this.props
-    const isLoggingOut = prevProps.isLoggedIn && !this.props.isLoggedIn
-    const isLoggingIn = !prevProps.isLoggedIn && this.props.isLoggedIn
+    const {dispatch, redirectUrl} = this.props;
+    const isLoggingOut = prevProps.isLoggedIn && !this.props.isLoggedIn;
+    const isLoggingIn = !prevProps.isLoggedIn && this.props.isLoggedIn;
 
     if (isLoggingIn) {
       browserHistory.push('/dashboard');

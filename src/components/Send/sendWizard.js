@@ -2,17 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
 
-import Paper from 'material-ui/Paper';
-import {Card, CardText} from 'material-ui/Card';
-
 import {browserHistory} from 'react-router';
-import {
-  Step,
-  Stepper,
-  StepLabel,
-} from 'material-ui/Stepper';
+import {Step, Stepper, StepLabel} from 'material-ui/Stepper';
 
-//TODO: moke Base58 methods available as Waves.Base58 static api
 import Waves from 'waves.js/dist/waves';
 
 import SendForm from './sendForm';
