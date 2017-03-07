@@ -48,10 +48,10 @@ class TransactionsHistory extends React.Component {
         Array.from(groupedTxs.keys()).map(date => {
           return (<TxGroup
             key={ date }
-            date= { date }
-            transactions = { groupedTxs.get(date) }
-            address = { address }
-            assetsRegistry = { assetsRegistry }
+            date={ date }
+            transactions={ groupedTxs.get(date) }
+            address={ address }
+            assetsRegistry={ assetsRegistry }
           />);
         })
       }
