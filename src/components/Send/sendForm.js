@@ -7,10 +7,21 @@ import FlatButton from 'material-ui/FlatButton';
 import IdentityIcon from '../IdentityIcon';
 import {SendIcon} from '../Icons';
 import AssetSelectField from './assetSelectField';
+import {required, addressValidator} from '../validators';
 
 import {
   TextField,
 } from 'redux-form-material-ui'
+
+const styles = {
+  address: {
+    display:'inline-block',
+    verticalAlign:'middle',
+    height:'100%',
+    fontSize:'15px',
+    paddingLeft:'10px'
+  }
+};
 
 class SendForm extends React.Component {
   constructor(props) {
@@ -23,26 +34,28 @@ class SendForm extends React.Component {
     return (
       <form onSubmit={ handleSubmit }>
         <Card>
-          <CardHeader title="Transfer Asset"/>
           <CardText>
-            <Grid style={{marginLeft:0}}>
+            <Grid style={{marginLeft:0, width:'auto'}}>
               <Row>
                 <Col lg={12} md={12} xs={12}>
                   <IdentityIcon address={ address }/>
-                  { address }
+                  <div style={styles.address}>{ address }</div>
                 </Col>
               </Row>
               <Row>
                 <Col xs={12} md={6} lg={6}>
                   <Row>
                     <Col xs={12} md={12} lg={12}>
-                      <AssetSelectField name="asset" floatingLabelText="Asset" balances={ balances }/>
+                      <AssetSelectField name="asset" floatingLabelText="Asset" balances={ balances }
+                                        validate={ [required] }/>
                     </Col>
                   </Row>
                   <Row>
                     <Col xs={12} md={12} lg={12}>
                       <Field name="amount" component={ TextField } hintText="Amount" label="Amount"
-                             floatingLabelText="Amount" fullWidth={true}/>
+                             floatingLabelText="Amount"
+                             fullWidth={true}
+                             validate={ [required] }/>
                     </Col>
                   </Row>
                   <Row>
@@ -50,7 +63,8 @@ class SendForm extends React.Component {
                       <Field name="recipient" component={ TextField } hintText="Recipient"
                              label="Recipient"
                              floatingLabelText="Recipient"
-                             fullWidth={true}/>
+                             fullWidth={true}
+                             validate={[required, addressValidator]} />
                     </Col>
                   </Row>
                 </Col>

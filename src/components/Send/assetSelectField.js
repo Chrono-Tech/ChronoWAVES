@@ -12,10 +12,11 @@ class AssetSelectField extends React.Component {
   }
 
   render() {
-    const {name, floatingLabelText, balances} = this.props;
+    const {name, floatingLabelText, balances, validate} = this.props;
 
     return (
-      <Field name={ name } component={ SelectField } className="assetSelect" floatingLabelText={ floatingLabelText } fullWidth={true}>
+      <Field name={ name } component={ SelectField } className="assetSelect" floatingLabelText={ floatingLabelText }
+             fullWidth={true} validate={validate}>
         {
           balances.map(asset => {
             const value = assetValueToString(asset.value, asset.assetDecimals);
@@ -48,6 +49,7 @@ AssetSelectField.propTypes = {
   name: PropTypes.string.isRequired,
   floatingLabelText: PropTypes.string.isRequired,
   balances: PropTypes.array.isRequired,
+  validate: PropTypes.array.isRequired,
 };
 
 export default AssetSelectField;
