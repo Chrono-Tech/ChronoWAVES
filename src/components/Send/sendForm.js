@@ -1,6 +1,6 @@
 import React from 'react'
 import {Field, reduxForm} from 'redux-form';
-import {Card, CardHeader, CardText, CardActions} from 'material-ui/Card';
+import {Card, CardText, CardActions} from 'material-ui/Card';
 import {Grid, Row, Col} from 'react-flexbox-grid-aphrodite';
 
 import FlatButton from 'material-ui/FlatButton';

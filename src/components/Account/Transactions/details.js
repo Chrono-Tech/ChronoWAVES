@@ -10,7 +10,7 @@ import {ValidationResult} from 'waves.js/dist/waves';
 
 
 const signatureValidation = (validationResult) => {
-  if (validationResult == ValidationResult.Ok)
+  if (validationResult === ValidationResult.Ok)
     return (<VerifiedIcon style={{color:green400}}/>);
   return (<WarningIcon style={{color:amber400}}/>)
 };

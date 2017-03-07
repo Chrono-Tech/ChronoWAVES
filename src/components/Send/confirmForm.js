@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import {SendIcon, BackIcon} from '../Icons';
 import FlatButton from 'material-ui/FlatButton';
-import {Card, CardHeader, CardText, CardActions} from 'material-ui/Card';
+import {Card, CardText, CardActions} from 'material-ui/Card';
 
 class ConfirmForm extends React.Component {
   constructor(props) {
