@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
 import {createAccountAction} from '../../redux/actions';
 import AccountsList from './accountsList';
-import FontIcon from 'material-ui/FontIcon';
 import Toolbar from '../Toolbar';
 import {AddIcon} from '../Icons';
 

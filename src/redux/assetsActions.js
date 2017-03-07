@@ -1,6 +1,18 @@
 import {AssetInfo} from '../domain/assetInfo';
 import {client} from './api';
 
+export const issueTxToAsset = (issueTx) => {
+  return new AssetInfo(
+    issueTx.assetId,
+    issueTx.assetName,
+    issueTx.quantity,
+    issueTx.decimals,
+    issueTx.sender,
+    issueTx.timestamp,
+    issueTx.reissuable
+  );
+};
+
 export function fetchAssetInfo(assetId) {
   return (dispatch) => {
 
@@ -27,14 +39,3 @@ export function receiveAssetInfo(assetInfo) {
   }
 }
 
-export const issueTxToAsset = (issueTx) => {
-  return new AssetInfo(
-    issueTx.assetId,
-    issueTx.assetName,
-    issueTx.quantity,
-    issueTx.decimals,
-    issueTx.sender,
-    issueTx.timestamp,
-    issueTx.reissuable
-  );
-};
