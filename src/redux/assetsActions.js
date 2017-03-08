@@ -1,4 +1,4 @@
-import {AssetInfo} from '../domain/assetInfo';
+import {AssetInfo} from '../domain/assets';
 import {client} from './api';
 
 export const issueTxToAsset = (issueTx) => {

@@ -96,7 +96,7 @@ class SendWizard extends React.Component {
 
   renderCurrentStep = (page) => {
     const {tx, address} = this.state;
-    const balances = this.props.balances[address].items;
+    const balances = this.props.balances.get(address).items;
 
     if (page === SEND_FORM)
       return (<SendForm address={ address } balances={ balances } onCancel={ this.cancelSend } onSubmit={ this.confirmTx }/>);

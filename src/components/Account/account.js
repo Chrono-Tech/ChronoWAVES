@@ -32,7 +32,7 @@ class Account extends React.Component {
 
   render() {
     const {address} = this.props.params;
-    const balances = this.props.balances[address] || [];
+    const balances = this.props.balances.get(address);
 
     const identityIcon = (<IdentityIcon address={ address }/>);
 
@@ -73,8 +73,6 @@ class Account extends React.Component {
               </Row>
             </Grid>
           </Paper>
-
-
         </Container>
 
         <TransactionsHistory address={ address }/>

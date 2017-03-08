@@ -46,7 +46,7 @@ const AccountsList = (props) => (
   (<div style={ styles.list }>
     {
       props.accounts.map(account => {
-        const balances = props.balances[account.address] || [];
+        const balances = props.balances.get(account.address);
 
         return (
           <div className="item" key={ account.address }>

@@ -1,6 +1,8 @@
 import {client} from './api';
 import {blockchain} from '../blockchain';
 import {issueTxToAsset, receiveAssetInfo} from './assetsActions';
+import {AssetBalance, KnownAssets} from '../domain/assets';
+
 
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export function logoutAction() {
@@ -72,24 +74,24 @@ export function fetchBalances(address) {
       const assetBalances = results[1];
 
       const balances = [
-        {
-          assetName: "WAVES",
-          assetId: "WAVES",
-          assetDecimals: 8,
-          value: wavesBalance
-        },
+        new AssetBalance(
+          KnownAssets.Waves.name,
+          KnownAssets.Waves.assetId,
+          KnownAssets.Waves.decimals,
+          wavesBalance
+        ),
+
         ...assetBalances.map(b => {
 
           // update our assets registry
           const assetInfo = issueTxToAsset(b.issueTransaction);
           dispatch(receiveAssetInfo(assetInfo));
 
-          return {
-            assetName: assetInfo.name,
-            assetId: assetInfo.assetId,
-            assetDecimals: assetInfo.decimals,
-            value: b.balance
-          }
+          return new AssetBalance(
+            assetInfo.name,
+            assetInfo.assetId,
+            assetInfo.decimals,
+            b.balance);
         })
       ];
 

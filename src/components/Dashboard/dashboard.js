@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} from 'react-redux';
+
 import {Card, CardText, CardActions, CardHeader} from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
 import Toolbar from '../Toolbar';
@@ -12,13 +14,30 @@ import flagUs from './images/coins-flag-01.png';
 import flagUk from './images/coins-flag-02.png';
 import flagWaves from './images/waves_PNG_Transparent_2k_symbol.png';
 
+import {KnownAssets} from '../../domain/assets';
+import {totals, isFetching} from '../../redux/utility';
+import {assetValueToString} from '../../domain/utility';
+
 const styles = {
   card: {
     height: '100%'
   }
 };
 
-const Dashboard = (props) => (
+const renderBalance = (isFetching, assetBalance) => {
+  if (isFetching) {
+    return (<span>fetching...</span>);
+  }
+  return (<span>{assetValueToString(assetBalance.value, assetBalance.assetDecimals)} {assetBalance.assetName}</span>)
+};
+
+const Dashboard = (props) => {
+
+  const { balances } = props;
+  const waves = totals(balances, KnownAssets.Waves);
+  const fetching = isFetching(balances);
+
+  return (
   <div>
     <Toolbar
       title="DASHBOARD"
@@ -34,7 +53,7 @@ const Dashboard = (props) => (
             avatar={<Avatar src={ flagWaves } backgroundColor="transparent" />}
           />
           <CardText>
-            TOTAL: 1000 WAVES
+            TOTAL: {renderBalance(fetching, waves)}
           </CardText>
           <CardActions>
             <FlatButton
@@ -101,7 +120,13 @@ const Dashboard = (props) => (
       </div>
     </div>
 
-  </div>
-);
+  </div>);
+};
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+  return {
+    balances: state.balances
+  };
+};
+
+export default connect(mapStateToProps, null)(Dashboard);

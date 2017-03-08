@@ -1,14 +1,13 @@
 import {assetsReducers} from './assetsReducers';
-import {AssetInfo} from '../domain/assetInfo';
+import {AssetInfo, KnownAssets} from '../domain/assets';
 import {receiveAssetInfo} from './assetsActions';
 
-const WavesAsset = new AssetInfo("WAVES", "WAVES", 100000000 * Math.pow(10, 8), 8, "N/A", 1460678400000, false);
 
 describe('assets reducers', () => {
   it('should return initial state', () => {
     expect(assetsReducers(undefined, {})).toEqual(
       {
-        'WAVES': WavesAsset
+        'WAVES': KnownAssets.Waves
       }
     );
   });
@@ -18,7 +17,7 @@ describe('assets reducers', () => {
     let state = assetsReducers(undefined, receiveAssetInfo(a));
     expect(state).toEqual(
       {
-        'WAVES': WavesAsset,
+        'WAVES': KnownAssets.Waves,
         'AssetId': a
       }
     );
@@ -26,7 +25,7 @@ describe('assets reducers', () => {
     state = assetsReducers(state, receiveAssetInfo(a));
     expect(state).toEqual(
       {
-        'WAVES': WavesAsset,
+        'WAVES': KnownAssets.Waves,
         'AssetId': a
       }
     );

@@ -7,7 +7,6 @@ import {transactionsReducers} from './transactionsReducers';
 import {assetsReducers} from './assetsReducers';
 
 
-
 const appReducer = combineReducers({
   session,
   transactions: transactionsReducers,

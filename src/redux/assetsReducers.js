@@ -1,4 +1,4 @@
-import {AssetInfo} from '../domain/assetInfo';
+import {AssetInfo} from '../domain/assets';
 import * as ActionTypes from './assetsActions';
 
 const initialAssetsRegistry = {

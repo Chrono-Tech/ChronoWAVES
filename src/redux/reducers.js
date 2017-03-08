@@ -1,3 +1,4 @@
+import Immutable from 'immutable';
 import * as ActionTypes from './actions';
 
 export const session = (state = {loggedIn: false}, action) => {
@@ -31,26 +32,36 @@ export const walletReducer = (state = {}, action) => {
   }
 };
 
-export const balances = (state = {}, action) => {
+const initialBalances = Immutable.Map();
+
+export const balances = (state = initialBalances, action) => {
   switch (action.type) {
     case ActionTypes.REQUEST_BALANCES:
-
-      return {
-        ...state,
-        [action.address]: {
-          isFetching: true,
-          items: []
-        }
-      };
+      return state.set(action.address, {
+        isFetching: true,
+        items: []
+      });
+      // return {
+      //   ...state,
+      //   [action.address]: {
+      //     isFetching: true,
+      //     items: []
+      //   }
+      // };
 
     case ActionTypes.RECEIVE_BALANCES:
-      return {
-        ...state,
-        [action.address]: {
-          isFetching: false,
-          items: action.balances
-        }
-      };
+      return state.set(action.address, {
+        isFetching: false,
+        items: action.balances
+      });
+      // return {
+      //   ...state,
+      //   [action.address]: {
+      //     isFetching: false,
+      //     items: action.balances
+      //   }
+      // };
+
     default:
       return state;
   }
