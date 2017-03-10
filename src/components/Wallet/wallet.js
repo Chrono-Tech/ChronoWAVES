@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
 import {createAccountAction} from '../../redux/actions';
@@ -6,7 +6,7 @@ import AccountsList from './accountsList';
 import Toolbar from '../Toolbar';
 import {AddIcon} from '../Icons';
 
-class Wallet extends React.Component {
+export class Wallet extends React.Component {
 
   constructor(props) {
     super(props);
@@ -28,6 +28,11 @@ class Wallet extends React.Component {
       </div>);
   }
 }
+
+Wallet.propTypes = {
+  accounts: PropTypes.array.isRequired,
+  balances: PropTypes.object.isRequired
+};
 
 const mapStateToProps = (state) => {
   return {

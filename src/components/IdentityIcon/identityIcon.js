@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Avatar from 'material-ui/Avatar';
 
 import blockies from 'blockies';
@@ -18,5 +18,9 @@ class IdentityIcon extends React.Component {
     );
   }
 }
+
+IdentityIcon.propTypes = {
+  address: PropTypes.string.isRequired
+};
 
 export default IdentityIcon;
