@@ -56,6 +56,7 @@ const TransactionItem = ({tx, address, assetInfo, feeAssetInfo}) => {
             </TableRowColumn>
             <TableRowColumn style={{textAlign: 'right', width:'20%'}}>{amountText}</TableRowColumn>
             <TableRowColumn>{assetInfo.name}</TableRowColumn>
+            <TableRowColumn>{tx.unconfirmed && "Unconfirmed"}</TableRowColumn>
           </TableRow>
         </TableBody>
       </Table>

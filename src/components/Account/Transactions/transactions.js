@@ -37,7 +37,7 @@ class TransactionsHistory extends React.Component {
       return (<Loading />);
     }
 
-    if (transactions.items.length === 0) {
+    if (transactions.items.size === 0) {
       return (<Container>No transactions were found for this account</Container>);
     }
 

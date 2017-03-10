@@ -1,13 +1,20 @@
 import * as ActionTypes from './transactionsActions';
+import Immutable from 'immutable';
 
 const onReceiveTransactions = (state, action) => {
   switch (action.type) {
     case ActionTypes.RECEIVE_TRANSACTIONS:
+      // add new txs and keep old
+      let trans = state[action.address] ? state[action.address].items : new Immutable.Map();
+      action.transactions.forEach((tx) => {
+        trans = trans.set(tx.id, tx)
+      });
+
       return {
         ...state,
         [action.address]: {
           isFetching: false,
-          items: action.transactions,
+          items: trans,
         }
       };
     default:
@@ -18,11 +25,12 @@ const onReceiveTransactions = (state, action) => {
 const onRequestTransactions = (state, action) => {
   switch (action.type) {
     case ActionTypes.REQUEST_TRANSACTIONS:
+      const currentTrans = state[action.address] ? state[action.address].items : new Immutable.Map();
       return {
         ...state,
         [action.address]: {
           isFetching: true,
-          items: [],
+          items: currentTrans,
         }
       };
     default:

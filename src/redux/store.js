@@ -5,7 +5,7 @@ import {reducer as formReducer} from 'redux-form';
 import {session, balances, walletReducer} from './reducers';
 import {transactionsReducers} from './transactionsReducers';
 import {assetsReducers} from './assetsReducers';
-
+import {fetchUtxPool} from './networkActions';
 
 const appReducer = combineReducers({
   session,
@@ -32,3 +32,8 @@ const store = createStore(rootReducer,
 
 
 export default store;
+
+
+export function start() {
+  setTimeout(() => store.dispatch(fetchUtxPool()), 3000);
+}
