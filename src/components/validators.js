@@ -1,8 +1,13 @@
-import {blockchain} from '../blockchain';
+
 
 export const required = value => value ? undefined : 'Required';
 
-export const addressValidator = value => blockchain.isValidAddress(value) ? undefined : 'Invalid Address';
+/**
+ * Carried function returns validator
+ *
+ * @param blockchain
+ */
+export const addressValidator = (blockchain) => (value => blockchain.isValidAddress(value) ? undefined : 'Invalid Address');
 
 export const numberValidator = value => /^[+\-]?\d+(\.\d+)?$/.test(value) ? undefined : "Not a number";
 

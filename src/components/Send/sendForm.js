@@ -8,6 +8,7 @@ import IdentityIcon from '../IdentityIcon';
 import {SendIcon} from '../Icons';
 import AssetSelectField from './assetSelectField';
 import {required, addressValidator, positive, numberValidator} from '../validators';
+import {blockchain} from '../../blockchain';
 
 import {
   TextField,
@@ -64,7 +65,7 @@ class SendForm extends React.Component {
                              label="Recipient"
                              floatingLabelText="Recipient"
                              fullWidth={true}
-                             validate={[required, addressValidator]} />
+                             validate={[required, addressValidator(blockchain)]} />
                     </Col>
                   </Row>
                 </Col>
