@@ -27,7 +27,7 @@ export function fetchTransactions(address) {
         // sort transaction - the younger the higher
         // and mark all txs as confirmed because we took them not from pool
         txs = txs
-          .sort((a, b) => b.timestamp - a.timestamp)
+        // .sort((a, b) => b.timestamp - a.timestamp)
           .map(t => Object.assign({}, t, {unconfirmed: false}));
 
         dispatch(receiveTransactions(address, txs));

@@ -53,7 +53,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onLoginClick: (seed) => {
       dispatch(loginSuccessAction(seed));
 
-      // We create default account with nonce 0
+      // We create 2 first accounts with nonce 0 and 1
+      dispatch(createAccountAction());
       dispatch(createAccountAction());
     }
   }

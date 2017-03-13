@@ -16,11 +16,11 @@ import {
 
 const styles = {
   address: {
-    display:'inline-block',
-    verticalAlign:'middle',
-    height:'100%',
-    fontSize:'15px',
-    paddingLeft:'10px'
+    display: 'inline-block',
+    verticalAlign: 'middle',
+    height: '100%',
+    fontSize: '15px',
+    paddingLeft: '10px'
   }
 };
 
@@ -40,7 +40,7 @@ class SendForm extends React.Component {
               <Row>
                 <Col lg={12} md={12} xs={12}>
                   <IdentityIcon address={ address }/>
-                  <div style={styles.address}>{ address }</div>
+                  <div style={ styles.address }>{ address }</div>
                 </Col>
               </Row>
               <Row>
@@ -65,7 +65,7 @@ class SendForm extends React.Component {
                              label="Recipient"
                              floatingLabelText="Recipient"
                              fullWidth={true}
-                             validate={[required, addressValidator(blockchain)]} />
+                             validate={[required, addressValidator(blockchain)]}/>
                     </Col>
                   </Row>
                 </Col>
@@ -82,9 +82,7 @@ class SendForm extends React.Component {
                   </Row>
                 </Col>
               </Row>
-
             </Grid>
-
           </CardText>
           <CardActions>
             <FlatButton
@@ -97,7 +95,6 @@ class SendForm extends React.Component {
               icon={<SendIcon />}/>
           </CardActions>
         </Card>
-
       </form>
     )
   }

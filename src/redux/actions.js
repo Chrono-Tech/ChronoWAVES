@@ -34,6 +34,7 @@ export function createAccountAction() {
     const newAcc = {
       address: acc.address,
       publicKey: acc.keys.publicKey,
+      privateKey: acc.keys.privateKey,
       nonce: nonce,
     };
 

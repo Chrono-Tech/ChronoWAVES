@@ -53,4 +53,14 @@ export class KnownAssets {
     "N/A",
     1460678400000,
     false);
+
+  static Unknown: AssetInfo = new AssetInfo(
+    '',
+    'UNKNOWN',
+    0,
+    8,
+    'UNKNOWN',
+    1,
+    false
+  );
 }

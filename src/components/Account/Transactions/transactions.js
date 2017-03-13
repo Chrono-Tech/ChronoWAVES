@@ -7,6 +7,8 @@ import TransactionItem from './transactionItem';
 import Container from '../../container';
 import Loading from '../../Loading';
 
+import {KnownAssets} from '../../../domain/assets';
+
 class TransactionsHistory extends React.Component {
 
   constructor(props) {
@@ -41,7 +43,8 @@ class TransactionsHistory extends React.Component {
       return (<Container>No transactions were found for this account</Container>);
     }
 
-    const groupedTxs = this.groupByDate(transactions.items);
+    const sorted = transactions.items.sort((a, b) => b.timestamp - a.timestamp);
+    const groupedTxs = this.groupByDate(sorted);
 
     return (<Container>
       {
@@ -66,7 +69,7 @@ const TxGroup = ({date, transactions, address, assetsRegistry}) => (
       transactions.map(tx => {
         const assetId = (tx.assetId === null) ? 'WAVES' : tx.assetId;
         const feeAssetId = (tx.feeAssetId === null) ? 'WAVES' : tx.feeAssetId;
-        const assetInfo = assetsRegistry[assetId];
+        const assetInfo = assetsRegistry[assetId] ? assetsRegistry[assetId] : KnownAssets.Unknown;
         const feeAssetInfo = assetsRegistry[feeAssetId];
 
         return (<TransactionItem key={ tx.id }

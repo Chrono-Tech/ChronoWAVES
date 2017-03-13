@@ -1,4 +1,4 @@
-import {filterUnconfirmedTxs} from './networkActions';
+import {filterTransactions} from './networkActions';
 
 describe('networkActions', () => {
 
@@ -31,13 +31,10 @@ describe('networkActions', () => {
       }
     ];
 
-    const filtered = filterUnconfirmedTxs(accounts, txs);
+    const filtered = filterTransactions(accounts, txs);
 
     expect(filtered.length).toEqual(2);
     expect(filtered.find(i => i.address === 'Address1').txs.length).toEqual(1);
     expect(filtered.find(i => i.address === 'Address2').txs.length).toEqual(1);
-
-    expect(filtered.find(i => i.address === 'Address2').txs.filter(t => t.unconfirmed).length).toEqual(1);
-    expect(filtered.find(i => i.address === 'Address1').txs.filter(t => t.unconfirmed).length).toEqual(1);
   });
 });

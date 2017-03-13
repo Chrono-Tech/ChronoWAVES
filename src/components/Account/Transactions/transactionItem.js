@@ -1,10 +1,10 @@
 import React, {PropTypes} from 'react';
 import {Card, CardText, CardTitle} from 'material-ui/Card';
+import Chip from 'material-ui/Chip';
 import FontIcon from 'material-ui/FontIcon';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table'
 import {assetValueToString} from '../../../domain/utility';
 import TxDetails from './details';
-
 import Waves from 'waves.js/dist/waves';
 
 const inTxStyle = {
@@ -27,6 +27,10 @@ const getTxTypeName = (type) => {
   }
 };
 
+const UnconfirmedChip = () => (
+  <Chip backgroundColor={'#e2a864'}>UNCONFIRMED</Chip>
+);
+
 /**
  * Represents one transaction
  */
@@ -42,7 +46,7 @@ const TransactionItem = ({tx, address, assetInfo, feeAssetInfo}) => {
   tx = Object.assign({}, tx, {signatureValidation: Waves.Transactions.validateSignature(tx)});
 
   return (<Card key={tx.id}>
-    <CardTitle actAsExpander={true} showExpandableButton={true}>
+    <CardTitle actAsExpander={true} showExpandableButton={true} >
 
       <Table selectable={false}>
         <TableBody displayRowCheckbox={false}>
@@ -56,13 +60,13 @@ const TransactionItem = ({tx, address, assetInfo, feeAssetInfo}) => {
             </TableRowColumn>
             <TableRowColumn style={{textAlign: 'right', width:'20%'}}>{amountText}</TableRowColumn>
             <TableRowColumn>{assetInfo.name}</TableRowColumn>
-            <TableRowColumn>{tx.unconfirmed && "Unconfirmed"}</TableRowColumn>
+            <TableRowColumn>{tx.unconfirmed && <UnconfirmedChip />}</TableRowColumn>
           </TableRow>
         </TableBody>
       </Table>
     </CardTitle>
 
-    <CardText expandable={true}>
+    <CardText expandable={true} >
       <TxDetails tx={ tx } feeAssetInfo={ feeAssetInfo } />
     </CardText>
   </Card>)

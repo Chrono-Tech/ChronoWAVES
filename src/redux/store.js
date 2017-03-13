@@ -5,7 +5,8 @@ import {reducer as formReducer} from 'redux-form';
 import {session, balances, walletReducer} from './reducers';
 import {transactionsReducers} from './transactionsReducers';
 import {assetsReducers} from './assetsReducers';
-import {fetchUtxPool} from './networkActions';
+import {fetchUtxPool, fetchHeight} from './networkActions';
+import {networkReducers} from './networkReducers';
 
 const appReducer = combineReducers({
   session,
@@ -13,7 +14,8 @@ const appReducer = combineReducers({
   balances,
   wallet: walletReducer,
   assets: assetsReducers,
-  form: formReducer
+  form: formReducer,
+  network: networkReducers
 });
 
 const rootReducer = (state, action) => {
@@ -35,5 +37,6 @@ export default store;
 
 
 export function start() {
+  setTimeout(() => store.dispatch(fetchHeight()), 1000);
   setTimeout(() => store.dispatch(fetchUtxPool()), 3000);
 }
