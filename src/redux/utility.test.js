@@ -1,6 +1,6 @@
 import {totals} from './utility';
 import Immutable from 'immutable';
-import {AssetBalance, KnownAssets, AssetInfo} from '../domain/assets';
+import {AssetValue, KnownAssets, AssetInfo} from '../domain/assets';
 
 describe('utility functions', () => {
   it('should calculate totals for asset', ()=>{
@@ -8,13 +8,13 @@ describe('utility functions', () => {
     const balances = Immutable.Map()
       .set('address1', {
         items: [
-          new AssetBalance('A1', 'id1', 4, 76),
-          new AssetBalance('A2', 'id2', 4, 6),
+          new AssetValue('A1', 'id1', 4, 76),
+          new AssetValue('A2', 'id2', 4, 6),
         ]
       })
       .set('address2', {
         items: [
-          new AssetBalance('A1', 'id1', 4, 11),
+          new AssetValue('A1', 'id1', 4, 11),
         ]
       });
 

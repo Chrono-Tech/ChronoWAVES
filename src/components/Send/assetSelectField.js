@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import {Field} from 'redux-form';
 import {SelectField} from 'redux-form-material-ui';
 import MenuItem  from 'material-ui/MenuItem';
-import {assetValueToString} from '../../domain/utility';
+
 import './assetSelectField.css';
 
 
@@ -12,22 +12,23 @@ class AssetSelectField extends React.Component {
   }
 
   render() {
-    const {name, floatingLabelText, balances, validate} = this.props;
+    const { name, floatingLabelText, balances, validate, onChange } = this.props;
 
     return (
-      <Field name={ name } component={ SelectField } className="assetSelect" floatingLabelText={ floatingLabelText }
-             fullWidth={true} validate={validate}>
+      <Field name={ name } component={ SelectField } className="assetSelect"
+             floatingLabelText={ floatingLabelText }
+             fullWidth={ true }
+             validate={ validate }
+             onChange={ onChange }>
         {
           balances.map(asset => {
-            const value = assetValueToString(asset.value, asset.assetDecimals);
-
             const label = (
               <div className="asset">
                 <div className="assetName">
                   { asset.assetName }
                 </div>
                 <div className="assetBalance">
-                  { value }<small> { asset.assetName }</small>
+                  { asset.toString() }<small> { asset.assetName }</small>
                 </div>
               </div>
             );

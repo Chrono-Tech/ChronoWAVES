@@ -1,4 +1,6 @@
 //@flow
+import BigNumber from 'bignumber.js';
+
 export class AssetInfo {
   assetId: string;
   name: string;
@@ -25,7 +27,7 @@ export class AssetInfo {
   }
 }
 
-export class AssetBalance {
+export class AssetValue {
   assetName: string;
   assetId: string;
   assetDecimals: number;
@@ -38,8 +40,12 @@ export class AssetBalance {
     this.value = value;
   }
 
-  add(value: number) : AssetBalance {
-    return new AssetBalance(this.assetName, this.assetId, this.assetDecimals, this.value + value);
+  add(value: number) : AssetValue {
+    return new AssetValue(this.assetName, this.assetId, this.assetDecimals, this.value + value);
+  }
+
+  toString() {
+    return new BigNumber(this.value).div(Math.pow(10, this.assetDecimals)).toFixed(this.assetDecimals);
   }
 }
 

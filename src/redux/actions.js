@@ -1,7 +1,7 @@
 import {client} from './api';
 import {blockchain} from '../blockchain';
 import {issueTxToAsset, receiveAssetInfo} from './assetsActions';
-import {AssetBalance, KnownAssets} from '../domain/assets';
+import {AssetValue, KnownAssets} from '../domain/assets';
 
 
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
@@ -75,7 +75,7 @@ export function fetchBalances(address) {
       const assetBalances = results[1];
 
       const balances = [
-        new AssetBalance(
+        new AssetValue(
           KnownAssets.Waves.name,
           KnownAssets.Waves.assetId,
           KnownAssets.Waves.decimals,
@@ -88,7 +88,7 @@ export function fetchBalances(address) {
           const assetInfo = issueTxToAsset(b.issueTransaction);
           dispatch(receiveAssetInfo(assetInfo));
 
-          return new AssetBalance(
+          return new AssetValue(
             assetInfo.name,
             assetInfo.assetId,
             assetInfo.decimals,

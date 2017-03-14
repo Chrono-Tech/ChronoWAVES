@@ -14,6 +14,7 @@ class ConfirmForm extends React.Component {
   render() {
     const {handleSubmit, transaction, signedTx, previousPage} = this.props;
     const feeAmount = assetValueToString(transaction.fee, transaction.feeAssetDecimals);
+    const amount = assetValueToString(transaction.amount, transaction.assetDecimals);
 
     return (<form onSubmit={ handleSubmit }>
       <Card>
@@ -21,15 +22,14 @@ class ConfirmForm extends React.Component {
           <div>ID: {transaction.id}</div>
           <div>Sender: {transaction.sender}</div>
           <div>Recipient: {transaction.recipient}</div>
-          <div>Amount: {transaction.amount}</div>
-          <div>Asset: {transaction.assetId}</div>
+          <div>Amount: {amount} {transaction.assetName}</div>
           <div>Fee: {feeAmount} {transaction.feeAssetName}</div>
           <div>Timestamp: {transaction.timestamp}</div>
           <div>Signature: {transaction.signature}</div>
-          <div><pre>
-            {JSON.stringify(signedTx)}
-          </pre>
-          </div>
+          {/*<div><pre>*/}
+            {/*{JSON.stringify(signedTx)}*/}
+          {/*</pre>*/}
+          {/*</div>*/}
         </CardText>
         <CardActions>
           <FlatButton

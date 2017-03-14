@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
 import {browserHistory} from 'react-router';
 import {Step, Stepper, StepLabel} from 'material-ui/Stepper';
+import BigNumber from 'bignumber.js';
 
 import Waves from 'waves.js/dist/waves';
 import {blockchain} from '../../blockchain';
@@ -36,7 +37,11 @@ class SendWizard extends React.Component {
   }
 
   confirmTx = (values) => {
-    const amount = parseInt(values['amount']);
+
+    const assetBalance = this.props.balances.get(this.state.address).items.find(b => b.assetId === values['asset']);
+
+    const amount = new BigNumber(values['amount']).mul(Math.pow(10, assetBalance.assetDecimals)).toNumber();
+
     const recipient = values['recipient'];
     const fee = FEE;
     const feeAssetId = FEE_ASSET_ID;
@@ -60,8 +65,8 @@ class SendWizard extends React.Component {
       tx: {
         id: Waves.Base58.encode(signedTx.tx.id),
         assetId: assetId,
-        assetName:'',
-        assetDecimals:8,
+        assetName:assetBalance.assetName,
+        assetDecimals:assetBalance.assetDecimals,
         amount: amount,
         sender: this.state.address,
         senderPublicKey: pubKeyBase58,
@@ -133,7 +138,11 @@ class SendWizard extends React.Component {
     const balances = this.props.balances.get(address).items;
 
     if (page === SEND_FORM)
-      return (<SendForm address={ address } balances={ balances } onCancel={ this.cancelSend } onSubmit={ this.confirmTx }/>);
+      return (<SendForm initialValues={ {asset: KnownAssets.Waves.assetId} }
+                        address={ address }
+                        balances={ balances }
+                        onCancel={ this.cancelSend }
+                        onSubmit={ this.confirmTx }/>);
 
     if (page === CONFIRM_FORM)
       return (<ConfirmForm transaction={ tx } signedTx={ signedTx } previousPage={ this.returnToSendForm } onSubmit={ this.publishTx }/>);

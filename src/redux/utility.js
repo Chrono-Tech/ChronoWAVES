@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import {AssetInfo, AssetBalance} from '../domain/assets';
+import {AssetInfo, AssetValue} from '../domain/assets';
 
 /**
  * Calculate total balance of particular asset for all addresses
@@ -8,9 +8,9 @@ import {AssetInfo, AssetBalance} from '../domain/assets';
  * @param asset
  * @returns {AssetBalance}
  */
-export const totals = (balances: Immutable.Map, asset: AssetInfo): AssetBalance => {
+export const totals = (balances: Immutable.Map, asset: AssetInfo): AssetValue => {
 
-  const initialBalance = new AssetBalance(asset.name, asset.assetId, asset.decimals, 0);
+  const initialBalance = new AssetValue(asset.name, asset.assetId, asset.decimals, 0);
 
   return balances.reduce((r, _balances, address) => {
     const assetBalance = _balances.items.find(e => e.assetId === asset.assetId);

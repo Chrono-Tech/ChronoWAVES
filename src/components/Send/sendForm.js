@@ -3,11 +3,12 @@ import {Field, reduxForm} from 'redux-form';
 import {Card, CardText, CardActions} from 'material-ui/Card';
 import {Grid, Row, Col} from 'react-flexbox-grid-aphrodite';
 
+
 import FlatButton from 'material-ui/FlatButton';
 import IdentityIcon from '../IdentityIcon';
 import {SendIcon} from '../Icons';
 import AssetSelectField from './assetSelectField';
-import {required, addressValidator, positive, numberValidator} from '../validators';
+import {required, addressValidator, positive, numberValidator, decimalsValidator} from '../validators';
 import {blockchain} from '../../blockchain';
 
 import {
@@ -27,15 +28,27 @@ const styles = {
 class SendForm extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {selectedAssetId: props.initialValues.asset};
   }
 
+  parseAmount(value, name) {
+    return value;
+  }
+
+  onAssetChange = (event, newValue, previousValue) => {
+    this.setState({selectedAssetId: newValue})
+  };
+
   render() {
-    const {handleSubmit, onCancel, address, balances} = this.props;
+    const { handleSubmit, onCancel, address, balances } = this.props;
+    const { selectedAssetId } = this.state;
+    const assetBalance = balances.find(b => b.assetId === selectedAssetId);
 
     return (
       <form onSubmit={ handleSubmit }>
         <Card>
           <CardText>
+            <p>balance {assetBalance.value} decimals {assetBalance.assetDecimals}</p>
             <Grid style={{marginLeft:0, width:'auto'}}>
               <Row>
                 <Col lg={12} md={12} xs={12}>
@@ -47,16 +60,25 @@ class SendForm extends React.Component {
                 <Col xs={12} md={6} lg={6}>
                   <Row>
                     <Col xs={12} md={12} lg={12}>
-                      <AssetSelectField name="asset" floatingLabelText="Asset" balances={ balances }
-                                        validate={ [required] }/>
+                      <AssetSelectField
+                        name="asset"
+                        floatingLabelText="Asset"
+                        balances={ balances }
+                        validate={ [required] }
+                        onChange={ this.onAssetChange }
+                      />
                     </Col>
                   </Row>
                   <Row>
                     <Col xs={12} md={12} lg={12}>
-                      <Field name="amount" component={ TextField } hintText="Amount" label="Amount"
+                      <Field name="amount"
+                             component={ TextField }
+                             hintText="Amount" label="Amount"
                              floatingLabelText="Amount"
-                             fullWidth={true}
-                             validate={ [required, numberValidator, positive] }/>
+                             fullWidth={ true }
+                             validate={ [required, numberValidator, positive, decimalsValidator(assetBalance.assetDecimals)] }
+                             parse={ this.parseAmount }
+                      />
                     </Col>
                   </Row>
                   <Row>
@@ -64,8 +86,8 @@ class SendForm extends React.Component {
                       <Field name="recipient" component={ TextField } hintText="Recipient"
                              label="Recipient"
                              floatingLabelText="Recipient"
-                             fullWidth={true}
-                             validate={[required, addressValidator(blockchain)]}/>
+                             fullWidth={ true }
+                             validate={ [required, addressValidator(blockchain)] }/>
                     </Col>
                   </Row>
                 </Col>

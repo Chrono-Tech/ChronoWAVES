@@ -72,7 +72,7 @@ const Dashboard = (props) => {
           />
           {/*<CardTitle title="Australian Labour Hours"/>*/}
           <CardText>
-            TOTAL: 1000 LHAU
+            TOTAL: 0.00 LHAU
           </CardText>
           <CardActions>
             <FlatButton
@@ -90,7 +90,7 @@ const Dashboard = (props) => {
             avatar={flagUs}
           />
           <CardText>
-            TOTAL: 1000 LHUS
+            TOTAL: 0.00 LHUS
 
           </CardText>
           <CardActions>
@@ -109,7 +109,7 @@ const Dashboard = (props) => {
             avatar={flagUk}
           />
           <CardText>
-            TOTAL: 1000 LHGB
+            TOTAL: 0.00 LHGB
           </CardText>
           <CardActions>
             <FlatButton

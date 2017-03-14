@@ -6,7 +6,6 @@ import {Table, TableBody, TableRowColumn, TableRow} from 'material-ui/Table';
 import IconButton from 'material-ui/IconButton';
 import moment from 'moment';
 
-import {assetValueToString} from '../../domain/utility';
 import {fetchAssetInfo} from '../../redux/assetsActions';
 import {NavigationClose} from '../Icons';
 import Loading from '../Loading';
@@ -44,7 +43,7 @@ class Balances extends React.Component {
   };
 
   render() {
-    const {balances, assetRegistry} = this.props;
+    const { balances } = this.props;
 
     if (balances.isFetching) {
       return (<Loading size={1}/>);
@@ -54,9 +53,7 @@ class Balances extends React.Component {
       <div style={ styles.wrapper }>
         {
           balances.items.map(asset => {
-            const decimals = assetRegistry[asset.assetId].decimals;
-            const value = assetValueToString(asset.value, decimals);
-
+            const value = asset.toString();
             return (<Chip style={ styles.chip } key={ asset.assetId } onTouchTap={ () => this.handleOpen(asset.assetId) }>
               { value } { asset.assetName }
             </Chip>)
@@ -82,6 +79,7 @@ class Balances extends React.Component {
     );
   }
 
+  //TODO: move it outside of Balances control
   renderAssetDetails = () => {
     const assetInfo = this.props.assetRegistry[this.state.selectedAssetId];
     return (

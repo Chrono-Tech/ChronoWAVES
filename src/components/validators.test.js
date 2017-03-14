@@ -1,4 +1,4 @@
-import {numberValidator, positive, addressValidator} from './validators';
+import {numberValidator, positive, addressValidator, decimalsValidator} from './validators';
 import Waves from 'waves.js/dist/waves';
 
 describe('validators', () => {
@@ -33,5 +33,22 @@ describe('validators', () => {
     expect(positive('+1')).toBeUndefined();
     expect(positive('+a')).toBeUndefined();
     expect(positive('a')).toBeUndefined();
+  });
+
+  it('should validate decimals', () => {
+
+    expect(decimalsValidator(2)('1')).toBeUndefined();
+    expect(decimalsValidator(2)('1.11')).toBeUndefined();
+    expect(decimalsValidator(2)('1.1')).toBeUndefined();
+    expect(decimalsValidator(2)('1.111')).toBeDefined();
+
+    expect(decimalsValidator(0)('1')).toBeUndefined();
+    expect(decimalsValidator(0)('1.11')).toBeDefined();
+    expect(decimalsValidator(0)('1.1')).toBeDefined();
+    expect(decimalsValidator(0)('1.')).toBeDefined();
+
+    expect(decimalsValidator(8)('1')).toBeUndefined();
+    expect(decimalsValidator(8)('1.123456789')).toBeDefined();
+    expect(decimalsValidator(8)('1.12345678')).toBeUndefined();
   });
 });
