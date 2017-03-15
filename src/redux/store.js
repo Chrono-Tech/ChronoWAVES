@@ -2,16 +2,17 @@ import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger'
 import {reducer as formReducer} from 'redux-form';
-import {session, balances, walletReducer} from './reducers';
+import {session, walletReducer} from './reducers';
 import {transactionsReducers} from './transactionsReducers';
 import {assetsReducers} from './assetsReducers';
 import {fetchUtxPool, fetchHeight} from './networkActions';
 import {networkReducers} from './networkReducers';
+import {balancesReducers} from './balancesReducers';
 
 const appReducer = combineReducers({
   session,
   transactions: transactionsReducers,
-  balances,
+  balances: balancesReducers,
   wallet: walletReducer,
   assets: assetsReducers,
   form: formReducer,

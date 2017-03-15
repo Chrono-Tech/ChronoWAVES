@@ -15,6 +15,7 @@
     "bignumber.js": "^4.0.0",
     "blockies": "0.0.2",
     "immutable": "^3.8.1",
+    "loglevel": "^1.4.1",
     "material-ui": "^0.16.7",
     "moment": "^2.17.1",
     "qrcode.react": "^0.6.1",

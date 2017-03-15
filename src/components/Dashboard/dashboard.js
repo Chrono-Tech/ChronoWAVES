@@ -7,6 +7,7 @@ import Toolbar from '../Toolbar';
 import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
 import {SendIcon} from '../Icons';
+import SendButton from './sendButton';
 
 import './dashboard.css';
 import flagAu from './images/coins-flag-04.png';
@@ -16,7 +17,6 @@ import flagWaves from './images/waves_PNG_Transparent_2k_symbol.png';
 
 import {KnownAssets} from '../../domain/assets';
 import {totals, isFetching} from '../../redux/utility';
-import {assetValueToString} from '../../domain/utility';
 
 const styles = {
   card: {
@@ -28,7 +28,16 @@ const renderBalance = (isFetching, assetBalance) => {
   if (isFetching) {
     return (<span>fetching...</span>);
   }
-  return (<span>{assetValueToString(assetBalance.value, assetBalance.assetDecimals)} {assetBalance.assetName}</span>)
+  return (<span>{assetBalance.toString()} {assetBalance.assetName}</span>)
+};
+
+const filterByAsset = (balances, assetId) => {
+  return balances.map((b, address) => {
+    return {
+      address: address,
+      balance: b.items.find(i => i.assetId === assetId)
+    }
+  }).filter(i => i.balance);
 };
 
 const Dashboard = (props) => {
@@ -45,7 +54,7 @@ const Dashboard = (props) => {
 
     <div className="list">
       <div className="item">
-        <Card style={styles.card}>
+        <Card style={ styles.card }>
           {/*<CardTitle title="Waves Platform"/>*/}
           <CardHeader
             title="Waves Platform"
@@ -56,9 +65,7 @@ const Dashboard = (props) => {
             TOTAL: {renderBalance(fetching, waves)}
           </CardText>
           <CardActions>
-            <FlatButton
-              label="SEND"
-              icon={<SendIcon />}/>
+            <SendButton addresses={ filterByAsset(balances, KnownAssets.Waves.assetId) }/>
           </CardActions>
 
         </Card>

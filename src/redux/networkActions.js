@@ -1,3 +1,4 @@
+import log from 'loglevel';
 import {client} from './api';
 import {receiveTransactions} from './transactionsActions';
 import {fetchBalances} from './actions';
@@ -10,8 +11,6 @@ export function fetchUtxPool() {
       .then(txs => {
         // find txs related to accounts in wallet
         const ourTxs = filterTransactions(getState().wallet.accounts, txs);
-
-        console.log(ourTxs);
 
         ourTxs.forEach(item => {
           // mark txs as unconfirmed
@@ -29,14 +28,11 @@ export function fetchHeight() {
     const prevHeight = getState().network.currentHeight;
     return client.getHeight()
       .then(height => {
-        console.log('Received height: ' + height);
-
+        log.debug('Received Height: ', height);
         dispatch(receiveHeight(height));
       })
       .then(() => {
         const newHeight = getState().network.currentHeight;
-        console.log('prevHeight: ' + prevHeight + ' newHeight: ' + newHeight);
-
         // process blocks from prevHeight to currentHeight
         if (prevHeight && prevHeight < newHeight) {
           dispatch(processBlocks(prevHeight + 1, newHeight));
@@ -46,6 +42,7 @@ export function fetchHeight() {
         setTimeout(() => dispatch(fetchHeight()), 30000);
       })
       .catch(error => {
+        log.error(error);
         setTimeout(() => dispatch(fetchHeight()), 30000);
       });
   }
@@ -62,7 +59,7 @@ function processBlocks(from, to) {
   return function (dispatch, getState) {
     return client.getBlocks(from, to)
       .then((blocks) => {
-        console.log('processing blocks: ' + blocks.map(b => b.height).join(','));
+        log.debug('Processing blocks: ', blocks.map(b => b.height).join(','));
 
         blocks.forEach(block => {
           const ourTxs = filterTransactions(getState().wallet.accounts, block.transactions);

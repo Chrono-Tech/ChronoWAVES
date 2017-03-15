@@ -52,7 +52,7 @@ class MainLayout extends React.Component {
 
   handleToggle = () => this.setState({open: !this.state.open});
 
-  handleLogout = () => this.props.dispatch(logoutAction())
+  handleLogout = () => this.props.dispatch(logoutAction());
 
   render() {
 

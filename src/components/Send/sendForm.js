@@ -22,6 +22,10 @@ const styles = {
     height: '100%',
     fontSize: '15px',
     paddingLeft: '10px'
+  },
+  grid: {
+    marginLeft:0,
+    width:'auto'
   }
 };
 
@@ -48,8 +52,7 @@ class SendForm extends React.Component {
       <form onSubmit={ handleSubmit }>
         <Card>
           <CardText>
-            <p>balance {assetBalance.value} decimals {assetBalance.assetDecimals}</p>
-            <Grid style={{marginLeft:0, width:'auto'}}>
+            <Grid style={ styles.grid }>
               <Row>
                 <Col lg={12} md={12} xs={12}>
                   <IdentityIcon address={ address }/>

@@ -9,6 +9,9 @@ import chronoTheme from './chrono-theme';
 import store from './redux/store';
 import router from './router';
 
+import log from 'loglevel';
+
+log.setLevel('debug');
 
 // Needed for onTouchTap
 injectTapEventPlugin();

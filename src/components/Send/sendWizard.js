@@ -1,9 +1,12 @@
+import log from 'loglevel';
 import React from 'react';
 import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
 import {browserHistory} from 'react-router';
 import {Step, Stepper, StepLabel} from 'material-ui/Stepper';
 import BigNumber from 'bignumber.js';
+
+import {receiveTransactions} from '../../redux/transactionsActions';
 
 import Waves from 'waves.js/dist/waves';
 import {blockchain} from '../../blockchain';
@@ -82,15 +85,20 @@ class SendWizard extends React.Component {
   };
 
   publishTx = () => {
-    const redirectUrl = `/wallet/account/${this.props.params.address}`;
+    const address = this.state.address;
+    const redirectUrl = `/wallet/account/${address}`;
 
     client.publishAssetTransfer(this.state.signedTx)
       .then(publishedTx => {
+        log.debug('Tx Published: ', publishedTx);
+
+        publishedTx.unconfirmed = true;
+        this.props.dispatch(receiveTransactions(address, [publishedTx]));
 
         browserHistory.push(redirectUrl);
       })
       .catch(error => {
-
+        log.error(error);
       });
     //this.setState({page: PUBLISH_FORM})
   };
@@ -114,7 +122,6 @@ class SendWizard extends React.Component {
 
   render() {
     const { page } = this.state;
-
     return (
       <div>
         <Stepper activeStep={this.stepIndex(page)}>
