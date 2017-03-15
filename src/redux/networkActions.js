@@ -1,7 +1,7 @@
 import log from 'loglevel';
 import {client} from './api';
 import {receiveTransactions} from './transactionsActions';
-import {fetchBalances} from './actions';
+import {fetchBalances} from './balancesActions';
 
 export function fetchUtxPool() {
   return function (dispatch, getState) {
