@@ -7,6 +7,7 @@ import {green400, amber400} from 'material-ui/styles/colors';
 import {assetValueToString} from '../../../domain/utility';
 import {VerifiedIcon, WarningIcon} from '../../Icons';
 import {ValidationResult} from 'waves.js/dist/waves';
+import Waves from 'waves.js/dist/waves';
 
 
 const signatureValidation = (validationResult) => {
@@ -16,8 +17,8 @@ const signatureValidation = (validationResult) => {
 };
 
 const TxDetails = ({tx, feeAssetInfo}) => {
-
   const fee = assetValueToString(tx.fee, feeAssetInfo.decimals);
+  const base58ToUtf8 = (string) => string ? Waves.Utils.bytesToUtf8(Waves.Base58.decode(string)):'';
 
   return (
     <Grid style={{marginLeft:0, width:'auto'}}>
@@ -33,6 +34,14 @@ const TxDetails = ({tx, feeAssetInfo}) => {
               <TableRow>
                 <TableRowColumn style={{textAlign: 'left'}}>ID</TableRowColumn>
                 <TableRowColumn style={{textAlign: 'left'}}><span className="mono">{tx.id}</span></TableRowColumn>
+              </TableRow>
+              <TableRow>
+                <TableRowColumn style={{textAlign: 'left'}}>Attachment (Base58)</TableRowColumn>
+                <TableRowColumn style={{textAlign: 'left'}}><span className="mono">{tx.attachment}</span></TableRowColumn>
+              </TableRow>
+              <TableRow>
+                <TableRowColumn style={{textAlign: 'left'}}>Attachment (UTF-8)</TableRowColumn>
+                <TableRowColumn style={{textAlign: 'left'}}><span className="mono">{base58ToUtf8(tx.attachment)}</span></TableRowColumn>
               </TableRow>
             </TableBody>
           </Table>

@@ -25,6 +25,7 @@ class ConfirmForm extends React.Component {
           <div>Amount: {amount} {transaction.assetName}</div>
           <div>Fee: {feeAmount} {transaction.feeAssetName}</div>
           <div>Timestamp: {transaction.timestamp}</div>
+          <div>Attachment: {transaction.attachment}</div>
           <div>Signature: {transaction.signature}</div>
           {/*<div><pre>*/}
             {/*{JSON.stringify(signedTx)}*/}

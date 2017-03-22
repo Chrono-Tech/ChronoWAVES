@@ -105,6 +105,17 @@ class SendForm extends React.Component {
                       <TextField disabled={true} defaultValue="WAVES" floatingLabelText="Fee Asset" fullWidth={true}/>
                     </Col>
                   </Row>
+                  <Row>
+                    <Col xs={12}>
+                      <Field name="attachment"
+                             component={ TextField }
+                             hintText="Attachment" label="Attachment"
+                             floatingLabelText="Attachment"
+                             fullWidth={ true }
+                             validate={ [] }
+                      />
+                    </Col>
+                  </Row>
                 </Col>
               </Row>
             </Grid>
