@@ -4,7 +4,7 @@ import Chip from 'material-ui/Chip';
 import FontIcon from 'material-ui/FontIcon';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table'
 import {assetValueToString} from '../../../domain/utility';
-import TxDetails from './details';
+import TxDetails from './txDetails';
 import Waves from 'waves.js/dist/waves';
 
 const inTxStyle = {

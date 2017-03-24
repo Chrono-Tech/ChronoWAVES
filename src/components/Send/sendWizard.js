@@ -29,7 +29,7 @@ class SendWizard extends React.Component {
 
   constructor(props) {
     super(props);
-    const { address } = this.props.params;
+    const {address} = this.props.params;
 
     // TODO: search sender account
 
@@ -55,8 +55,13 @@ class SendWizard extends React.Component {
     const sendAccount = this.props.wallet.accounts.find(a => a.address === this.state.address);
     const pubKeyBase58 = Waves.Base58.encode(sendAccount.publicKey);
 
+    const attachment = values['attachment'];
+    const attachmentBase58 = Waves.Base58.encode(Waves.Utils.utf8ToBytes(values['attachment']));
+
     // Sign tx
-    const unsignedTx = blockchain.createAssetTransfer(pubKeyBase58, recipient, assetId, amount, feeAssetId, fee, timestamp);
+    const unsignedTx = blockchain.createAssetTransfer(pubKeyBase58, recipient, assetId, amount, feeAssetId, fee,
+      timestamp, attachmentBase58);
+
     const signedTx = Waves.signTransaction(unsignedTx, sendAccount.privateKey);
 
     // create transfer request
@@ -68,8 +73,8 @@ class SendWizard extends React.Component {
       tx: {
         id: Waves.Base58.encode(signedTx.tx.id),
         assetId: assetId,
-        assetName:assetBalance.assetName,
-        assetDecimals:assetBalance.assetDecimals,
+        assetName: assetBalance.assetName,
+        assetDecimals: assetBalance.assetDecimals,
         amount: amount,
         sender: this.state.address,
         senderPublicKey: pubKeyBase58,
@@ -79,7 +84,8 @@ class SendWizard extends React.Component {
         feeAssetName: KnownAssets.Waves.name,
         feeAssetDecimals: KnownAssets.Waves.decimals,
         timestamp: timestamp,
-        signature: signedRequest.signature
+        signature: signedRequest.signature,
+        attachment: attachment
       }
     });
   };
@@ -99,6 +105,7 @@ class SendWizard extends React.Component {
       })
       .catch(error => {
         log.error(error);
+        alert(error);
       });
     //this.setState({page: PUBLISH_FORM})
   };
@@ -113,15 +120,19 @@ class SendWizard extends React.Component {
 
   stepIndex = (page) => {
     switch (page) {
-      case SEND_FORM: return 0;
-      case CONFIRM_FORM: return 1;
-      case PUBLISH_FORM: return 2;
-      default: return 0;
+      case SEND_FORM:
+        return 0;
+      case CONFIRM_FORM:
+        return 1;
+      case PUBLISH_FORM:
+        return 2;
+      default:
+        return 0;
     }
   };
 
   render() {
-    const { page } = this.state;
+    const {page} = this.state;
     return (
       <div>
         <Stepper activeStep={this.stepIndex(page)}>
@@ -152,7 +163,10 @@ class SendWizard extends React.Component {
                         onSubmit={ this.confirmTx }/>);
 
     if (page === CONFIRM_FORM)
-      return (<ConfirmForm transaction={ tx } signedTx={ signedTx } previousPage={ this.returnToSendForm } onSubmit={ this.publishTx }/>);
+      return (<ConfirmForm transaction={ tx }
+                           signedTx={ signedTx }
+                           previousPage={ this.returnToSendForm }
+                           onSubmit={ this.publishTx }/>);
 
     if (page === PUBLISH_FORM)
       return (<PublishForm />);
