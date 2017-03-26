@@ -10,26 +10,12 @@ export const balancesReducers = (state = initialBalances, action) => {
         isFetching: true,
         items: []
       });
-    // return {
-    //   ...state,
-    //   [action.address]: {
-    //     isFetching: true,
-    //     items: []
-    //   }
-    // };
 
     case ActionTypes.RECEIVE_BALANCES:
       return state.set(action.address, {
         isFetching: false,
         items: action.balances
       });
-    // return {
-    //   ...state,
-    //   [action.address]: {
-    //     isFetching: false,
-    //     items: action.balances
-    //   }
-    // };
 
     default:
       return state;
