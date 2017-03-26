@@ -19,7 +19,7 @@ injectTapEventPlugin();
 
 ReactDOM.render(
   <Provider store={store}>
-    <MuiThemeProvider muiTheme={chronoTheme}>
+    <MuiThemeProvider muiTheme={ chronoTheme }>
       {router}
     </MuiThemeProvider>
   </Provider>,

@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
-import {createAccountAction} from '../../redux/actions';
+import {createAccountAction} from '../../redux/walletActions';
 import AccountsList from './accountsList';
 import Toolbar from '../Toolbar';
 import {AddIcon} from '../Icons';
@@ -13,6 +13,8 @@ export class Wallet extends React.Component {
   }
 
   render() {
+    const {accounts, balances} = this.props;
+
     return (
       <div>
         <Toolbar
@@ -24,7 +26,7 @@ export class Wallet extends React.Component {
               icon={<AddIcon />}/>}
         />
 
-        <AccountsList accounts={this.props.accounts} balances={this.props.balances}/>
+        <AccountsList accounts={ accounts } balances={  balances }/>
       </div>);
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import log from 'loglevel';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
 import muiThemeable from 'material-ui/styles/muiThemeable';
@@ -9,7 +10,7 @@ import {List, ListItem} from 'material-ui/List';
 import FontIcon from 'material-ui/FontIcon';
 import {WalletIcon, LogoutIcon} from './../Icons';
 import IconButton from 'material-ui/IconButton';
-import {logoutAction} from '../../redux/actions';
+import {logoutAction} from '../../redux/userActions';
 
 import './mainLayout.css';
 
@@ -52,8 +53,6 @@ class MainLayout extends React.Component {
 
   handleToggle = () => this.setState({open: !this.state.open});
 
-  handleLogout = () => this.props.dispatch(logoutAction());
-
   render() {
 
     const paddingLeft = (this.state.open ? 210 : 50);
@@ -68,8 +67,8 @@ class MainLayout extends React.Component {
       <div>
         <AppBar
           style={ styles.appBar }
-          title={<AppBarTitle/>}
-          iconElementRight={<IconButton><LogoutIcon onClick={ this.handleLogout }/></IconButton>}
+          title={ <AppBarTitle/> }
+          iconElementRight={<IconButton onClick={ this.props.onLogout }><LogoutIcon/></IconButton>}
           onLeftIconButtonTouchTap={ this.handleToggle }
         />
         <Drawer open={this.state.open} containerStyle={{paddingTop: 56, backgroundColor: '#fff'}} width={180}>
@@ -109,6 +108,13 @@ class MainLayout extends React.Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLogout: () => {
+      log.debug('OnLogout clicked');
+      dispatch(logoutAction());
+    }
+  }
+};
 
-
-export default connect()(MainLayout);
+export default connect(null, mapDispatchToProps)(MainLayout);

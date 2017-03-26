@@ -1,5 +1,6 @@
 import React from 'react';
 import {Router, Route, browserHistory, IndexRoute} from 'react-router';
+import {syncHistoryWithStore} from 'react-router-redux';
 
 import App from './app';
 import MainLayout from './components/MainLayout';
@@ -9,9 +10,12 @@ import EnsureLoggedInContainer from './components/ensure-logged-in-container';
 import Wallet from './components/Wallet';
 import Account from './components/Account';
 import SendWizard from './components/Send';
+import store from './redux/store';
+
+const history = syncHistoryWithStore(browserHistory, store);
 
 const router = (
-  <Router history={browserHistory}>
+  <Router history={history}>
     <Route path="/" component={App}>
       <Route path="login" component={Login}/>
 
