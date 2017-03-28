@@ -1,24 +1,16 @@
 import {blockchain} from '../blockchain';
 import {fetchBalances} from './balancesActions';
 
-export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
-export function logoutAction() {
-  return {
-    type: LOGOUT_SUCCESS
-  }
-}
 
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export function loginSuccessAction(seed) {
+export const WALLET_INIT_SEED = 'WALLET_INIT_SEED';
+export const initWalletAction = (seed) => {
   return {
-    type: LOGIN_SUCCESS,
-    seed: seed
+    type: WALLET_INIT_SEED,
+    seed: seed,
   }
-}
+};
 
-export const CREATE_ACCOUNT = 'CREATE_ACCOUNT';
 export const CREATE_ACCOUNT_SUCCESS = 'CREATE_ACCOUNT_SUCCESS';
-
 export function createAccountAction() {
   return (dispatch, getState) => {
     const wallet = getState().wallet;
@@ -40,10 +32,3 @@ export function createAccountAction() {
     dispatch(fetchBalances(acc.address));
   };
 }
-
-
-
-
-
-
-

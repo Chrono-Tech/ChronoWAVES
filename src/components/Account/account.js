@@ -4,15 +4,17 @@ import {Card, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import {browserHistory} from 'react-router';
 import {Grid, Row, Col} from 'react-flexbox-grid-aphrodite';
-import Container from '../container';
-import Balances from '../Balances';
+import Paper from 'material-ui/Paper';
+import QRCode from 'qrcode.react'
+
 import TransactionsHistory from './Transactions/transactions';
 import IdentityIcon from '../IdentityIcon';
 import Toolbar from '../Toolbar';
 import CopyToClipboard from '../CopyToClipboard';
 import {SendIcon} from '../Icons';
-import Paper from 'material-ui/Paper';
-import QRCode from 'qrcode.react'
+import Container from '../container';
+import Balances from '../Balances';
+
 
 const styles = {
   address: {
@@ -31,9 +33,8 @@ class Account extends React.Component {
   };
 
   render() {
-    const {address} = this.props.params;
+    const { address } = this.props;
     const balances = this.props.balances.get(address);
-
     const identityIcon = (<IdentityIcon address={ address }/>);
 
     return (
@@ -81,9 +82,10 @@ class Account extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    balances: state.balances
+    balances: state.balances,
+    address: ownProps.params.address
   }
 };
 

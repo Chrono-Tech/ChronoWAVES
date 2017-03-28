@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 
 import './app.css';
 import {browserHistory} from 'react-router';
-import {start as startStore} from './redux/store';
 
 export class App extends React.Component {
 
@@ -14,9 +13,6 @@ export class App extends React.Component {
 
     if (isLoggingIn) {
       browserHistory.push('/dashboard');
-
-      // start periodic tasks
-      startStore();
 
       //dispatch(navigateTo(redirectUrl))
     } else if (isLoggingOut) {

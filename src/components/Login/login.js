@@ -2,8 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Paper, RaisedButton, TextField} from 'material-ui';
 import styles from './styles';
-import {loginSuccessAction, createAccountAction} from '../../redux/actions';
-
+import {loginSuccessAction} from '../../redux/userActions';
 import {blockchain} from '../../blockchain';
 
 class Login extends React.Component {
@@ -52,10 +51,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onLoginClick: (seed) => {
       dispatch(loginSuccessAction(seed));
-
-      // We create 2 first accounts with nonce 0 and 1
-      dispatch(createAccountAction());
-      dispatch(createAccountAction());
     }
   }
 };

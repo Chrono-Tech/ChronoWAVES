@@ -29,19 +29,18 @@ class SendWizard extends React.Component {
 
   constructor(props) {
     super(props);
-    const {address} = this.props.params;
 
     // TODO: search sender account
 
     this.state = {
       page: SEND_FORM,
-      address: address
     };
   }
 
   confirmTx = (values) => {
+    const {balances, address, wallet} = this.props;
 
-    const assetBalance = this.props.balances.get(this.state.address).items.find(b => b.assetId === values['asset']);
+    const assetBalance = balances.get(address).items.find(b => b.assetId === values['asset']);
 
     const amount = new BigNumber(values['amount']).mul(Math.pow(10, assetBalance.assetDecimals)).toNumber();
 
@@ -52,7 +51,7 @@ class SendWizard extends React.Component {
     const assetId = (values['asset'] === KnownAssets.Waves.assetId) ? null : values['asset'];
     const timestamp = Date.now();
 
-    const sendAccount = this.props.wallet.accounts.find(a => a.address === this.state.address);
+    const sendAccount = wallet.accounts.find(a => a.address === address);
     const pubKeyBase58 = Waves.Base58.encode(sendAccount.publicKey);
 
     const attachment = values['attachment'];
@@ -76,7 +75,7 @@ class SendWizard extends React.Component {
         assetName: assetBalance.assetName,
         assetDecimals: assetBalance.assetDecimals,
         amount: amount,
-        sender: this.state.address,
+        sender: address,
         senderPublicKey: pubKeyBase58,
         recipient: recipient,
         fee: fee,
@@ -91,7 +90,7 @@ class SendWizard extends React.Component {
   };
 
   publishTx = () => {
-    const address = this.state.address;
+    const {address, dispatch} = this.props;
     const redirectUrl = `/wallet/account/${address}`;
 
     client.publishAssetTransfer(this.state.signedTx)
@@ -99,13 +98,13 @@ class SendWizard extends React.Component {
         log.debug('Tx Published: ', publishedTx);
 
         publishedTx.unconfirmed = true;
-        this.props.dispatch(receiveTransactions(address, [publishedTx]));
+        dispatch(receiveTransactions(address, [publishedTx]));
 
         browserHistory.push(redirectUrl);
       })
       .catch(error => {
         log.error(error);
-        alert(error);
+        alert(JSON.stringify(error));
       });
     //this.setState({page: PUBLISH_FORM})
   };
@@ -115,7 +114,7 @@ class SendWizard extends React.Component {
   };
 
   cancelSend = () => {
-    browserHistory.push(`/wallet/account/${this.props.params.address}`);
+    browserHistory.push(`/wallet/account/${this.props.address}`);
   };
 
   stepIndex = (page) => {
@@ -152,7 +151,8 @@ class SendWizard extends React.Component {
   }
 
   renderCurrentStep = (page) => {
-    const {tx, address, signedTx} = this.state;
+    const {tx, signedTx} = this.state;
+    const address = this.props.address;
     const balances = this.props.balances.get(address).items;
 
     if (page === SEND_FORM)
@@ -173,10 +173,11 @@ class SendWizard extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
     wallet: state.wallet,
     balances: state.balances,
+    address: ownProps.params.address
   }
 };
 

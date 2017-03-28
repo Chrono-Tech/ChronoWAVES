@@ -1,8 +1,8 @@
-import {AssetInfo} from '../domain/assets';
+import {KnownAssets} from '../domain/assets';
 import * as ActionTypes from './assetsActions';
 
 const initialAssetsRegistry = {
-  'WAVES': new AssetInfo("WAVES", "WAVES", 100000000 * Math.pow(10, 8), 8, "N/A", 1460678400000, false)
+  'WAVES': KnownAssets.Waves
 };
 
 const onReceiveAssetInfo = (state = initialAssetsRegistry, action) => {
